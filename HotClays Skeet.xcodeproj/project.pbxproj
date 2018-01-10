@@ -1,0 +1,886 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		200C58E52002A3B90063E40B /* SheetSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C58E42002A3B90063E40B /* SheetSummaryTableViewCell.swift */; };
+		200C58E72002BE160063E40B /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C58E62002BE160063E40B /* UIViewExtensions.swift */; };
+		200C58EA2002DBB70063E40B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C58E92002DBB70063E40B /* SettingsTableViewController.swift */; };
+		200C58EC2002E9620063E40B /* EditTeamInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C58EB2002E9620063E40B /* EditTeamInfoTableViewController.swift */; };
+		200C58EF2002EC080063E40B /* EditTeamInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C58EE2002EC080063E40B /* EditTeamInfoDelegate.swift */; };
+		200C58F12002F0A00063E40B /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C58F02002F0A00063E40B /* UserDefaultsKeys.swift */; };
+		200C58F72003066C0063E40B /* AthleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200C58F62003066C0063E40B /* AthleteTableViewController.swift */; };
+		20116FC42003D0FD0022BA2D /* HCTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20116FC32003D0FD0022BA2D /* HCTabBarController.swift */; };
+		20116FC82003EAE90022BA2D /* SheetExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20116FC72003EAE90022BA2D /* SheetExporter.swift */; };
+		202C376F2005B78500E3527D /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C376E2005B78500E3527D /* UITextViewExtensions.swift */; };
+		202F288D20040BED00D88FA2 /* EditRoundDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F288C20040BED00D88FA2 /* EditRoundDelegate.swift */; };
+		2034AA62200559CD006D37C2 /* AddAthleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034AA61200559CD006D37C2 /* AddAthleteDelegate.swift */; };
+		206A4A7B20027F7300526B36 /* RoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A4A7A20027F7300526B36 /* RoundTableViewController.swift */; };
+		206A4A7D2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A4A7C2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift */; };
+		206F5B2F20068A6700A22329 /* ChooseSheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F5B2E20068A6700A22329 /* ChooseSheetTableViewController.swift */; };
+		208717DA2006745D00E3AF68 /* EditSheetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208717D92006745C00E3AF68 /* EditSheetDelegate.swift */; };
+		208717DC2006827300E3AF68 /* SetupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208717DB2006827300E3AF68 /* SetupTableViewCell.swift */; };
+		20876D882003142A001A09F2 /* AthleteSheetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20876D872003142A001A09F2 /* AthleteSheetsTableViewController.swift */; };
+		20876D8A200321E8001A09F2 /* AthleteStatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20876D89200321E8001A09F2 /* AthleteStatisticsTableViewController.swift */; };
+		20876D8C200323C0001A09F2 /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20876D8B200323C0001A09F2 /* StatisticsTableViewCell.swift */; };
+		209985F41FFECD0300B67372 /* TeamConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985F31FFECD0300B67372 /* TeamConstants.swift */; };
+		209985F61FFECD7200B67372 /* HCSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985F51FFECD7200B67372 /* HCSplitViewController.swift */; };
+		209985F81FFECF1300B67372 /* SheetsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985F71FFECF1300B67372 /* SheetsConstants.swift */; };
+		209985FA1FFED75D00B67372 /* TeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985F91FFED75D00B67372 /* TeamTableViewController.swift */; };
+		209985FC1FFED80000B67372 /* AthleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985FB1FFED80000B67372 /* AthleteTableViewCell.swift */; };
+		209986041FFED9FA00B67372 /* Athlete+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985FE1FFED9FA00B67372 /* Athlete+CoreDataClass.swift */; };
+		209986051FFED9FA00B67372 /* Athlete+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985FF1FFED9FA00B67372 /* Athlete+CoreDataProperties.swift */; };
+		209986061FFED9FA00B67372 /* Sheet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986001FFED9FA00B67372 /* Sheet+CoreDataClass.swift */; };
+		209986071FFED9FA00B67372 /* Sheet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986011FFED9FA00B67372 /* Sheet+CoreDataProperties.swift */; };
+		209986081FFED9FA00B67372 /* Round+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986021FFED9FA00B67372 /* Round+CoreDataClass.swift */; };
+		209986091FFED9FA00B67372 /* Round+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986031FFED9FA00B67372 /* Round+CoreDataProperties.swift */; };
+		2099860B1FFEDB1100B67372 /* Yardage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099860A1FFEDB1100B67372 /* Yardage.swift */; };
+		2099860D1FFEDB1800B67372 /* Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099860C1FFEDB1800B67372 /* Gauge.swift */; };
+		2099860F1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099860E1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift */; };
+		209986131FFEE40D00B67372 /* AddAthleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986121FFEE40D00B67372 /* AddAthleteTableViewController.swift */; };
+		209986151FFEF3DF00B67372 /* SetupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986141FFEF3DF00B67372 /* SetupTableViewController.swift */; };
+		209986171FFEF4CB00B67372 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986161FFEF4CB00B67372 /* Station.swift */; };
+		209986191FFEF4F700B67372 /* ScoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986181FFEF4F700B67372 /* ScoreConstants.swift */; };
+		2099861E1FFEF5BD00B67372 /* SetupShiftedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099861D1FFEF5BD00B67372 /* SetupShiftedTableViewCell.swift */; };
+		209986221FFEF86900B67372 /* EditSheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986211FFEF86900B67372 /* EditSheetTableViewController.swift */; };
+		209986241FFEF8BB00B67372 /* EditSquadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986231FFEF8BB00B67372 /* EditSquadTableViewController.swift */; };
+		2099862F1FFF372600B67372 /* CompetingAthlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099862E1FFF372600B67372 /* CompetingAthlete.swift */; };
+		209986311FFF381700B67372 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986301FFF381700B67372 /* Score.swift */; };
+		209986331FFF387400B67372 /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986321FFF387400B67372 /* Trap.swift */; };
+		209986351FFF388700B67372 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986341FFF388700B67372 /* Shot.swift */; };
+		209986371FFF3ABE00B67372 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986361FFF3ABE00B67372 /* ArrayExtensions.swift */; };
+		209986391FFF3D1F00B67372 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986381FFF3D1F00B67372 /* SequenceExtensions.swift */; };
+		2099863B1FFF3F6600B67372 /* EditSquadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099863A1FFF3F6600B67372 /* EditSquadDelegate.swift */; };
+		2099863E1FFF41FB00B67372 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099863D1FFF41FB00B67372 /* ScoreViewController.swift */; };
+		209986401FFF423500B67372 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099863F1FFF423500B67372 /* ScoreTableViewCell.swift */; };
+		209986431FFF429D00B67372 /* ScoreCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986421FFF429D00B67372 /* ScoreCollectionView.swift */; };
+		209986451FFF42C700B67372 /* ScoreCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986441FFF42C700B67372 /* ScoreCollectionViewFlowLayout.swift */; };
+		209986471FFF42E600B67372 /* CGSizeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986461FFF42E600B67372 /* CGSizeExtensions.swift */; };
+		209986491FFF431D00B67372 /* ScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986481FFF431D00B67372 /* ScoreCollectionViewCell.swift */; };
+		2099864B1FFF434F00B67372 /* HitScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099864A1FFF434F00B67372 /* HitScoreCollectionViewCell.swift */; };
+		2099864D1FFF435900B67372 /* MissScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099864C1FFF435900B67372 /* MissScoreCollectionViewCell.swift */; };
+		2099864F1FFF436500B67372 /* NotTakenScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099864E1FFF436500B67372 /* NotTakenScoreCollectionViewCell.swift */; };
+		209986511FFF43C600B67372 /* CommonConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986501FFF43C600B67372 /* CommonConstants.swift */; };
+		209986531FFFD02300B67372 /* ScoreViewController+UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986521FFFD02300B67372 /* ScoreViewController+UICollectionViewExtensions.swift */; };
+		209986551FFFD04900B67372 /* ScoreViewController+UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986541FFFD04900B67372 /* ScoreViewController+UITableViewExtensions.swift */; };
+		209986571FFFD0A400B67372 /* ScoreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986561FFFD0A400B67372 /* ScoreDelegate.swift */; };
+		209986591FFFD13C00B67372 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986581FFFD13C00B67372 /* IntExtensions.swift */; };
+		2099865B1FFFF1F800B67372 /* SelectableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099865A1FFFF1F800B67372 /* SelectableTableViewCell.swift */; };
+		2099865E1FFFFE4000B67372 /* MissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099865D1FFFFE4000B67372 /* MissButtonView.swift */; };
+		209986601FFFFE4B00B67372 /* HitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099865F1FFFFE4B00B67372 /* HitButtonView.swift */; };
+		209986622000009F00B67372 /* SheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986612000009F00B67372 /* SheetTableViewCell.swift */; };
+		209986642000020900B67372 /* SheetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986632000020900B67372 /* SheetsTableViewController.swift */; };
+		209986662000031600B67372 /* SheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986652000031600B67372 /* SheetTableViewController.swift */; };
+		2099866A20000EE500B67372 /* EditRoundNumberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099866920000EE500B67372 /* EditRoundNumberTableViewController.swift */; };
+		2099866C2000102E00B67372 /* EditRoundNumberDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */; };
+		20A8EE051FFEC9730059DA28 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */; };
+		20B9A4C1200465BF002612D0 /* RoundExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9A4C0200465BF002612D0 /* RoundExporter.swift */; };
+		20C6AA9E2005C59100087ABC /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */; };
+		20E4A2B7200041BC007EBBF5 /* EditAthleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4A2B6200041BC007EBBF5 /* EditAthleteTableViewController.swift */; };
+		20E4A2B9200041C8007EBBF5 /* EditAthleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4A2B8200041C8007EBBF5 /* EditAthleteDelegate.swift */; };
+		20E9160B1FFEC07C00DDE20D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9160A1FFEC07C00DDE20D /* AppDelegate.swift */; };
+		20E916101FFEC07C00DDE20D /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E9160E1FFEC07C00DDE20D /* Tabs.storyboard */; };
+		20E916131FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20E916111FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld */; };
+		20E916151FFEC07C00DDE20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E916141FFEC07C00DDE20D /* Assets.xcassets */; };
+		20E916181FFEC07C00DDE20D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E916161FFEC07C00DDE20D /* LaunchScreen.storyboard */; };
+		20E9162C1FFEC26700DDE20D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9162B1FFEC26700DDE20D /* AppColors.swift */; };
+		20E9162E1FFEC2E600DDE20D /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9162D1FFEC2E600DDE20D /* UIColorExtensions.swift */; };
+		20E916301FFEC6A700DDE20D /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E9162F1FFEC6A700DDE20D /* Team.storyboard */; };
+		20E916321FFEC77000DDE20D /* Sheets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E916311FFEC77000DDE20D /* Sheets.storyboard */; };
+		20E916341FFEC7B800DDE20D /* Score.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E916331FFEC7B800DDE20D /* Score.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		200C58E42002A3B90063E40B /* SheetSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		200C58E62002BE160063E40B /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		200C58E92002DBB70063E40B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		200C58EB2002E9620063E40B /* EditTeamInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTeamInfoTableViewController.swift; sourceTree = "<group>"; };
+		200C58EE2002EC080063E40B /* EditTeamInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTeamInfoDelegate.swift; sourceTree = "<group>"; };
+		200C58F02002F0A00063E40B /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		200C58F62003066C0063E40B /* AthleteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteTableViewController.swift; sourceTree = "<group>"; };
+		20116FC32003D0FD0022BA2D /* HCTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCTabBarController.swift; sourceTree = "<group>"; };
+		20116FC72003EAE90022BA2D /* SheetExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetExporter.swift; sourceTree = "<group>"; };
+		202C376E2005B78500E3527D /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
+		202F288C20040BED00D88FA2 /* EditRoundDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundDelegate.swift; sourceTree = "<group>"; };
+		2034AA61200559CD006D37C2 /* AddAthleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAthleteDelegate.swift; sourceTree = "<group>"; };
+		206A4A7A20027F7300526B36 /* RoundTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTableViewController.swift; sourceTree = "<group>"; };
+		206A4A7C2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoundTableViewController+UICollectionViewExtensions.swift"; sourceTree = "<group>"; };
+		206F5B2E20068A6700A22329 /* ChooseSheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSheetTableViewController.swift; sourceTree = "<group>"; };
+		208717D92006745C00E3AF68 /* EditSheetDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSheetDelegate.swift; sourceTree = "<group>"; };
+		208717DB2006827300E3AF68 /* SetupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTableViewCell.swift; sourceTree = "<group>"; };
+		20876D872003142A001A09F2 /* AthleteSheetsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteSheetsTableViewController.swift; sourceTree = "<group>"; };
+		20876D89200321E8001A09F2 /* AthleteStatisticsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteStatisticsTableViewController.swift; sourceTree = "<group>"; };
+		20876D8B200323C0001A09F2 /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
+		209985F31FFECD0300B67372 /* TeamConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamConstants.swift; sourceTree = "<group>"; };
+		209985F51FFECD7200B67372 /* HCSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCSplitViewController.swift; sourceTree = "<group>"; };
+		209985F71FFECF1300B67372 /* SheetsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetsConstants.swift; sourceTree = "<group>"; };
+		209985F91FFED75D00B67372 /* TeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewController.swift; sourceTree = "<group>"; };
+		209985FB1FFED80000B67372 /* AthleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteTableViewCell.swift; sourceTree = "<group>"; };
+		209985FE1FFED9FA00B67372 /* Athlete+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Athlete+CoreDataClass.swift"; sourceTree = "<group>"; };
+		209985FF1FFED9FA00B67372 /* Athlete+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Athlete+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		209986001FFED9FA00B67372 /* Sheet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sheet+CoreDataClass.swift"; sourceTree = "<group>"; };
+		209986011FFED9FA00B67372 /* Sheet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sheet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		209986021FFED9FA00B67372 /* Round+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Round+CoreDataClass.swift"; sourceTree = "<group>"; };
+		209986031FFED9FA00B67372 /* Round+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Round+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2099860A1FFEDB1100B67372 /* Yardage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yardage.swift; sourceTree = "<group>"; };
+		2099860C1FFEDB1800B67372 /* Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gauge.swift; sourceTree = "<group>"; };
+		2099860E1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewControllerWithNSFRC.swift; sourceTree = "<group>"; };
+		209986121FFEE40D00B67372 /* AddAthleteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAthleteTableViewController.swift; sourceTree = "<group>"; };
+		209986141FFEF3DF00B67372 /* SetupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTableViewController.swift; sourceTree = "<group>"; };
+		209986161FFEF4CB00B67372 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		209986181FFEF4F700B67372 /* ScoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreConstants.swift; sourceTree = "<group>"; };
+		2099861D1FFEF5BD00B67372 /* SetupShiftedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupShiftedTableViewCell.swift; sourceTree = "<group>"; };
+		209986211FFEF86900B67372 /* EditSheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetTableViewController.swift; sourceTree = "<group>"; };
+		209986231FFEF8BB00B67372 /* EditSquadTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSquadTableViewController.swift; sourceTree = "<group>"; };
+		2099862E1FFF372600B67372 /* CompetingAthlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetingAthlete.swift; sourceTree = "<group>"; };
+		209986301FFF381700B67372 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		209986321FFF387400B67372 /* Trap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
+		209986341FFF388700B67372 /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
+		209986361FFF3ABE00B67372 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		209986381FFF3D1F00B67372 /* SequenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
+		2099863A1FFF3F6600B67372 /* EditSquadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSquadDelegate.swift; sourceTree = "<group>"; };
+		2099863D1FFF41FB00B67372 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		2099863F1FFF423500B67372 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		209986421FFF429D00B67372 /* ScoreCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCollectionView.swift; sourceTree = "<group>"; };
+		209986441FFF42C700B67372 /* ScoreCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		209986461FFF42E600B67372 /* CGSizeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeExtensions.swift; sourceTree = "<group>"; };
+		209986481FFF431D00B67372 /* ScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		2099864A1FFF434F00B67372 /* HitScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitScoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		2099864C1FFF435900B67372 /* MissScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissScoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		2099864E1FFF436500B67372 /* NotTakenScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTakenScoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		209986501FFF43C600B67372 /* CommonConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonConstants.swift; sourceTree = "<group>"; };
+		209986521FFFD02300B67372 /* ScoreViewController+UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScoreViewController+UICollectionViewExtensions.swift"; sourceTree = "<group>"; };
+		209986541FFFD04900B67372 /* ScoreViewController+UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScoreViewController+UITableViewExtensions.swift"; sourceTree = "<group>"; };
+		209986561FFFD0A400B67372 /* ScoreDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDelegate.swift; sourceTree = "<group>"; };
+		209986581FFFD13C00B67372 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
+		2099865A1FFFF1F800B67372 /* SelectableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTableViewCell.swift; sourceTree = "<group>"; };
+		2099865D1FFFFE4000B67372 /* MissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissButtonView.swift; sourceTree = "<group>"; };
+		2099865F1FFFFE4B00B67372 /* HitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitButtonView.swift; sourceTree = "<group>"; };
+		209986612000009F00B67372 /* SheetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTableViewCell.swift; sourceTree = "<group>"; };
+		209986632000020900B67372 /* SheetsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetsTableViewController.swift; sourceTree = "<group>"; };
+		209986652000031600B67372 /* SheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTableViewController.swift; sourceTree = "<group>"; };
+		2099866920000EE500B67372 /* EditRoundNumberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundNumberTableViewController.swift; sourceTree = "<group>"; };
+		2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundNumberDelegate.swift; sourceTree = "<group>"; };
+		20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		20B9A4C0200465BF002612D0 /* RoundExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundExporter.swift; sourceTree = "<group>"; };
+		20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
+		20E4A2B6200041BC007EBBF5 /* EditAthleteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAthleteTableViewController.swift; sourceTree = "<group>"; };
+		20E4A2B8200041C8007EBBF5 /* EditAthleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAthleteDelegate.swift; sourceTree = "<group>"; };
+		20E916071FFEC07C00DDE20D /* HotClays Skeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HotClays Skeet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20E9160A1FFEC07C00DDE20D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		20E9160F1FFEC07C00DDE20D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tabs.storyboard; sourceTree = "<group>"; };
+		20E916121FFEC07C00DDE20D /* HotClays_Trap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HotClays_Trap.xcdatamodel; sourceTree = "<group>"; };
+		20E916141FFEC07C00DDE20D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20E916171FFEC07C00DDE20D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		20E916191FFEC07C00DDE20D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20E9162B1FFEC26700DDE20D /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		20E9162D1FFEC2E600DDE20D /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		20E9162F1FFEC6A700DDE20D /* Team.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
+		20E916311FFEC77000DDE20D /* Sheets.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheets.storyboard; sourceTree = "<group>"; };
+		20E916331FFEC7B800DDE20D /* Score.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Score.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20E916041FFEC07C00DDE20D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		200C58E82002DB8C0063E40B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				200C58E92002DBB70063E40B /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		200C58ED2002EBE70063E40B /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				200C58EB2002E9620063E40B /* EditTeamInfoTableViewController.swift */,
+				200C58EE2002EC080063E40B /* EditTeamInfoDelegate.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		200C58F82003082F0063E40B /* Athlete */ = {
+			isa = PBXGroup;
+			children = (
+				200C58F62003066C0063E40B /* AthleteTableViewController.swift */,
+				20876D872003142A001A09F2 /* AthleteSheetsTableViewController.swift */,
+				20876D89200321E8001A09F2 /* AthleteStatisticsTableViewController.swift */,
+				20876D8B200323C0001A09F2 /* StatisticsTableViewCell.swift */,
+				209986121FFEE40D00B67372 /* AddAthleteTableViewController.swift */,
+				2034AA61200559CD006D37C2 /* AddAthleteDelegate.swift */,
+			);
+			path = Athlete;
+			sourceTree = "<group>";
+		};
+		20116FC52003E2B00022BA2D /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				202F288C20040BED00D88FA2 /* EditRoundDelegate.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		20116FC62003E2F70022BA2D /* Round */ = {
+			isa = PBXGroup;
+			children = (
+				206A4A7A20027F7300526B36 /* RoundTableViewController.swift */,
+				206A4A7C2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift */,
+				20116FC52003E2B00022BA2D /* Edit */,
+			);
+			path = Round;
+			sourceTree = "<group>";
+		};
+		20116FC92003EAEE0022BA2D /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				20116FC72003EAE90022BA2D /* SheetExporter.swift */,
+				20B9A4C0200465BF002612D0 /* RoundExporter.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		206A4A7E2002867A00526B36 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				209986652000031600B67372 /* SheetTableViewController.swift */,
+				200C58E42002A3B90063E40B /* SheetSummaryTableViewCell.swift */,
+				20116FC62003E2F70022BA2D /* Round */,
+				20116FC92003EAEE0022BA2D /* Share */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		209985FD1FFED9DF00B67372 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				209985FE1FFED9FA00B67372 /* Athlete+CoreDataClass.swift */,
+				209985FF1FFED9FA00B67372 /* Athlete+CoreDataProperties.swift */,
+				209986001FFED9FA00B67372 /* Sheet+CoreDataClass.swift */,
+				209986011FFED9FA00B67372 /* Sheet+CoreDataProperties.swift */,
+				209986021FFED9FA00B67372 /* Round+CoreDataClass.swift */,
+				209986031FFED9FA00B67372 /* Round+CoreDataProperties.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		2099861A1FFEF57F00B67372 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				209986141FFEF3DF00B67372 /* SetupTableViewController.swift */,
+				208717DB2006827300E3AF68 /* SetupTableViewCell.swift */,
+				2099861D1FFEF5BD00B67372 /* SetupShiftedTableViewCell.swift */,
+				209986251FFF329100B67372 /* Sheet */,
+				209986261FFF32A100B67372 /* Round */,
+				209986271FFF32AA00B67372 /* Squad */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		209986251FFF329100B67372 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				206F5B2E20068A6700A22329 /* ChooseSheetTableViewController.swift */,
+				209986211FFEF86900B67372 /* EditSheetTableViewController.swift */,
+				208717D92006745C00E3AF68 /* EditSheetDelegate.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		209986261FFF32A100B67372 /* Round */ = {
+			isa = PBXGroup;
+			children = (
+				2099866920000EE500B67372 /* EditRoundNumberTableViewController.swift */,
+				2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */,
+			);
+			path = Round;
+			sourceTree = "<group>";
+		};
+		209986271FFF32AA00B67372 /* Squad */ = {
+			isa = PBXGroup;
+			children = (
+				209986231FFEF8BB00B67372 /* EditSquadTableViewController.swift */,
+				2099863A1FFF3F6600B67372 /* EditSquadDelegate.swift */,
+				20E4A2B6200041BC007EBBF5 /* EditAthleteTableViewController.swift */,
+				20E4A2B8200041C8007EBBF5 /* EditAthleteDelegate.swift */,
+			);
+			path = Squad;
+			sourceTree = "<group>";
+		};
+		2099862C1FFF35CE00B67372 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				209985FB1FFED80000B67372 /* AthleteTableViewCell.swift */,
+				20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */,
+				2099863F1FFF423500B67372 /* ScoreTableViewCell.swift */,
+				2099865A1FFFF1F800B67372 /* SelectableTableViewCell.swift */,
+				209986612000009F00B67372 /* SheetTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		2099862D1FFF35DD00B67372 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				209985F51FFECD7200B67372 /* HCSplitViewController.swift */,
+				2099860E1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2099863C1FFF41D200B67372 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				2099865C1FFFFE2B00B67372 /* Buttons */,
+				2099863D1FFF41FB00B67372 /* ScoreViewController.swift */,
+				209986521FFFD02300B67372 /* ScoreViewController+UICollectionViewExtensions.swift */,
+				209986541FFFD04900B67372 /* ScoreViewController+UITableViewExtensions.swift */,
+				209986561FFFD0A400B67372 /* ScoreDelegate.swift */,
+			);
+			path = Score;
+			sourceTree = "<group>";
+		};
+		209986411FFF427D00B67372 /* ScoreCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				209986421FFF429D00B67372 /* ScoreCollectionView.swift */,
+				209986441FFF42C700B67372 /* ScoreCollectionViewFlowLayout.swift */,
+				209986481FFF431D00B67372 /* ScoreCollectionViewCell.swift */,
+				2099864A1FFF434F00B67372 /* HitScoreCollectionViewCell.swift */,
+				2099864C1FFF435900B67372 /* MissScoreCollectionViewCell.swift */,
+				2099864E1FFF436500B67372 /* NotTakenScoreCollectionViewCell.swift */,
+			);
+			path = ScoreCollectionView;
+			sourceTree = "<group>";
+		};
+		2099865C1FFFFE2B00B67372 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2099865F1FFFFE4B00B67372 /* HitButtonView.swift */,
+				2099865D1FFFFE4000B67372 /* MissButtonView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		20E915FE1FFEC07C00DDE20D = {
+			isa = PBXGroup;
+			children = (
+				20E916091FFEC07C00DDE20D /* Client */,
+				20E916081FFEC07C00DDE20D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20E916081FFEC07C00DDE20D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20E916071FFEC07C00DDE20D /* HotClays Skeet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20E916091FFEC07C00DDE20D /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				20E916191FFEC07C00DDE20D /* Info.plist */,
+				20E9161F1FFEC10A00DDE20D /* Application */,
+				20E916201FFEC11000DDE20D /* Assets */,
+				20E916221FFEC11D00DDE20D /* CoreData */,
+				20E916211FFEC11700DDE20D /* Extensions */,
+				20E916231FFEC13A00DDE20D /* Frontend */,
+				20E916241FFEC14E00DDE20D /* Model */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		20E9161F1FFEC10A00DDE20D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				20E9162B1FFEC26700DDE20D /* AppColors.swift */,
+				20E9160A1FFEC07C00DDE20D /* AppDelegate.swift */,
+				20E916161FFEC07C00DDE20D /* LaunchScreen.storyboard */,
+				200C58F02002F0A00063E40B /* UserDefaultsKeys.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		20E916201FFEC11000DDE20D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				20E916141FFEC07C00DDE20D /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		20E916211FFEC11700DDE20D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				209986361FFF3ABE00B67372 /* ArrayExtensions.swift */,
+				209986461FFF42E600B67372 /* CGSizeExtensions.swift */,
+				209986581FFFD13C00B67372 /* IntExtensions.swift */,
+				209986381FFF3D1F00B67372 /* SequenceExtensions.swift */,
+				20E9162D1FFEC2E600DDE20D /* UIColorExtensions.swift */,
+				200C58E62002BE160063E40B /* UIViewExtensions.swift */,
+				202C376E2005B78500E3527D /* UITextViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		20E916221FFEC11D00DDE20D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */,
+				20E916111FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld */,
+				209985FD1FFED9DF00B67372 /* Generated */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		20E916231FFEC13A00DDE20D /* Frontend */ = {
+			isa = PBXGroup;
+			children = (
+				20E9162A1FFEC1BA00DDE20D /* Common */,
+				20E916291FFEC1B500DDE20D /* Score */,
+				20E916281FFEC1AB00DDE20D /* Sheets */,
+				20E916271FFEC19800DDE20D /* Tabs */,
+				20E916251FFEC16100DDE20D /* Team */,
+			);
+			path = Frontend;
+			sourceTree = "<group>";
+		};
+		20E916241FFEC14E00DDE20D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2099862E1FFF372600B67372 /* CompetingAthlete.swift */,
+				209986301FFF381700B67372 /* Score.swift */,
+				2099860C1FFEDB1800B67372 /* Gauge.swift */,
+				2099860A1FFEDB1100B67372 /* Yardage.swift */,
+				209986161FFEF4CB00B67372 /* Station.swift */,
+				209986321FFF387400B67372 /* Trap.swift */,
+				209986341FFF388700B67372 /* Shot.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20E916251FFEC16100DDE20D /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				20E9162F1FFEC6A700DDE20D /* Team.storyboard */,
+				209985F31FFECD0300B67372 /* TeamConstants.swift */,
+				209985F91FFED75D00B67372 /* TeamTableViewController.swift */,
+				200C58ED2002EBE70063E40B /* Edit */,
+				200C58F82003082F0063E40B /* Athlete */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
+		20E916271FFEC19800DDE20D /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				20E9160E1FFEC07C00DDE20D /* Tabs.storyboard */,
+				20116FC32003D0FD0022BA2D /* HCTabBarController.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		20E916281FFEC1AB00DDE20D /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				20E916311FFEC77000DDE20D /* Sheets.storyboard */,
+				209985F71FFECF1300B67372 /* SheetsConstants.swift */,
+				209986632000020900B67372 /* SheetsTableViewController.swift */,
+				206A4A7E2002867A00526B36 /* Sheet */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		20E916291FFEC1B500DDE20D /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				20E916331FFEC7B800DDE20D /* Score.storyboard */,
+				209986181FFEF4F700B67372 /* ScoreConstants.swift */,
+				2099861A1FFEF57F00B67372 /* Setup */,
+				2099863C1FFF41D200B67372 /* Score */,
+				200C58E82002DB8C0063E40B /* Settings */,
+			);
+			path = Score;
+			sourceTree = "<group>";
+		};
+		20E9162A1FFEC1BA00DDE20D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				209986501FFF43C600B67372 /* CommonConstants.swift */,
+				209986411FFF427D00B67372 /* ScoreCollectionView */,
+				2099862C1FFF35CE00B67372 /* TableViewCells */,
+				2099862D1FFF35DD00B67372 /* ViewControllers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20E916061FFEC07C00DDE20D /* HotClays Skeet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20E9161C1FFEC07C00DDE20D /* Build configuration list for PBXNativeTarget "HotClays Skeet" */;
+			buildPhases = (
+				20E916031FFEC07C00DDE20D /* Sources */,
+				20E916041FFEC07C00DDE20D /* Frameworks */,
+				20E916051FFEC07C00DDE20D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HotClays Skeet";
+			productName = "HotClays Trap";
+			productReference = 20E916071FFEC07C00DDE20D /* HotClays Skeet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20E915FF1FFEC07C00DDE20D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Christopher Chute";
+				TargetAttributes = {
+					20E916061FFEC07C00DDE20D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 20E916021FFEC07C00DDE20D /* Build configuration list for PBXProject "HotClays Skeet" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 20E915FE1FFEC07C00DDE20D;
+			productRefGroup = 20E916081FFEC07C00DDE20D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20E916061FFEC07C00DDE20D /* HotClays Skeet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20E916051FFEC07C00DDE20D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20E916181FFEC07C00DDE20D /* LaunchScreen.storyboard in Resources */,
+				20E916341FFEC7B800DDE20D /* Score.storyboard in Resources */,
+				20E916301FFEC6A700DDE20D /* Team.storyboard in Resources */,
+				20E916151FFEC07C00DDE20D /* Assets.xcassets in Resources */,
+				20E916321FFEC77000DDE20D /* Sheets.storyboard in Resources */,
+				20E916101FFEC07C00DDE20D /* Tabs.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20E916031FFEC07C00DDE20D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				200C58EA2002DBB70063E40B /* SettingsTableViewController.swift in Sources */,
+				2099865E1FFFFE4000B67372 /* MissButtonView.swift in Sources */,
+				200C58F12002F0A00063E40B /* UserDefaultsKeys.swift in Sources */,
+				209986241FFEF8BB00B67372 /* EditSquadTableViewController.swift in Sources */,
+				20A8EE051FFEC9730059DA28 /* CoreDataManager.swift in Sources */,
+				209986061FFED9FA00B67372 /* Sheet+CoreDataClass.swift in Sources */,
+				206F5B2F20068A6700A22329 /* ChooseSheetTableViewController.swift in Sources */,
+				208717DA2006745D00E3AF68 /* EditSheetDelegate.swift in Sources */,
+				209985F81FFECF1300B67372 /* SheetsConstants.swift in Sources */,
+				209986622000009F00B67372 /* SheetTableViewCell.swift in Sources */,
+				209986081FFED9FA00B67372 /* Round+CoreDataClass.swift in Sources */,
+				2099864F1FFF436500B67372 /* NotTakenScoreCollectionViewCell.swift in Sources */,
+				20E9162C1FFEC26700DDE20D /* AppColors.swift in Sources */,
+				20116FC42003D0FD0022BA2D /* HCTabBarController.swift in Sources */,
+				2099860B1FFEDB1100B67372 /* Yardage.swift in Sources */,
+				209986511FFF43C600B67372 /* CommonConstants.swift in Sources */,
+				209986471FFF42E600B67372 /* CGSizeExtensions.swift in Sources */,
+				209986311FFF381700B67372 /* Score.swift in Sources */,
+				209986642000020900B67372 /* SheetsTableViewController.swift in Sources */,
+				20E916131FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld in Sources */,
+				20C6AA9E2005C59100087ABC /* NotesTableViewCell.swift in Sources */,
+				209986371FFF3ABE00B67372 /* ArrayExtensions.swift in Sources */,
+				200C58F72003066C0063E40B /* AthleteTableViewController.swift in Sources */,
+				20116FC82003EAE90022BA2D /* SheetExporter.swift in Sources */,
+				209986041FFED9FA00B67372 /* Athlete+CoreDataClass.swift in Sources */,
+				209986171FFEF4CB00B67372 /* Station.swift in Sources */,
+				20E4A2B9200041C8007EBBF5 /* EditAthleteDelegate.swift in Sources */,
+				209986551FFFD04900B67372 /* ScoreViewController+UITableViewExtensions.swift in Sources */,
+				2099862F1FFF372600B67372 /* CompetingAthlete.swift in Sources */,
+				20E9160B1FFEC07C00DDE20D /* AppDelegate.swift in Sources */,
+				200C58E52002A3B90063E40B /* SheetSummaryTableViewCell.swift in Sources */,
+				209986051FFED9FA00B67372 /* Athlete+CoreDataProperties.swift in Sources */,
+				20B9A4C1200465BF002612D0 /* RoundExporter.swift in Sources */,
+				200C58E72002BE160063E40B /* UIViewExtensions.swift in Sources */,
+				209986601FFFFE4B00B67372 /* HitButtonView.swift in Sources */,
+				209986431FFF429D00B67372 /* ScoreCollectionView.swift in Sources */,
+				2099861E1FFEF5BD00B67372 /* SetupShiftedTableViewCell.swift in Sources */,
+				209986571FFFD0A400B67372 /* ScoreDelegate.swift in Sources */,
+				209986531FFFD02300B67372 /* ScoreViewController+UICollectionViewExtensions.swift in Sources */,
+				209986191FFEF4F700B67372 /* ScoreConstants.swift in Sources */,
+				200C58EC2002E9620063E40B /* EditTeamInfoTableViewController.swift in Sources */,
+				209986351FFF388700B67372 /* Shot.swift in Sources */,
+				209986401FFF423500B67372 /* ScoreTableViewCell.swift in Sources */,
+				2099866A20000EE500B67372 /* EditRoundNumberTableViewController.swift in Sources */,
+				20876D882003142A001A09F2 /* AthleteSheetsTableViewController.swift in Sources */,
+				2099863E1FFF41FB00B67372 /* ScoreViewController.swift in Sources */,
+				209985FA1FFED75D00B67372 /* TeamTableViewController.swift in Sources */,
+				206A4A7D2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift in Sources */,
+				2034AA62200559CD006D37C2 /* AddAthleteDelegate.swift in Sources */,
+				209986151FFEF3DF00B67372 /* SetupTableViewController.swift in Sources */,
+				209986391FFF3D1F00B67372 /* SequenceExtensions.swift in Sources */,
+				2099860D1FFEDB1800B67372 /* Gauge.swift in Sources */,
+				2099866C2000102E00B67372 /* EditRoundNumberDelegate.swift in Sources */,
+				2099864B1FFF434F00B67372 /* HitScoreCollectionViewCell.swift in Sources */,
+				2099860F1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift in Sources */,
+				209986131FFEE40D00B67372 /* AddAthleteTableViewController.swift in Sources */,
+				209985F61FFECD7200B67372 /* HCSplitViewController.swift in Sources */,
+				20876D8A200321E8001A09F2 /* AthleteStatisticsTableViewController.swift in Sources */,
+				20876D8C200323C0001A09F2 /* StatisticsTableViewCell.swift in Sources */,
+				202C376F2005B78500E3527D /* UITextViewExtensions.swift in Sources */,
+				209985F41FFECD0300B67372 /* TeamConstants.swift in Sources */,
+				202F288D20040BED00D88FA2 /* EditRoundDelegate.swift in Sources */,
+				209986221FFEF86900B67372 /* EditSheetTableViewController.swift in Sources */,
+				209986091FFED9FA00B67372 /* Round+CoreDataProperties.swift in Sources */,
+				209986491FFF431D00B67372 /* ScoreCollectionViewCell.swift in Sources */,
+				209986331FFF387400B67372 /* Trap.swift in Sources */,
+				20E9162E1FFEC2E600DDE20D /* UIColorExtensions.swift in Sources */,
+				209985FC1FFED80000B67372 /* AthleteTableViewCell.swift in Sources */,
+				209986662000031600B67372 /* SheetTableViewController.swift in Sources */,
+				209986591FFFD13C00B67372 /* IntExtensions.swift in Sources */,
+				2099863B1FFF3F6600B67372 /* EditSquadDelegate.swift in Sources */,
+				20E4A2B7200041BC007EBBF5 /* EditAthleteTableViewController.swift in Sources */,
+				206A4A7B20027F7300526B36 /* RoundTableViewController.swift in Sources */,
+				200C58EF2002EC080063E40B /* EditTeamInfoDelegate.swift in Sources */,
+				2099864D1FFF435900B67372 /* MissScoreCollectionViewCell.swift in Sources */,
+				209986071FFED9FA00B67372 /* Sheet+CoreDataProperties.swift in Sources */,
+				208717DC2006827300E3AF68 /* SetupTableViewCell.swift in Sources */,
+				2099865B1FFFF1F800B67372 /* SelectableTableViewCell.swift in Sources */,
+				209986451FFF42C700B67372 /* ScoreCollectionViewFlowLayout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		20E9160E1FFEC07C00DDE20D /* Tabs.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20E9160F1FFEC07C00DDE20D /* Base */,
+			);
+			name = Tabs.storyboard;
+			sourceTree = "<group>";
+		};
+		20E916161FFEC07C00DDE20D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20E916171FFEC07C00DDE20D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20E9161A1FFEC07C00DDE20D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		20E9161B1FFEC07C00DDE20D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20E9161D1FFEC07C00DDE20D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LFVYJRDCNE;
+				INFOPLIST_FILE = "$(SRCROOT)/Client/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrischute.HotClays-Skeet";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20E9161E1FFEC07C00DDE20D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LFVYJRDCNE;
+				INFOPLIST_FILE = "$(SRCROOT)/Client/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrischute.HotClays-Skeet";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20E916021FFEC07C00DDE20D /* Build configuration list for PBXProject "HotClays Skeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20E9161A1FFEC07C00DDE20D /* Debug */,
+				20E9161B1FFEC07C00DDE20D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20E9161C1FFEC07C00DDE20D /* Build configuration list for PBXNativeTarget "HotClays Skeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20E9161D1FFEC07C00DDE20D /* Debug */,
+				20E9161E1FFEC07C00DDE20D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		20E916111FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				20E916121FFEC07C00DDE20D /* HotClays_Trap.xcdatamodel */,
+			);
+			currentVersion = 20E916121FFEC07C00DDE20D /* HotClays_Trap.xcdatamodel */;
+			path = HotClays_Trap.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 20E915FF1FFEC07C00DDE20D /* Project object */;
+}
