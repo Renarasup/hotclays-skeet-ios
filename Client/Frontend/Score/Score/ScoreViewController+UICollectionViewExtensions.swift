@@ -23,7 +23,7 @@ extension ScoreViewController: UICollectionViewDataSource {
         // Get the shot to display (i.e., hit, miss, or none if not yet attempted).
         let indexOfAthlete = (collectionView as! ScoreCollectionView).indexOfAthlete!
         let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
-        let shot = self.competingAthletes[indexOfAthlete]?.score.getShot(atIndex: indexOfShot) ?? .notTaken
+        let shot = self.competingAthletes[indexOfAthlete].score.getShot(atIndex: indexOfShot)
         
         let cell: ScoreCollectionViewCell
         if shot == .notTaken {
@@ -68,10 +68,8 @@ extension ScoreViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let indexOfShooter = (collectionView as! ScoreCollectionView).indexOfAthlete!
-        if self.competingAthletes[indexOfShooter] != nil {
-            let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
-            self.moveCursor(toIndexOfShooter: indexOfShooter, indexOfShot: indexOfShot)
-        }
+        let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
+        self.moveCursor(toIndexOfShooter: indexOfShooter, indexOfShot: indexOfShot)
     }
     
 }

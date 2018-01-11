@@ -44,25 +44,23 @@ class SheetExporter {
         let firstSquad = rounds.first!.toCompetingAthletes()
         for indexOfAthlete in 0..<Station.allValues.count {
             var rowValues = ["\(indexOfAthlete + 1)"]
-            if let competingAthlete = firstSquad[indexOfAthlete] {
-                // Add athlete info.
-                rowValues.append(competingAthlete.firstName)
-                rowValues.append(competingAthlete.lastName)
-                rowValues.append("\(competingAthlete.gauge.rawValue)")
-                // Add score for each round.
-                var totalNumberOfHits = 0
-                for round in rounds {
-                    if let numberOfHits = round.numberOfHitsForAthlete(withFirstName: competingAthlete.firstName, lastName: competingAthlete.lastName) {
-                        totalNumberOfHits += numberOfHits
-                        rowValues.append("\(numberOfHits)")
-                    } else {
-                        rowValues.append("")
-                    }
+            let competingAthlete = firstSquad[indexOfAthlete]
+            // Add athlete info.
+            rowValues.append(competingAthlete.firstName)
+            rowValues.append(competingAthlete.lastName)
+            rowValues.append("\(competingAthlete.gauge.rawValue)")
+            // Add score for each round.
+            var totalNumberOfHits = 0
+            for round in rounds {
+                if let numberOfHits = round.numberOfHitsForAthlete(withFirstName: competingAthlete.firstName, lastName: competingAthlete.lastName) {
+                    totalNumberOfHits += numberOfHits
+                    rowValues.append("\(numberOfHits)")
+                } else {
+                    rowValues.append("")
                 }
-                rowValues.append("\(totalNumberOfHits)")
-            } else {
-                rowValues.append(contentsOf: (0..<columns.count - 1).map({ _ in "" }))
             }
+            rowValues.append("\(totalNumberOfHits)")
+
             rows.append(rowValues.joined(separator: ","))
         }
         
@@ -82,7 +80,7 @@ class SheetExporter {
         let sortByRoundNumber = NSSortDescriptor(key: "roundNumber", ascending: true)
         if let rounds = sheet.rounds?.sortedArray(using: [sortByRoundNumber]) as? [Round],
             let firstSquad = rounds.first?.toCompetingAthletes() {
-            let athleteNames = firstSquad.flatMap({ $0?.fullName })
+            let athleteNames = firstSquad.map({ $0.fullName })
             lines.append("Squad: \(athleteNames.joined(separator: ", "))")
         }
         lines.append("Notes: \(sheet.notes ?? "None")")

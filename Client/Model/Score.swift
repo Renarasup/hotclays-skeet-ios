@@ -30,12 +30,12 @@ class Score: CustomStringConvertible {
     }
     
     init() {
-        self.shots = Array(repeating: .notTaken, count: Skeet.numberOfShotsPerRound)
+        self.shots = Array(repeating: .notTaken, count: Skeet.numberOfNonOptionShotsPerRound)
         self.option = .notTaken
     }
     
     init?(fromString scoreString: String) {
-        if scoreString.count == Skeet.numberOfShotsPerRound {
+        if scoreString.count == Skeet.numberOfNonOptionShotsPerRound {
             let indexOfLastChar = scoreString.index(before: scoreString.endIndex)
             let shotString = scoreString[..<indexOfLastChar]
             self.shots = shotString.map({ Shot.fromCharacter($0) })
@@ -51,6 +51,14 @@ class Score: CustomStringConvertible {
 
     func getShot(atIndex index: Int) -> Shot {
         return self.shots[index]
+    }
+    
+    func setOption(_ shot: Shot) {
+        self.option = shot
+    }
+    
+    func getOption() -> Shot {
+        return self.option
     }
 
 }

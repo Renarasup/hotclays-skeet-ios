@@ -22,13 +22,8 @@ extension ScoreViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let indexOfAthlete = indexPath.section
         let cell = self.tableViewCells[indexOfAthlete]
-        if let athlete = self.competingAthletes[indexOfAthlete] {
-            cell.configure(with: athlete.score, at: indexOfAthlete)
-        } else {
-            // Fill with nil shots if there's no athlete at a given station.
-            cell.configure(with: nil, at: indexOfAthlete)
-        }
-        
+        let athlete = self.competingAthletes[indexOfAthlete]
+        cell.configure(with: athlete.score, at: indexOfAthlete)
         return cell
     }
     
@@ -36,7 +31,7 @@ extension ScoreViewController: UITableViewDataSource {
         // Make a section header with shooter name on the left, and current post on the right.
         let indexOfAthlete = section
         let fullNameLabel = UILabel()
-        fullNameLabel.text = self.competingAthletes[indexOfAthlete]?.fullName.uppercased()
+        fullNameLabel.text = self.competingAthletes[indexOfAthlete].fullName.uppercased()
         fullNameLabel.font = ScoreConstants.groupedTableSectionHeaderFont
         fullNameLabel.textColor = AppColors.darkGray
         

@@ -9,9 +9,12 @@
 /// Constants specific to skeet.
 class Skeet {
     
-    /// Number of shots in a full round of skeet.
-    static let numberOfShotsPerRound = 25
-
+    /// Number of shots in a full round of skeet, not including the option.
+    static let numberOfNonOptionShotsPerRound = 24
+    
+    /// Maximum number of athletes allowed on a squad.
+    static let maxNumberOfAthletesPerSquad = 6
+    
     /// Placeholder before computing each station differently.
     static let numberOfShotsPerStation = 5
     /// Number of shots taken at a given station, not including the option.

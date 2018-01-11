@@ -10,12 +10,8 @@
         <relationship name="sheets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sheet" inverseName="athletes" inverseEntity="Sheet" syncable="YES"/>
     </entity>
     <entity name="Round" representedClassName="Round" syncable="YES">
-        <attribute name="fifthScore" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="firstScore" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fourthScore" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roundNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="secondScore" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="thirdScore" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scores" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="sheet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sheet" inverseName="rounds" inverseEntity="Sheet" syncable="YES"/>
     </entity>
     <entity name="Sheet" representedClassName="Sheet" syncable="YES">
@@ -29,7 +25,7 @@
     </entity>
     <elements>
         <element name="Athlete" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="Round" positionX="-72" positionY="252" width="128" height="148"/>
+        <element name="Round" positionX="-72" positionY="252" width="128" height="90"/>
         <element name="Sheet" positionX="-414" positionY="36" width="128" height="148"/>
     </elements>
 </model>

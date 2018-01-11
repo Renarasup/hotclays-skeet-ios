@@ -23,7 +23,7 @@ class ScoreViewController: UIViewController {
         return self.editRoundDelegate != nil
     }
     
-    var competingAthletes: [CompetingAthlete?]!
+    var competingAthletes: [CompetingAthlete]!
     var date: Date!
     var event: String!
     var range: String!
@@ -67,7 +67,7 @@ class ScoreViewController: UIViewController {
     
     @objc func pressedHitOrMissButton(_ gestureRecognizer: UIGestureRecognizer) {
         // Store a snapshot of cursor state over the selected cell.
-        let shotOld = self.competingAthletes[self.cursor.indexOfShooter]!.score.getShot(atIndex: self.cursor.indexOfShot)
+        let shotOld = self.competingAthletes[self.cursor.indexOfShooter].score.getShot(atIndex: self.cursor.indexOfShot)
         let cursorState = CursorState(cursor: self.cursor, shot: shotOld)
         self.undoStack.append(cursorState)
         
@@ -119,7 +119,7 @@ class ScoreViewController: UIViewController {
         }
         
         // Initialize the cursor to start at the first non-nil shooter.
-        self.cursor = Cursor(indexOfShooter: self.competingAthletes.index(where: { $0 != nil })!, indexOfShot: 0)
+        self.cursor = Cursor(indexOfShooter: 0, indexOfShot: 0)
         
         // Listen for taps on the station indicator control.
         self.stationIndicator.addTarget(self, action: #selector(stationIndicatorValueChanged(_:)), for: .valueChanged)
@@ -133,24 +133,21 @@ class ScoreViewController: UIViewController {
     /// - Parameter advanceCursor: If true, move the cursor to the next cell.
     private func recordShot(_ shot: Shot, advanceCursor: Bool) {
         // Record the shot.
-        let selectedAthlete = self.competingAthletes[self.cursor.indexOfShooter]!
+        let selectedAthlete = self.competingAthletes[self.cursor.indexOfShooter]
         selectedAthlete.score.setShot(atIndex: self.cursor.indexOfShot, with: shot)
         
         // Update cell with latest score.
         let cell = self.tableViewCells[self.cursor.indexOfShooter]
-        cell.update(with: self.competingAthletes[self.cursor.indexOfShooter]!.score)
+        cell.update(with: self.competingAthletes[self.cursor.indexOfShooter].score)
         
         // Compute next position for cursor.
         var indexOfNextShooter = self.cursor.indexOfShooter
         var indexOfNextShot = self.cursor.indexOfShot
         if advanceCursor && !self.isLastShotOfRound() {
             // Advance the shooter, wrap around to next shot.
-            repeat {
-                indexOfNextShooter += 1
-            } while indexOfNextShooter < self.competingAthletes.count && self.competingAthletes[indexOfNextShooter] == nil
-            
+            indexOfNextShooter += 1
             if indexOfNextShooter == self.competingAthletes.count {
-                indexOfNextShooter = self.competingAthletes.index(where: { $0 != nil })!
+                indexOfNextShooter = 0
                 indexOfNextShot += 1
             }
         }
@@ -158,8 +155,8 @@ class ScoreViewController: UIViewController {
     }
     
     internal func isLastShotOfRound() -> Bool {
-        let isLastShooter = self.cursor.indexOfShooter == self.competingAthletes.indexOfLast(where: { $0 != nil })!
-        let isLastShot = self.cursor.indexOfShot == Skeet.numberOfShotsPerRound - 1
+        let isLastShooter = self.cursor.indexOfShooter == self.competingAthletes.count - 1
+        let isLastShot = self.cursor.indexOfShot == Skeet.numberOfNonOptionShotsPerRound - 1
         return isLastShooter && isLastShot
     }
     
@@ -177,7 +174,7 @@ class ScoreViewController: UIViewController {
     /// Otherwise, present an alert to confirm that the user wants to save the round.
     internal func handleTapOnSave() {
         // If any incomplete scores, present an alert.
-        if self.competingAthletes.contains(where: { $0 != nil && $0!.score.numberOfAttempts < Skeet.numberOfShotsPerRound }) {
+        if self.competingAthletes.contains(where: { $0 != nil && $0!.score.numberOfAttempts < Skeet.numberOfNonOptionShotsPerRound }) {
             let alert = UIAlertController(title: "Incomplete Round", message: "This round is incomplete. Are you sure you want to save it?", preferredStyle: .alert)
             alert.view.tintColor = AppColors.orange
             let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in self.saveRound() })
@@ -248,8 +245,6 @@ class ScoreViewController: UIViewController {
     ///   - indexOfShooter: Index of shooter to be selected.
     ///   - indexOfShot: Index of shot to be selected.
     internal func moveCursor(toIndexOfShooter indexOfShooter: Int, indexOfShot: Int) {
-        assert(self.competingAthletes[indexOfShooter] != nil)
-        
         // Update cursor position, then reload cells at old and new cursor position.
         let indexPathOld = self.cursor.indexPathOfShot
         let collectionViewOld = self.tableViewCells[self.cursor.indexOfShooter].collectionView!

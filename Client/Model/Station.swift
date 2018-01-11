@@ -8,7 +8,7 @@
 
 /// Skeet station.
 enum Station: Int16, CustomStringConvertible {
-    
+
     case one = 1
     case two
     case three
@@ -21,10 +21,10 @@ enum Station: Int16, CustomStringConvertible {
     var description: String {
         return "Station \(self.rawValue)"
     }
-    
+
     /// Default value for a station.
     static let defaultValue = Station.one
-    
+
     /// Array of all stations in ascending order.
     static let allValues: [Station] = [
         .one,
@@ -36,7 +36,7 @@ enum Station: Int16, CustomStringConvertible {
         .seven,
         .eight
     ]
-    
+
     /// Get the next post after this one.
     ///
     /// - Parameter stepSize: The number of stations by which to advance. Defaults to 1.
@@ -46,5 +46,5 @@ enum Station: Int16, CustomStringConvertible {
         let nextRawValue = Int16(indexOfNextPost % Station.allValues.count) + 1
         return Station(rawValue: nextRawValue)!
     }
-    
+
 }

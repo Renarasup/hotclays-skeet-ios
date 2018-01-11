@@ -42,7 +42,7 @@ class RoundExporter {
         "Shot 22",
         "Shot 23",
         "Shot 24",
-        "Shot 25",
+        "Option",
         "Total"
     ]
     
@@ -58,20 +58,17 @@ class RoundExporter {
         let competingAthletes = round.toCompetingAthletes()
         for indexOfAthlete in 0..<Station.allValues.count {
             var rowValues = ["\(indexOfAthlete + 1)"]
-            if let competingAthlete = competingAthletes[indexOfAthlete] {
-                // Add athlete info.
-                rowValues.append(competingAthlete.firstName)
-                rowValues.append(competingAthlete.lastName)
-                rowValues.append("\(competingAthlete.gauge.rawValue)")
-                // Add value for each shot.
-                for i in 0..<Skeet.numberOfShotsPerRound {
-                    let shot = competingAthlete.score.getShot(atIndex: i)
-                    rowValues.append("\(shot == .hit ? "1" : "0")")
-                }
-                rowValues.append("\(competingAthlete.score.numberOfHits)")
-            } else {
-                rowValues.append(contentsOf: (0..<columnTitles.count - 1).map({ _ in "" }))
+            let competingAthlete = competingAthletes[indexOfAthlete]
+            // Add athlete info.
+            rowValues.append(competingAthlete.firstName)
+            rowValues.append(competingAthlete.lastName)
+            rowValues.append("\(competingAthlete.gauge.rawValue)")
+            // Add value for each shot.
+            for i in 0..<Skeet.numberOfNonOptionShotsPerRound {
+                let shot = competingAthlete.score.getShot(atIndex: i)
+                rowValues.append("\(shot == .hit ? "1" : "0")")
             }
+            rowValues.append("\(competingAthlete.score.numberOfHits)")
             rows.append(rowValues.joined(separator: ","))
         }
         
@@ -89,7 +86,7 @@ class RoundExporter {
             }
         }
 
-        let athleteNames = round.toCompetingAthletes().flatMap({ $0?.fullName })
+        let athleteNames = round.toCompetingAthletes().map({ $0.fullName })
         lines.append("Squad: \(athleteNames.joined(separator: ", "))")
 
         lines.append("")

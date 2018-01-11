@@ -15,7 +15,7 @@ class SheetTableViewController: UITableViewController {
     /// Rounds on the sheet being presented. Sorted in order of increasing round number.
     var rounds: [Round]?
     /// Total scores for all athletes.
-    private var athleteScores: [(CompetingAthlete?, Int)]?
+    private var athleteScores: [(CompetingAthlete, Int)]?
 
     @IBAction func pressedShareButton(_ sender: UIBarButtonItem) {
         guard let sheet = self.sheet else {
@@ -165,7 +165,7 @@ class SheetTableViewController: UITableViewController {
         let outOfXLabel = UILabel()
         outOfXLabel.font = ScoreConstants.groupedTableSectionHeaderFont
         outOfXLabel.textColor = AppColors.darkGray
-        let numberOfShots = (self.rounds?.count ?? 0) * Skeet.numberOfShotsPerRound
+        let numberOfShots = (self.rounds?.count ?? 0) * Skeet.numberOfNonOptionShotsPerRound
         outOfXLabel.text = (section == 1 && numberOfShots > 0) ? "OUT OF \(numberOfShots)" : nil
         let stackView = UIStackView(arrangedSubviews: [sectionTitleLabel, outOfXLabel])
         stackView.axis = .horizontal
@@ -219,15 +219,14 @@ class SheetTableViewController: UITableViewController {
         }
         
         // Extract athletes and their total scores into an array, sorted by squad order in first round.
-        self.athleteScores = [(CompetingAthlete?, Int)]()
+        self.athleteScores = [(CompetingAthlete, Int)]()
         if let firstSquad = self.rounds?.first?.toCompetingAthletes() {
             self.athleteScores!.append(contentsOf: firstSquad.map({ ($0, 0) }))
             for i in 0..<self.rounds!.count {
                 // Go through each round, summing the score for each athlete.
                 let competingAthletes = self.rounds![i].toCompetingAthletes()
                 for competingAthlete in competingAthletes {
-                    if let competingAthlete = competingAthlete,
-                        let indexOfAthlete = self.athleteScores!.index(where: { $0.0 == competingAthlete }) {
+                    if let indexOfAthlete = self.athleteScores!.index(where: { $0.0 == competingAthlete }) {
                         self.athleteScores![indexOfAthlete].1 += competingAthlete.score.numberOfHits
                     }
                 }
@@ -303,7 +302,7 @@ extension SheetTableViewController: EditSheetDelegate {
 
 extension SheetTableViewController: EditRoundDelegate {
     
-    func didEditRound(withNew competingAthletes: [CompetingAthlete?]) {
+    func didEditRound(withNew competingAthletes: [CompetingAthlete]) {
         // Reload all rows that might be affected by changing the round.
         self.reloadTableViewDataSource()
         DispatchQueue.main.async {

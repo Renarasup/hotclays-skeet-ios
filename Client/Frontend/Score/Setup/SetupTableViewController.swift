@@ -17,7 +17,7 @@ class SetupTableViewController: UITableViewController {
     let SQUAD_SECTION = 2
     let START_ROUND_SECTION = 3
 
-    internal var competingAthletes: [CompetingAthlete?] = Array(repeating: nil, count: Station.allValues.count)
+    internal var competingAthletes = [CompetingAthlete]()
     internal var date: Date?
     internal var event: String?
     internal var range: String?
@@ -92,12 +92,7 @@ class SetupTableViewController: UITableViewController {
         } else if indexPath.section == SQUAD_SECTION && indexPath.row < self.competingAthletes.count {
             // Athlete cell
             let athleteCell = tableView.dequeueReusableCell(withIdentifier: ScoreConstants.athleteTableViewCellID) as! AthleteTableViewCell
-            if let competingAthlete = self.competingAthletes[indexPath.row] {
-                athleteCell.configure(with: competingAthlete)
-            } else {
-                let station = Station(rawValue: Int16(indexPath.row + 1))!
-                athleteCell.configureWithoutAthlete(for: station)
-            }
+            athleteCell.configure(with: self.competingAthletes[indexPath.row])
             return athleteCell
         } else if indexPath.section == SQUAD_SECTION {
             // Edit Squad cell
@@ -137,7 +132,8 @@ class SetupTableViewController: UITableViewController {
                 editRoundTableViewController.round = self.round
             }
         } else if indexPath.section == SQUAD_SECTION {
-            if indexPath.row < self.competingAthletes.count, let competingAthlete = self.competingAthletes[indexPath.row] {
+            if indexPath.row < self.competingAthletes.count {
+                let competingAthlete = self.competingAthletes[indexPath.row]
                 // Selected a row with a valid competing athlete.
                 navigationController = UIStoryboard(name: "Score", bundle: nil).instantiateViewController(withIdentifier: ScoreConstants.editAthleteNavigationControllerID) as! UINavigationController
                 if let editAthleteTableViewController = navigationController.viewControllers.first as? EditAthleteTableViewController {
@@ -156,7 +152,7 @@ class SetupTableViewController: UITableViewController {
             }
         } else {
             // 'Start Round' cell: Present view controller to score the round.
-            if self.event == nil || self.competingAthletes.countWhere({ $0 != nil }) == 0 {
+            if self.event == nil || self.competingAthletes.count == 0 {
                 // Highlight cell user needs to tap to add the necessary information.
                 let indexPathOfSuggestedCell = self.event == nil ? IndexPath(row: 0, section: SHEET_SECTION) : IndexPath(row: self.competingAthletes.count, section: SQUAD_SECTION)
                 self.tableView.scrollToRow(at: indexPathOfSuggestedCell, at: .none, animated: true)
@@ -168,7 +164,7 @@ class SetupTableViewController: UITableViewController {
             navigationController = UIStoryboard(name: "Score", bundle: nil).instantiateViewController(withIdentifier: ScoreConstants.scoreNavigationControllerID) as! UINavigationController
             if let scoreViewController = navigationController.viewControllers.first as? ScoreViewController {
                 // Only pass non-nil athletes to the ScoreShootViewController.
-                self.competingAthletes.forEach({ $0?.resetScore() })
+                self.competingAthletes.forEach({ $0.resetScore() })
                 scoreViewController.scoreDelegate = self
                 scoreViewController.competingAthletes = self.competingAthletes
                 scoreViewController.date = self.date
@@ -218,19 +214,6 @@ class SetupTableViewController: UITableViewController {
         return 30.0
     }
     
-    /// Reload all table view rows corresponding to shooters.
-    internal func reloadSquadRows() {
-        let indexPathsOfSquad = (0..<self.competingAthletes.count).map({ IndexPath(row: $0, section: SQUAD_SECTION) })
-        DispatchQueue.main.async {
-            UIView.setAnimationsEnabled(false)
-            self.tableView.beginUpdates()
-            self.tableView.reloadRows(at: indexPathsOfSquad, with: .fade)
-            self.tableView.endUpdates()
-            UIView.setAnimationsEnabled(true)
-        }
-    }
-    
-    
     /// Get an array of `Athlete`s currently in the squad.
     internal func athletesInSquad() -> [Athlete] {
         var athletes = [Athlete]()
@@ -244,13 +227,13 @@ class SetupTableViewController: UITableViewController {
     /// Reset all fields in the `SetupTableViewController`.
     internal func reset() {
         let isClearingSheet = self.event != nil
+        self.competingAthletes = [CompetingAthlete]()
         self.date = nil
         self.event = nil
         self.range = nil
         self.field = nil
         self.notes = nil
         self.round = 1
-        self.competingAthletes = Array(repeating: nil, count: Station.allValues.count)
         
         // Reload the table view.
         let indexPathForNewSheet = IndexPath(row: 1, section: SHEET_SECTION)
@@ -298,9 +281,6 @@ extension SetupTableViewController {
         // Move the shooter in the underlying data source, then update starting posts.
         let shooter = self.competingAthletes.remove(at: sourceIndexPath.row)
         self.competingAthletes.insert(shooter, at: destinationIndexPath.row)
-        
-        // Reload rows to update starting posts.
-        self.reloadSquadRows()
     }
     
 }
@@ -359,30 +339,42 @@ extension SetupTableViewController: EditRoundNumberDelegate {
 extension SetupTableViewController: EditSquadDelegate {
 
     func didSelect(_ athletes: [Athlete]) {
+        let oldAthleteCount = self.competingAthletes.count
+        let newAthleteCount = athletes.count
         // Add squad members starting from post one.
-        self.competingAthletes = Array(repeating: nil, count: Station.allValues.count)
-        for i in 0..<athletes.count {
-            let competingAthlete = CompetingAthlete(athlete: athletes[i])
-            self.competingAthletes[i] = competingAthlete
-        }
+        self.competingAthletes = athletes.map({ CompetingAthlete(athlete: $0) })
+        
         // Reload cells for each athlete in the squad.
-        self.reloadSquadRows()
+        DispatchQueue.main.async {
+            self.tableView.beginUpdates()
+            if oldAthleteCount < newAthleteCount {
+                // Insert rows if we increase the athlete count.
+                let indexPaths = (oldAthleteCount..<newAthleteCount).map({ IndexPath(row: $0, section: self.SQUAD_SECTION) })
+                self.tableView.insertRows(at: indexPaths, with: .fade)
+            } else if oldAthleteCount > newAthleteCount {
+                // Delete rows if we decrease the athlete count.
+                let indexPaths = (newAthleteCount..<oldAthleteCount).map({ IndexPath(row: $0, section: self.SQUAD_SECTION) })
+                self.tableView.deleteRows(at: indexPaths, with: .fade)
+            }
+            // Reload all squad section rows to account for possible reordering.
+            self.tableView.reloadSections([self.SQUAD_SECTION], with: .fade)
+            self.tableView.endUpdates()
+        }
     }
 
 }
 
 extension SetupTableViewController: EditAthleteDelegate {
-    
+
     func didEditAthlete(at indexOfAthlete: Int, gauge: Gauge) {
-        if let athlete = self.competingAthletes[indexOfAthlete] {
-            athlete.gauge = gauge
-            let indexPathForAthleteRow = IndexPath(row: indexOfAthlete, section: SQUAD_SECTION)
-            DispatchQueue.main.async {
-                self.tableView.reloadRows(at: [indexPathForAthleteRow], with: .fade)
-            }
+        let athlete = self.competingAthletes[indexOfAthlete]
+        athlete.gauge = gauge
+        let indexPathForAthleteRow = IndexPath(row: indexOfAthlete, section: SQUAD_SECTION)
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [indexPathForAthleteRow], with: .fade)
         }
     }
-    
+
 }
 
 extension SetupTableViewController: ScoreDelegate {

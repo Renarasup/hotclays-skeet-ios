@@ -21,7 +21,7 @@ extension RoundTableViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let indexOfAthlete = (collectionView as! ScoreCollectionView).indexOfAthlete!
         let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
-        let shot = self.competingAthletes[indexOfAthlete]?.score.getShot(atIndex: indexOfShot) ?? .notTaken
+        let shot = self.competingAthletes[indexOfAthlete].score.getShot(atIndex: indexOfShot)
         
         let cell: ScoreCollectionViewCell
         if shot == .notTaken {
