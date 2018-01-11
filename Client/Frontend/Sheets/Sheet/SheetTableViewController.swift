@@ -165,7 +165,7 @@ class SheetTableViewController: UITableViewController {
         let outOfXLabel = UILabel()
         outOfXLabel.font = ScoreConstants.groupedTableSectionHeaderFont
         outOfXLabel.textColor = AppColors.darkGray
-        let numberOfShots = (self.rounds?.count ?? 0) * Trap.numberOfShotsPerRound
+        let numberOfShots = (self.rounds?.count ?? 0) * Skeet.numberOfShotsPerRound
         outOfXLabel.text = (section == 1 && numberOfShots > 0) ? "OUT OF \(numberOfShots)" : nil
         let stackView = UIStackView(arrangedSubviews: [sectionTitleLabel, outOfXLabel])
         stackView.axis = .horizontal

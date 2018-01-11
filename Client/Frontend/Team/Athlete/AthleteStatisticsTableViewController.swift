@@ -80,15 +80,14 @@ class AthleteStatisticsTableViewController: UITableViewController {
                         let competingAthletes = round.toCompetingAthletes().flatMap({ $0 })
                         if let indexOfAthlete = competingAthletes.index(where: { $0.firstName == self.athlete.firstName && $0.lastName == self.athlete.lastName }) {
                             let score = competingAthletes[indexOfAthlete].score
-                            let firstStation = competingAthletes[indexOfAthlete].firstStation
                             // Get total hits contributed by this score.
                             totalNumberOfHits += score.numberOfHits
-                            totalNumberOfShots += Trap.numberOfShotsPerRound
+                            totalNumberOfShots += Skeet.numberOfShotsPerRound
                             // Get hits contributed by this score on each station.
-                            for offset in 0..<Station.allValues.count {
-                                let indexOfStation = Int(firstStation.next(advancingBy: offset).rawValue - 1)
-                                hitsPerStation[indexOfStation] += score.numberOfHitsAt(offset)
-                                shotsPerStation[indexOfStation] += Trap.numberOfShotsPerStation
+                            for indexOfStation in 0..<Station.allValues.count {
+                                // TODO: Statistics for skeet stations. Include option.
+                                hitsPerStation[indexOfStation] += 0
+                                shotsPerStation[indexOfStation] += Skeet.numberOfShotsPerStation
                             }
                         }
                     }

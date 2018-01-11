@@ -33,7 +33,6 @@ public class Athlete: NSManagedObject {
         athlete.lastName = lastName
         athlete.isOnTeam = isOnTeam
         athlete.defaultGauge = Gauge.defaultValue.rawValue
-        athlete.defaultYardage = Yardage.defaultValue.rawValue
 
         CoreDataManager.shared.saveContext()
 

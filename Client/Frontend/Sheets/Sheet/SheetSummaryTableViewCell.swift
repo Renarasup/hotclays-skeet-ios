@@ -23,10 +23,7 @@ class SheetSummaryTableViewCell: UITableViewCell {
     func configure(with competingAthlete: CompetingAthlete, totalScore: Int) {
         self.athleteLabel.text = competingAthlete.fullName
         self.athleteLabel.textColor = AppColors.black
-        let athleteDetails = [
-            String(describing: competingAthlete.gauge),
-            String(describing: competingAthlete.yardage)]
-        self.athleteDetailsLabel.text = athleteDetails.joined(separator: " | ")
+        self.athleteDetailsLabel.text = String(describing: competingAthlete.gauge)
         self.totalScoreLabel.text = "\(totalScore)"
     }
 

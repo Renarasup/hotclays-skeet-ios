@@ -31,14 +31,12 @@
 		209985F61FFECD7200B67372 /* HCSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985F51FFECD7200B67372 /* HCSplitViewController.swift */; };
 		209985F81FFECF1300B67372 /* SheetsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985F71FFECF1300B67372 /* SheetsConstants.swift */; };
 		209985FA1FFED75D00B67372 /* TeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985F91FFED75D00B67372 /* TeamTableViewController.swift */; };
-		209985FC1FFED80000B67372 /* AthleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985FB1FFED80000B67372 /* AthleteTableViewCell.swift */; };
 		209986041FFED9FA00B67372 /* Athlete+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985FE1FFED9FA00B67372 /* Athlete+CoreDataClass.swift */; };
 		209986051FFED9FA00B67372 /* Athlete+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209985FF1FFED9FA00B67372 /* Athlete+CoreDataProperties.swift */; };
 		209986061FFED9FA00B67372 /* Sheet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986001FFED9FA00B67372 /* Sheet+CoreDataClass.swift */; };
 		209986071FFED9FA00B67372 /* Sheet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986011FFED9FA00B67372 /* Sheet+CoreDataProperties.swift */; };
 		209986081FFED9FA00B67372 /* Round+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986021FFED9FA00B67372 /* Round+CoreDataClass.swift */; };
 		209986091FFED9FA00B67372 /* Round+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986031FFED9FA00B67372 /* Round+CoreDataProperties.swift */; };
-		2099860B1FFEDB1100B67372 /* Yardage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099860A1FFEDB1100B67372 /* Yardage.swift */; };
 		2099860D1FFEDB1800B67372 /* Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099860C1FFEDB1800B67372 /* Gauge.swift */; };
 		2099860F1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099860E1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift */; };
 		209986131FFEE40D00B67372 /* AddAthleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986121FFEE40D00B67372 /* AddAthleteTableViewController.swift */; };
@@ -50,7 +48,7 @@
 		209986241FFEF8BB00B67372 /* EditSquadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986231FFEF8BB00B67372 /* EditSquadTableViewController.swift */; };
 		2099862F1FFF372600B67372 /* CompetingAthlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099862E1FFF372600B67372 /* CompetingAthlete.swift */; };
 		209986311FFF381700B67372 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986301FFF381700B67372 /* Score.swift */; };
-		209986331FFF387400B67372 /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986321FFF387400B67372 /* Trap.swift */; };
+		209986331FFF387400B67372 /* Skeet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986321FFF387400B67372 /* Skeet.swift */; };
 		209986351FFF388700B67372 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986341FFF388700B67372 /* Shot.swift */; };
 		209986371FFF3ABE00B67372 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986361FFF3ABE00B67372 /* ArrayExtensions.swift */; };
 		209986391FFF3D1F00B67372 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209986381FFF3D1F00B67372 /* SequenceExtensions.swift */; };
@@ -79,6 +77,7 @@
 		2099866C2000102E00B67372 /* EditRoundNumberDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */; };
 		20A8EE051FFEC9730059DA28 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */; };
 		20B9A4C1200465BF002612D0 /* RoundExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9A4C0200465BF002612D0 /* RoundExporter.swift */; };
+		20C0217A200709BF001C86E6 /* AthleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C02179200709BF001C86E6 /* AthleteTableViewCell.swift */; };
 		20C6AA9E2005C59100087ABC /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */; };
 		20E4A2B7200041BC007EBBF5 /* EditAthleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4A2B6200041BC007EBBF5 /* EditAthleteTableViewController.swift */; };
 		20E4A2B9200041C8007EBBF5 /* EditAthleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4A2B8200041C8007EBBF5 /* EditAthleteDelegate.swift */; };
@@ -119,14 +118,12 @@
 		209985F51FFECD7200B67372 /* HCSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCSplitViewController.swift; sourceTree = "<group>"; };
 		209985F71FFECF1300B67372 /* SheetsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetsConstants.swift; sourceTree = "<group>"; };
 		209985F91FFED75D00B67372 /* TeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewController.swift; sourceTree = "<group>"; };
-		209985FB1FFED80000B67372 /* AthleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteTableViewCell.swift; sourceTree = "<group>"; };
 		209985FE1FFED9FA00B67372 /* Athlete+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Athlete+CoreDataClass.swift"; sourceTree = "<group>"; };
 		209985FF1FFED9FA00B67372 /* Athlete+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Athlete+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		209986001FFED9FA00B67372 /* Sheet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sheet+CoreDataClass.swift"; sourceTree = "<group>"; };
 		209986011FFED9FA00B67372 /* Sheet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sheet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		209986021FFED9FA00B67372 /* Round+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Round+CoreDataClass.swift"; sourceTree = "<group>"; };
 		209986031FFED9FA00B67372 /* Round+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Round+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2099860A1FFEDB1100B67372 /* Yardage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yardage.swift; sourceTree = "<group>"; };
 		2099860C1FFEDB1800B67372 /* Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gauge.swift; sourceTree = "<group>"; };
 		2099860E1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewControllerWithNSFRC.swift; sourceTree = "<group>"; };
 		209986121FFEE40D00B67372 /* AddAthleteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAthleteTableViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +135,7 @@
 		209986231FFEF8BB00B67372 /* EditSquadTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSquadTableViewController.swift; sourceTree = "<group>"; };
 		2099862E1FFF372600B67372 /* CompetingAthlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetingAthlete.swift; sourceTree = "<group>"; };
 		209986301FFF381700B67372 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
-		209986321FFF387400B67372 /* Trap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
+		209986321FFF387400B67372 /* Skeet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skeet.swift; sourceTree = "<group>"; };
 		209986341FFF388700B67372 /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
 		209986361FFF3ABE00B67372 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		209986381FFF3D1F00B67372 /* SequenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
@@ -167,6 +164,7 @@
 		2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundNumberDelegate.swift; sourceTree = "<group>"; };
 		20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		20B9A4C0200465BF002612D0 /* RoundExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundExporter.swift; sourceTree = "<group>"; };
+		20C02179200709BF001C86E6 /* AthleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteTableViewCell.swift; sourceTree = "<group>"; };
 		20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
 		20E4A2B6200041BC007EBBF5 /* EditAthleteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAthleteTableViewController.swift; sourceTree = "<group>"; };
 		20E4A2B8200041C8007EBBF5 /* EditAthleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAthleteDelegate.swift; sourceTree = "<group>"; };
@@ -322,7 +320,7 @@
 		2099862C1FFF35CE00B67372 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				209985FB1FFED80000B67372 /* AthleteTableViewCell.swift */,
+				20C02179200709BF001C86E6 /* AthleteTableViewCell.swift */,
 				20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */,
 				2099863F1FFF423500B67372 /* ScoreTableViewCell.swift */,
 				2099865A1FFFF1F800B67372 /* SelectableTableViewCell.swift */,
@@ -465,9 +463,8 @@
 				2099862E1FFF372600B67372 /* CompetingAthlete.swift */,
 				209986301FFF381700B67372 /* Score.swift */,
 				2099860C1FFEDB1800B67372 /* Gauge.swift */,
-				2099860A1FFEDB1100B67372 /* Yardage.swift */,
 				209986161FFEF4CB00B67372 /* Station.swift */,
-				209986321FFF387400B67372 /* Trap.swift */,
+				209986321FFF387400B67372 /* Skeet.swift */,
 				209986341FFF388700B67372 /* Shot.swift */,
 			);
 			path = Model;
@@ -617,7 +614,6 @@
 				2099864F1FFF436500B67372 /* NotTakenScoreCollectionViewCell.swift in Sources */,
 				20E9162C1FFEC26700DDE20D /* AppColors.swift in Sources */,
 				20116FC42003D0FD0022BA2D /* HCTabBarController.swift in Sources */,
-				2099860B1FFEDB1100B67372 /* Yardage.swift in Sources */,
 				209986511FFF43C600B67372 /* CommonConstants.swift in Sources */,
 				209986471FFF42E600B67372 /* CGSizeExtensions.swift in Sources */,
 				209986311FFF381700B67372 /* Score.swift in Sources */,
@@ -668,10 +664,10 @@
 				209986221FFEF86900B67372 /* EditSheetTableViewController.swift in Sources */,
 				209986091FFED9FA00B67372 /* Round+CoreDataProperties.swift in Sources */,
 				209986491FFF431D00B67372 /* ScoreCollectionViewCell.swift in Sources */,
-				209986331FFF387400B67372 /* Trap.swift in Sources */,
+				209986331FFF387400B67372 /* Skeet.swift in Sources */,
 				20E9162E1FFEC2E600DDE20D /* UIColorExtensions.swift in Sources */,
-				209985FC1FFED80000B67372 /* AthleteTableViewCell.swift in Sources */,
 				209986662000031600B67372 /* SheetTableViewController.swift in Sources */,
+				20C0217A200709BF001C86E6 /* AthleteTableViewCell.swift in Sources */,
 				209986591FFFD13C00B67372 /* IntExtensions.swift in Sources */,
 				2099863B1FFF3F6600B67372 /* EditSquadDelegate.swift in Sources */,
 				20E4A2B7200041BC007EBBF5 /* EditAthleteTableViewController.swift in Sources */,

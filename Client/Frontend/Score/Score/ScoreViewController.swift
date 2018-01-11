@@ -103,10 +103,10 @@ class ScoreViewController: UIViewController {
         }
         
         // Preload the station labels displayed in each section header.
-        for athlete in self.competingAthletes {
+        for _ in self.competingAthletes {
             let stationLabel = UILabel()
             stationLabel.textAlignment = .right
-            stationLabel.text = athlete?.firstStation.description.uppercased() ?? ""
+            stationLabel.text = Station.one.description.uppercased()
             stationLabel.font = ScoreConstants.groupedTableSectionHeaderFont
             stationLabel.textColor = AppColors.darkGray
             self.stationLabels.append(stationLabel)
@@ -154,26 +154,12 @@ class ScoreViewController: UIViewController {
                 indexOfNextShot += 1
             }
         }
-        
-        // Display popup after last shot on a station. Otherwise just move the cursor.
-        if advanceCursor && self.isLastShotOfPost() {
-            // Keep cursor in same location, but call moveCursor to reload the cell.
-            self.moveCursor(toIndexOfShooter: self.cursor.indexOfShooter, indexOfShot: self.cursor.indexOfShot)
-            self.presentStationSummaryAlert(indexOfNextShooter: indexOfNextShooter, indexOfNextShot: indexOfNextShot)
-        } else {
-            self.moveCursor(toIndexOfShooter: indexOfNextShooter, indexOfShot: indexOfNextShot)
-        }
-    }
-    
-    internal func isLastShotOfPost() -> Bool {
-        let isLastShooter = self.cursor.indexOfShooter == self.competingAthletes.indexOfLast(where: { $0 != nil })!
-        let isLastShotOfPost = Int.mod(self.cursor.indexOfShot + 1, Trap.numberOfShotsPerStation) == 0
-        return isLastShooter && isLastShotOfPost
+        self.moveCursor(toIndexOfShooter: indexOfNextShooter, indexOfShot: indexOfNextShot)
     }
     
     internal func isLastShotOfRound() -> Bool {
         let isLastShooter = self.cursor.indexOfShooter == self.competingAthletes.indexOfLast(where: { $0 != nil })!
-        let isLastShot = self.cursor.indexOfShot == Trap.numberOfShotsPerRound - 1
+        let isLastShot = self.cursor.indexOfShot == Skeet.numberOfShotsPerRound - 1
         return isLastShooter && isLastShot
     }
     
@@ -191,7 +177,7 @@ class ScoreViewController: UIViewController {
     /// Otherwise, present an alert to confirm that the user wants to save the round.
     internal func handleTapOnSave() {
         // If any incomplete scores, present an alert.
-        if self.competingAthletes.contains(where: { $0 != nil && $0!.score.numberOfAttempts < Trap.numberOfShotsPerRound }) {
+        if self.competingAthletes.contains(where: { $0 != nil && $0!.score.numberOfAttempts < Skeet.numberOfShotsPerRound }) {
             let alert = UIAlertController(title: "Incomplete Round", message: "This round is incomplete. Are you sure you want to save it?", preferredStyle: .alert)
             alert.view.tintColor = AppColors.orange
             let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in self.saveRound() })
@@ -224,44 +210,6 @@ class ScoreViewController: UIViewController {
         // Dismiss the view controller.
         DispatchQueue.main.async {
             self.navigationController?.presentingViewController?.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    /// Present an alert asking the user to confirm the station that was just completed.
-    ///
-    /// - Parameters:
-    ///   - indexOfNextShoooter: Index of shooter to select if the user confirms the station.
-    ///   - indexOfNextShot: Index of shot to select if the user confirms the station.
-    internal func presentStationSummaryAlert(indexOfNextShooter: Int, indexOfNextShot: Int) {
-        // Build up message to display for each shooter. Gives name and score on last station.
-        let indexOfStation = (indexOfNextShot - 1) / Trap.numberOfShotsPerStation
-        var messages = [String]()
-        for competingAthlete in self.competingAthletes.flatMap({ $0 }) {
-            let scoreOnThisStation = competingAthlete.score.numberOfHitsAt(indexOfStation)
-            messages.append("\(competingAthlete.fullName): \(scoreOnThisStation)")
-        }
-        
-        // Build up station confirmation alert with 'Modify' and 'Approve' actions.
-        let stationSummaryAlert = UIAlertController(title: "Station Summary",
-                                                    message: messages.joined(separator: "\n"),
-                                                    preferredStyle: .alert)
-        stationSummaryAlert.view.tintColor = AppColors.orange
-        let modifyAction = UIAlertAction(title: "Modify", style: .cancel, handler: nil)
-        modifyAction.setValue(AppColors.black, forKey: "titleTextColor")
-        let approveAction = UIAlertAction(title: "Approve", style: .default, handler: { _ in
-            if indexOfNextShot == Trap.numberOfShotsPerRound - 1 {
-                self.presentRoundApprovalAlert()
-            } else {
-                // Move cursor to next location.
-                self.moveCursor(toIndexOfShooter: indexOfNextShooter, indexOfShot: indexOfNextShot)
-            }
-        })
-        stationSummaryAlert.addAction(modifyAction)
-        stationSummaryAlert.addAction(approveAction)
-        
-        // Present the post approval alert.
-        DispatchQueue.main.async {
-            self.present(stationSummaryAlert, animated: true, completion: nil)
         }
     }
     
@@ -317,7 +265,7 @@ class ScoreViewController: UIViewController {
         self.tableView.scrollRectToVisible(rectOfRowUnderCursor, animated: true)
         
         // Scroll horizontally to make sure cursor is visible.
-        let indexOfPostUnderCursor = self.cursor.indexOfShot / Trap.numberOfShotsPerStation
+        let indexOfPostUnderCursor = self.cursor.indexOfShot / Skeet.numberOfShotsPerStation
         let indexPathOfFirstShotInPost = IndexPath(item: 0, section: indexOfPostUnderCursor)
         let collectionViewUnderCursor = self.tableViewCells[self.cursor.indexOfShooter].collectionView!
         collectionViewUnderCursor.scrollToItem(at: indexPathOfFirstShotInPost, at: .left, animated: true)
@@ -329,9 +277,8 @@ class ScoreViewController: UIViewController {
     /// - Parameter numberOfStationsCompleted: Number of posts completed, used to set the post labels.
     internal func updateStationLabels(with numberOfStationsCompleted: Int) {
         for indexOfAthlete in 0..<self.competingAthletes.count {
-            let firstStation = self.competingAthletes[indexOfAthlete]?.firstStation
-            let currentStation = firstStation?.next(advancingBy: numberOfStationsCompleted)
-            self.stationLabels[indexOfAthlete].text = currentStation?.description.uppercased() ?? ""
+            let currentStation = Station.one.next(advancingBy: numberOfStationsCompleted)
+            self.stationLabels[indexOfAthlete].text = currentStation.description.uppercased()
         }
         self.stationIndicator.currentPage = numberOfStationsCompleted
     }

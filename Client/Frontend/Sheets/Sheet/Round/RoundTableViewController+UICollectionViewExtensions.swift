@@ -11,7 +11,7 @@ import UIKit
 extension RoundTableViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Trap.numberOfShotsPerStation
+        return Skeet.numberOfShotsPerStation
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -20,7 +20,7 @@ extension RoundTableViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let indexOfAthlete = (collectionView as! ScoreCollectionView).indexOfAthlete!
-        let indexOfShot = indexPath.section * Trap.numberOfShotsPerStation + indexPath.item
+        let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
         let shot = self.competingAthletes[indexOfAthlete]?.score.getShot(atIndex: indexOfShot) ?? .notTaken
         
         let cell: ScoreCollectionViewCell

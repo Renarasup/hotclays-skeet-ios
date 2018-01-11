@@ -185,9 +185,8 @@ class RoundTableViewController: UITableViewController {
     /// - Parameter numberOfStationsCompleted: Number of posts completed, used to set the post labels.
     internal func updateStationLabels(with numberOfStationsCompleted: Int) {
         for indexOfAthlete in 0..<self.competingAthletes.count {
-            let firstStation = self.competingAthletes[indexOfAthlete]?.firstStation
-            let currentStation = firstStation?.next(advancingBy: numberOfStationsCompleted)
-            self.stationLabels[indexOfAthlete].text = currentStation?.description.uppercased() ?? ""
+            let currentStation = Station.one.next(advancingBy: numberOfStationsCompleted)
+            self.stationLabels[indexOfAthlete].text = currentStation.description.uppercased()
         }
         self.stationIndicator.currentPage = numberOfStationsCompleted
     }
@@ -198,10 +197,10 @@ class RoundTableViewController: UITableViewController {
         self.competingAthletes = self.round.toCompetingAthletes()
         
         // Preload the station labels displayed in each section header.
-        for athlete in self.competingAthletes {
+        for _ in self.competingAthletes {
             let stationLabel = UILabel()
             stationLabel.textAlignment = .right
-            stationLabel.text = athlete?.firstStation.description.uppercased() ?? ""
+            stationLabel.text = Station.one.description.uppercased()
             stationLabel.font = ScoreConstants.groupedTableSectionHeaderFont
             stationLabel.textColor = AppColors.darkGray
             self.stationLabels.append(stationLabel)

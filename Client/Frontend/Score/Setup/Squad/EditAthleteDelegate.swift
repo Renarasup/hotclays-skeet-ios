@@ -15,8 +15,7 @@ protocol EditAthleteDelegate {
     /// - Parameters:
     ///   - indexOfAthlete: Index of athlete in squad.
     ///   - gauge: Gauge that was selected.
-    ///   - yardage: Yardage that was selected.
-    func didEditAthlete(at indexOfAthlete: Int, gauge: Gauge, yardage: Yardage)
+    func didEditAthlete(at indexOfAthlete: Int, gauge: Gauge)
 
 }
 

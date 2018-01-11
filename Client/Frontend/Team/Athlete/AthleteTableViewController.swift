@@ -68,7 +68,6 @@ class AthleteTableViewController: UITableViewController {
                 editAthleteTableViewController.athleteName = "\(athlete.firstName ?? "") \(athlete.lastName ?? "")"
                 editAthleteTableViewController.indexOfAthlete = 0
                 editAthleteTableViewController.selectedGauge = Gauge(rawValue: athlete.defaultGauge) ?? Gauge.defaultValue
-                editAthleteTableViewController.selectedYardage = Yardage(rawValue: athlete.defaultYardage) ?? Yardage.defaultValue
                 editAthleteTableViewController.delegate = self
                 DispatchQueue.main.async {
                     self.present(navigationController, animated: true, completion: nil)
@@ -115,13 +114,12 @@ class AthleteTableViewController: UITableViewController {
 
 extension AthleteTableViewController: EditAthleteDelegate {
     
-    func didEditAthlete(at indexOfAthlete: Int, gauge: Gauge, yardage: Yardage) {
+    func didEditAthlete(at indexOfAthlete: Int, gauge: Gauge) {
         guard let athlete = self.athlete else {
             return
         }
         athlete.managedObjectContext?.performAndWait {
             athlete.defaultGauge = gauge.rawValue
-            athlete.defaultYardage = yardage.rawValue
             try? athlete.managedObjectContext?.save()
         }
     }

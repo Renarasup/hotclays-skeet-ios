@@ -49,7 +49,6 @@ class SheetExporter {
                 rowValues.append(competingAthlete.firstName)
                 rowValues.append(competingAthlete.lastName)
                 rowValues.append("\(competingAthlete.gauge.rawValue)")
-                rowValues.append("\(competingAthlete.yardage.rawValue)")
                 // Add score for each round.
                 var totalNumberOfHits = 0
                 for round in rounds {

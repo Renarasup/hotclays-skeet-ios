@@ -6,30 +6,40 @@
 //  Copyright © 2018 Christopher Chute. All rights reserved.
 //
 
+
 /// The shots taken by an athlete during a single round.
 class Score: CustomStringConvertible {
     
+    /// Array of all shots except for the option.
     private var shots: [Shot]
     
+    // The option in a skeet score.
+    private var option: Shot
+
+    /// Serialized `Score`, where all shots come first and the option comes last.
     var description: String {
-        return self.shots.map({ String(describing: $0) }).joined()
+        return self.shots.map({ String(describing: $0) }).joined() + String(describing: self.option)
     }
     
     var numberOfAttempts: Int {
-        return self.shots.countWhere({ $0 != .notTaken })
+        return self.shots.countWhere({ $0 != .notTaken }) + (self.option == .notTaken ? 0 : 1)
     }
     
     var numberOfHits: Int {
-        return self.shots.countWhere({ $0 == .hit })
+        return self.shots.countWhere({ $0 == .hit }) + (self.option == .hit ? 1 : 0)
     }
     
     init() {
-        self.shots = Array(repeating: .notTaken, count: Trap.numberOfShotsPerRound)
+        self.shots = Array(repeating: .notTaken, count: Skeet.numberOfShotsPerRound)
+        self.option = .notTaken
     }
     
     init?(fromString scoreString: String) {
-        if scoreString.count == Trap.numberOfShotsPerRound {
-            self.shots = scoreString.map({ Shot.fromString("\($0)") })
+        if scoreString.count == Skeet.numberOfShotsPerRound {
+            let indexOfLastChar = scoreString.index(before: scoreString.endIndex)
+            let shotString = scoreString[..<indexOfLastChar]
+            self.shots = shotString.map({ Shot.fromCharacter($0) })
+            self.option = Shot.fromCharacter(scoreString[indexOfLastChar])
         } else {
             return nil
         }
@@ -41,18 +51,6 @@ class Score: CustomStringConvertible {
 
     func getShot(atIndex index: Int) -> Shot {
         return self.shots[index]
-    }
-    
-    /// Count the number of hits at a given post index. For instance,
-    /// if `indexOfStation` is 0, get the number of hits on the first 5 shots.
-    ///
-    /// - Parameter indexOfStation: Index of the post on which to count the shooters hits,
-    /// indexed from 0 starting at the user's starting post.
-    /// - Returns: Number of hits on that post. Guaranteed to be between 0 and 5.
-    func numberOfHitsAt(_ indexOfStation: Int) -> Int {
-        let lowIndex = indexOfStation * Trap.numberOfShotsPerStation
-        let highIndex = lowIndex + Trap.numberOfShotsPerStation
-        return self.shots[lowIndex..<highIndex].countWhere({ $0 == .hit })
     }
 
 }

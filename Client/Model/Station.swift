@@ -21,16 +21,6 @@ enum Station: Int16, CustomStringConvertible {
     var description: String {
         return "Station \(self.rawValue)"
     }
-
-    /// The number of shots taken at a given station, not including the option.
-    static func numberOfShots(at station: Station) -> Int {
-        switch station {
-        case .one, .two, .six, .seven:
-            return 4
-        case .three, .four, .five, .eight:
-            return 2
-        }
-    }
     
     /// Default value for a station.
     static let defaultValue = Station.one
@@ -46,5 +36,15 @@ enum Station: Int16, CustomStringConvertible {
         .seven,
         .eight
     ]
+    
+    /// Get the next post after this one.
+    ///
+    /// - Parameter stepSize: The number of stations by which to advance. Defaults to 1.
+    /// - Returns: Next post advancing by the specified number.
+    func next(advancingBy stepSize: Int = 1) -> Station {
+        let indexOfNextPost = Int(self.rawValue) + stepSize - 1
+        let nextRawValue = Int16(indexOfNextPost % Station.allValues.count) + 1
+        return Station(rawValue: nextRawValue)!
+    }
     
 }

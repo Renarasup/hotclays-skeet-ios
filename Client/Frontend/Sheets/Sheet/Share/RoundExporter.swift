@@ -63,9 +63,8 @@ class RoundExporter {
                 rowValues.append(competingAthlete.firstName)
                 rowValues.append(competingAthlete.lastName)
                 rowValues.append("\(competingAthlete.gauge.rawValue)")
-                rowValues.append("\(competingAthlete.yardage.rawValue)")
                 // Add value for each shot.
-                for i in 0..<Trap.numberOfShotsPerRound {
+                for i in 0..<Skeet.numberOfShotsPerRound {
                     let shot = competingAthlete.score.getShot(atIndex: i)
                     rowValues.append("\(shot == .hit ? "1" : "0")")
                 }

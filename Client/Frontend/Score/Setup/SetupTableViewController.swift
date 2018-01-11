@@ -145,7 +145,6 @@ class SetupTableViewController: UITableViewController {
                     editAthleteTableViewController.delegate = self
                     editAthleteTableViewController.indexOfAthlete = indexPath.row
                     editAthleteTableViewController.selectedGauge = competingAthlete.gauge
-                    editAthleteTableViewController.selectedYardage = competingAthlete.yardage
                 }
             } else {
                 // 'Add Athletes' or 'No Athlete' cell: Present view controller to select shooters.
@@ -299,12 +298,6 @@ extension SetupTableViewController {
         // Move the shooter in the underlying data source, then update starting posts.
         let shooter = self.competingAthletes.remove(at: sourceIndexPath.row)
         self.competingAthletes.insert(shooter, at: destinationIndexPath.row)
-        for i in 0..<self.competingAthletes.count {
-            if let shooter = self.competingAthletes[i] {
-                let startingPost = Station(rawValue: Int16(i + 1))!
-                shooter.firstStation = startingPost
-            }
-        }
         
         // Reload rows to update starting posts.
         self.reloadSquadRows()
@@ -370,7 +363,6 @@ extension SetupTableViewController: EditSquadDelegate {
         self.competingAthletes = Array(repeating: nil, count: Station.allValues.count)
         for i in 0..<athletes.count {
             let competingAthlete = CompetingAthlete(athlete: athletes[i])
-            competingAthlete.firstStation = Station(rawValue: Int16(i + 1))!
             self.competingAthletes[i] = competingAthlete
         }
         // Reload cells for each athlete in the squad.
@@ -381,10 +373,9 @@ extension SetupTableViewController: EditSquadDelegate {
 
 extension SetupTableViewController: EditAthleteDelegate {
     
-    func didEditAthlete(at indexOfAthlete: Int, gauge: Gauge, yardage: Yardage) {
+    func didEditAthlete(at indexOfAthlete: Int, gauge: Gauge) {
         if let athlete = self.competingAthletes[indexOfAthlete] {
             athlete.gauge = gauge
-            athlete.yardage = yardage
             let indexPathForAthleteRow = IndexPath(row: indexOfAthlete, section: SQUAD_SECTION)
             DispatchQueue.main.async {
                 self.tableView.reloadRows(at: [indexPathForAthleteRow], with: .fade)
