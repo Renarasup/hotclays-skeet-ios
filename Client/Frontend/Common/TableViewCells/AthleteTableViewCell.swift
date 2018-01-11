@@ -17,9 +17,8 @@ class AthleteTableViewCell: UITableViewCell {
         self.nameLabel.text = String(describing: athlete)
         self.nameLabel.textColor = AppColors.orange
         
-        if let defaultGauge = Gauge(rawValue: athlete.defaultGauge),
-            let defaultYardage = Yardage(rawValue: athlete.defaultYardage) {
-            self.infoLabel.text = "\(defaultGauge.description) | \(defaultYardage.description)"
+        if let defaultGauge = Gauge(rawValue: athlete.defaultGauge) {
+            self.infoLabel.text = String(describing: defaultGauge)
         } else {
             self.infoLabel.text = nil
         }
@@ -28,11 +27,7 @@ class AthleteTableViewCell: UITableViewCell {
     func configure(with competingAthlete: CompetingAthlete) {
         self.nameLabel.text = competingAthlete.fullName
         self.nameLabel.textColor = AppColors.black
-        let infoComponents = [
-            String(describing: competingAthlete.firstStation),
-            String(describing: competingAthlete.gauge),
-            String(describing: competingAthlete.yardage)]
-        self.infoLabel.text = infoComponents.joined(separator: " | ")
+        self.infoLabel.text = String(describing: competingAthlete.gauge)
     }
 
     func configureWithoutAthlete(for station: Station) {
