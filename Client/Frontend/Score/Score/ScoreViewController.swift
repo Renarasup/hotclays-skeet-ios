@@ -175,7 +175,9 @@ class ScoreViewController: UIViewController {
     internal func handleTapOnSave() {
         // If any incomplete scores, present an alert.
         if self.competingAthletes.contains(where: { $0 != nil && $0!.score.numberOfAttempts < Skeet.numberOfNonOptionShotsPerRound }) {
-            let alert = UIAlertController(title: "Incomplete Round", message: "This round is incomplete. Are you sure you want to save it?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Incomplete Round",
+                                          message: "This round is incomplete. Are you sure you want to save it?",
+                                          preferredStyle: .alert)
             alert.view.tintColor = AppColors.orange
             let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in self.saveRound() })
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -312,8 +314,9 @@ internal class Cursor {
     /// `UICollectionView`. Each section stores shots for a single post.
     public var indexPathOfShot: IndexPath {
         get {
-            let item = Int.mod(self.indexOfShot, Station.allValues.count)
-            let section = self.indexOfShot / Station.allValues.count
+            let todo = "Make this work for skeet stations"
+            let item = Int.mod(self.indexOfShot, 5)
+            let section = self.indexOfShot / 5
             return IndexPath(item: item, section: section)
         }
     }
