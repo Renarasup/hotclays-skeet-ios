@@ -12,12 +12,11 @@ import UIKit
 extension ScoreViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        let todo = "Change number of sections"
+        // TODO: Adapt number of sections for skeet.
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let todo = "Change number of items per section"
         return section == 4 ? 4 : Skeet.numberOfShotsPerStation
     }
     
