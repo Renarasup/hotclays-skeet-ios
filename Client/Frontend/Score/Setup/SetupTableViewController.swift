@@ -18,6 +18,7 @@ class SetupTableViewController: UITableViewController {
     let START_ROUND_SECTION = 3
 
     internal var competingAthletes = [CompetingAthlete]()
+    internal var sheetID: String?
     internal var date: Date?
     internal var event: String?
     internal var range: String?
@@ -107,24 +108,16 @@ class SetupTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // For adding the sheet, we present an action sheet to choose between existing and new sheet options.
+        if indexPath.section == SHEET_SECTION {
+            let anchorView = self.tableView.cellForRow(at: indexPath)?.contentView ?? self.view
+            self.presentAddSheetActionSheet(from: anchorView)
+            return
+        }
+        
         // Instantiate a navigation controller containing the view controller to present.
         let navigationController: UINavigationController
-        
-        if indexPath.section == SHEET_SECTION {
-            if self.event == nil && indexPath.row == 0 {
-                // Existing Sheet: Select from existing sheets.
-                navigationController = UIStoryboard(name: "Score", bundle: nil).instantiateViewController(withIdentifier: ScoreConstants.chooseSheetNavigationControllerID) as! UINavigationController
-                if let chooseSheetTableViewController = navigationController.viewControllers.first as? ChooseSheetTableViewController {
-                    chooseSheetTableViewController.delegate = self
-                }
-            } else {
-                // Sheet or New Sheet cell: Present view controller to edit sheet details.
-                navigationController = UIStoryboard(name: "Score", bundle: nil).instantiateViewController(withIdentifier: ScoreConstants.editSheetNavigationControllerID) as! UINavigationController
-                if let editSheetTableViewController = navigationController.viewControllers.first as? EditSheetTableViewController {
-                    editSheetTableViewController.delegate = self
-                }
-            }
-        } else if indexPath.section == ROUND_SECTION {
+        if indexPath.section == ROUND_SECTION {
             // Round cell: Present view controller to edit round number.
             navigationController = UIStoryboard(name: "Score", bundle: nil).instantiateViewController(withIdentifier: ScoreConstants.editRoundNavigationControllerID) as! UINavigationController
             if let editRoundTableViewController = navigationController.viewControllers.first as? EditRoundNumberTableViewController {
@@ -167,6 +160,7 @@ class SetupTableViewController: UITableViewController {
                 self.competingAthletes.forEach({ $0.resetScore() })
                 scoreViewController.scoreDelegate = self
                 scoreViewController.competingAthletes = self.competingAthletes
+                scoreViewController.sheetID = self.sheetID
                 scoreViewController.date = self.date
                 scoreViewController.event = self.event
                 scoreViewController.range = self.range
@@ -179,6 +173,52 @@ class SetupTableViewController: UITableViewController {
         // Present the navigation controller containing the view controller to present.
         DispatchQueue.main.async {
             self.present(navigationController, animated: true, completion: nil)
+        }
+    }
+    
+    /// Present an action sheet allowing the user to select between
+    /// 'Create New Sheet' and 'Add to Existing Sheet.'
+    ///
+    /// - Parameter sender: The view on which the action sheet will be anchored.
+    private func presentAddSheetActionSheet(from sender: UIView?) {
+        // Create an action sheet, including information for iPad.
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.modalPresentationStyle = .popover
+        actionSheet.popoverPresentationController?.sourceView = sender
+        
+        // Create edit and delete options for the action sheet.
+        let createNewSheetAction = UIAlertAction(title: "Create New Sheet", style: .default, handler: { _ in
+            // New Sheet: Present view controller to add a new sheet.
+            let navigationController = UIStoryboard(name: "Score", bundle: nil).instantiateViewController(withIdentifier: ScoreConstants.editSheetNavigationControllerID) as! UINavigationController
+            if let editSheetTableViewController = navigationController.viewControllers.first as? EditSheetTableViewController {
+                editSheetTableViewController.delegate = self
+            }
+            DispatchQueue.main.async {
+                self.present(navigationController, animated: true, completion: nil)
+            }
+        })
+        createNewSheetAction.setValue(AppColors.orange, forKey: "titleTextColor")
+        let addToExistingSheetAction = UIAlertAction(title: "Add to Existing Sheet", style: .default, handler: { _ in
+            let navigationController = UIStoryboard(name: "Score", bundle: nil).instantiateViewController(withIdentifier: ScoreConstants.chooseSheetNavigationControllerID) as! UINavigationController
+            if let chooseSheetTableViewController = navigationController.viewControllers.first as? ChooseSheetTableViewController {
+                chooseSheetTableViewController.delegate = self
+            }
+            DispatchQueue.main.async {
+                self.present(navigationController, animated: true, completion: nil)
+            }
+        })
+        addToExistingSheetAction.setValue(AppColors.orange, forKey: "titleTextColor")
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        cancelAction.setValue(AppColors.black, forKey: "titleTextColor")
+        for action in [createNewSheetAction, addToExistingSheetAction, cancelAction] {
+            actionSheet.addAction(action)
+        }
+        
+        let indexPathForSheetCell = IndexPath(row: 0, section: SHEET_SECTION)
+        DispatchQueue.main.async {
+            self.present(actionSheet, animated: true, completion: {
+                self.tableView.deselectRow(at: indexPathForSheetCell, animated: true)
+            })
         }
     }
     
@@ -289,39 +329,52 @@ extension SetupTableViewController: EditSheetDelegate {
     
     func didAdd(date: Date, event: String, range: String, field: Int, notes: String) {
         // Nullify all fields for the sheet details.
-        let causesNewSheetRowToBeDeleted = self.event == nil
+        self.sheetID = nil
         self.date = date
         self.event = event
         self.range = range
         self.field = field
         self.notes = notes
-        let indexPathForNewSheetCell = IndexPath(row: 1, section: SHEET_SECTION)
         
         // Reset the round to the next available round on this sheet.
-        if let sheet = Sheet.get(date: date, event: event, range: range, field: field) {
-            let sortByRoundNumber = NSSortDescriptor(key: "roundNumber", ascending: true)
-            if let rounds = sheet.rounds?.sortedArray(using: [sortByRoundNumber]) as? [Round],
-                let competingAthletes = rounds.first?.toCompetingAthletes() {
-                self.competingAthletes = competingAthletes
-            }
-            self.round = min((sheet.rounds?.count ?? 0) + 1, Sheet.maxNumberOfRounds)
-        } else {
-            self.round = 1
-        }
+        self.round = 1
         
         // Reload the table view.
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
-            // On first addition of a sheet, section 0 goes from 2 rows to 1 row.
-            if causesNewSheetRowToBeDeleted {
-                self.tableView.deleteRows(at: [indexPathForNewSheetCell], with: .fade)
-            }
             // Reload sheet, round, and shooters.
             self.tableView.reloadData()
             self.tableView.endUpdates()
         }
     }
     
+}
+
+extension SetupTableViewController: ChooseSheetDelegate {
+    
+    func didChoose(_ sheet: Sheet) {
+        // Nullify all fields for the sheet details.
+        self.sheetID = sheet.id
+        self.date = sheet.date as Date?
+        self.event = sheet.event
+        self.range = sheet.range
+        self.field = Int(sheet.field)
+        self.notes = sheet.notes
+        
+        // Update the round number.
+        if let rounds = sheet.sortedRounds,
+            let competingAthletes = rounds.first?.toCompetingAthletes() {
+            self.competingAthletes = competingAthletes
+        }
+        self.round = min((sheet.rounds?.count ?? 0) + 1, Sheet.maxNumberOfRounds)
+        
+        // Reload the table view.
+        DispatchQueue.main.async {
+            self.tableView.beginUpdates()
+            self.tableView.reloadData()
+            self.tableView.endUpdates()
+        }
+    }
 }
 
 extension SetupTableViewController: EditRoundNumberDelegate {
@@ -380,6 +433,7 @@ extension SetupTableViewController: EditAthleteDelegate {
 extension SetupTableViewController: ScoreDelegate {
 
     func didSave(_ sheet: Sheet) {
+        self.sheetID = sheet.id
         self.round = min(self.round + 1, Sheet.maxNumberOfRounds)
         let indexPathForRoundCell = IndexPath(row: 0, section: ROUND_SECTION)
         DispatchQueue.main.async {

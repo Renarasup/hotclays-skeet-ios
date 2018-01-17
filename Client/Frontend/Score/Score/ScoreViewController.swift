@@ -24,6 +24,7 @@ class ScoreViewController: UIViewController {
     }
     
     var competingAthletes: [CompetingAthlete]!
+    var sheetID: String?
     var date: Date!
     var event: String!
     var range: String!
@@ -200,10 +201,18 @@ class ScoreViewController: UIViewController {
             // Pass updated `CompetingAthlete` array back to delegate, which will update the round.
             editRoundDelegate.didEditRound(withNew: self.competingAthletes)
         } else if let scoreDelegate = self.scoreDelegate {
-            let sheet = Sheet.getOrInsert(date: self.date, event: self.event, range: self.range, field: self.field, notes: self.notes)
-            Round.insert(with: self.competingAthletes, on: sheet, roundNumber: self.round)
+            // Get the existing sheet or add a new one.
+            var sheet: Sheet? = nil
+            if let sheetID = self.sheetID {
+                sheet = Sheet.get(sheetID)
+            }
+            if sheet == nil {
+                sheet = Sheet.insert(date: self.date, event: self.event, range: self.range, field: self.field, notes: self.notes)
+            }
             
-            scoreDelegate.didSave(sheet)
+            // Add this round to the sheet.
+            Round.insert(with: self.competingAthletes, on: sheet!, roundNumber: self.round)
+            scoreDelegate.didSave(sheet!)
         }
         
         // Dismiss the view controller.

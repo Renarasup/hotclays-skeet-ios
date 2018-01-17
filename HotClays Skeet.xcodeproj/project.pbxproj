@@ -76,9 +76,11 @@
 		2099866A20000EE500B67372 /* EditRoundNumberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099866920000EE500B67372 /* EditRoundNumberTableViewController.swift */; };
 		2099866C2000102E00B67372 /* EditRoundNumberDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */; };
 		20A8EE051FFEC9730059DA28 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */; };
+		20A9B68D200F0791009E7487 /* ChooseSheetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9B68C200F0791009E7487 /* ChooseSheetDelegate.swift */; };
 		20B9A4C1200465BF002612D0 /* RoundExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9A4C0200465BF002612D0 /* RoundExporter.swift */; };
 		20C0217A200709BF001C86E6 /* AthleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C02179200709BF001C86E6 /* AthleteTableViewCell.swift */; };
 		20C6AA9E2005C59100087ABC /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */; };
+		20CDE4AC200EC621008DEA26 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CDE4AB200EC621008DEA26 /* StringExtensions.swift */; };
 		20E4A2B7200041BC007EBBF5 /* EditAthleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4A2B6200041BC007EBBF5 /* EditAthleteTableViewController.swift */; };
 		20E4A2B9200041C8007EBBF5 /* EditAthleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E4A2B8200041C8007EBBF5 /* EditAthleteDelegate.swift */; };
 		20E9160B1FFEC07C00DDE20D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E9160A1FFEC07C00DDE20D /* AppDelegate.swift */; };
@@ -163,9 +165,11 @@
 		2099866920000EE500B67372 /* EditRoundNumberTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundNumberTableViewController.swift; sourceTree = "<group>"; };
 		2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundNumberDelegate.swift; sourceTree = "<group>"; };
 		20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		20A9B68C200F0791009E7487 /* ChooseSheetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSheetDelegate.swift; sourceTree = "<group>"; };
 		20B9A4C0200465BF002612D0 /* RoundExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundExporter.swift; sourceTree = "<group>"; };
 		20C02179200709BF001C86E6 /* AthleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteTableViewCell.swift; sourceTree = "<group>"; };
 		20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
+		20CDE4AB200EC621008DEA26 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		20E4A2B6200041BC007EBBF5 /* EditAthleteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAthleteTableViewController.swift; sourceTree = "<group>"; };
 		20E4A2B8200041C8007EBBF5 /* EditAthleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAthleteDelegate.swift; sourceTree = "<group>"; };
 		20E916071FFEC07C00DDE20D /* HotClays Skeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HotClays Skeet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				206F5B2E20068A6700A22329 /* ChooseSheetTableViewController.swift */,
+				20A9B68C200F0791009E7487 /* ChooseSheetDelegate.swift */,
 				209986211FFEF86900B67372 /* EditSheetTableViewController.swift */,
 				208717D92006745C00E3AF68 /* EditSheetDelegate.swift */,
 			);
@@ -428,6 +433,7 @@
 				209986461FFF42E600B67372 /* CGSizeExtensions.swift */,
 				209986581FFFD13C00B67372 /* IntExtensions.swift */,
 				209986381FFF3D1F00B67372 /* SequenceExtensions.swift */,
+				20CDE4AB200EC621008DEA26 /* StringExtensions.swift */,
 				20E9162D1FFEC2E600DDE20D /* UIColorExtensions.swift */,
 				200C58E62002BE160063E40B /* UIViewExtensions.swift */,
 				202C376E2005B78500E3527D /* UITextViewExtensions.swift */,
@@ -617,6 +623,7 @@
 				209986511FFF43C600B67372 /* CommonConstants.swift in Sources */,
 				209986471FFF42E600B67372 /* CGSizeExtensions.swift in Sources */,
 				209986311FFF381700B67372 /* Score.swift in Sources */,
+				20CDE4AC200EC621008DEA26 /* StringExtensions.swift in Sources */,
 				209986642000020900B67372 /* SheetsTableViewController.swift in Sources */,
 				20E916131FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld in Sources */,
 				20C6AA9E2005C59100087ABC /* NotesTableViewCell.swift in Sources */,
@@ -656,6 +663,7 @@
 				2099860F1FFEDECF00B67372 /* UITableViewControllerWithNSFRC.swift in Sources */,
 				209986131FFEE40D00B67372 /* AddAthleteTableViewController.swift in Sources */,
 				209985F61FFECD7200B67372 /* HCSplitViewController.swift in Sources */,
+				20A9B68D200F0791009E7487 /* ChooseSheetDelegate.swift in Sources */,
 				20876D8A200321E8001A09F2 /* AthleteStatisticsTableViewController.swift in Sources */,
 				20876D8C200323C0001A09F2 /* StatisticsTableViewCell.swift in Sources */,
 				202C376F2005B78500E3527D /* UITextViewExtensions.swift in Sources */,

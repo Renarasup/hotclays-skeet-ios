@@ -13,6 +13,9 @@ import CoreData
 @objc(Sheet)
 public class Sheet: NSManagedObject {
     
+    /// Number of characters in a sheet ID.
+    static let idLength = 6
+    
     /// The maximum number of rounds allowed on a `Sheet`.
     static let maxNumberOfRounds = 8
     
@@ -22,10 +25,17 @@ public class Sheet: NSManagedObject {
     // The maximum length (number of characters) of notes allowed on a `Sheet`.
     static let maxLengthOfNotes = 300
 
+    /// Get an array of this sheet's `Round`s, sorted by increasing round number.
+    var sortedRounds: [Round]? {
+        let sortByRoundNumber = NSSortDescriptor(key: "roundNumber", ascending: true)
+        return self.rounds?.sortedArray(using: [sortByRoundNumber]) as? [Round]
+    }
+    
     @discardableResult
     static func insert(date: Date, event: String, range: String, field: Int, notes: String) -> Sheet {
         let sheet = NSEntityDescription.insertNewObject(forEntityName: "Sheet", into: CoreDataManager.shared.managedObjectContext) as! Sheet
         
+        sheet.id = String.random(ofLength: Sheet.idLength)
         sheet.date = date as NSDate
         sheet.event = event
         sheet.range = range
@@ -37,31 +47,15 @@ public class Sheet: NSManagedObject {
         return sheet
     }
     
-    static func get(date: Date, event: String, range: String, field: Int) -> Sheet? {
+    static func get(_ id: String) -> Sheet? {
         let context = CoreDataManager.shared.managedObjectContext
         let request: NSFetchRequest<Sheet> = Sheet.fetchRequest()
-        request.predicate = NSPredicate(format: "date == %@ && event == %@ && range == %@ && field == %d",
-                                        date as NSDate, event, range, field)
+        request.predicate = NSPredicate(format: "id == %@", id)
         var sheet: Sheet?
         context.performAndWait {
             sheet = (try? context.fetch(request))?.first
         }
         return sheet
-    }
-
-    static func getOrInsert(date: Date, event: String, range: String, field: Int, notes: String) -> Sheet {
-        let sheet = Sheet.get(date: date, event: event, range: range, field: field)
-        
-        // Update notes if they don't match. All other fields match because they're specified in the predicate.
-        let context = CoreDataManager.shared.managedObjectContext
-        if let existingNotes = sheet?.notes, existingNotes != notes {
-            context.performAndWait {
-                sheet!.notes = notes
-                try? context.save()
-            }
-        }
-        
-        return sheet ?? Sheet.insert(date: date, event: event, range: range, field: field, notes: notes)
     }
 
     func addRound(_ round: Round) {

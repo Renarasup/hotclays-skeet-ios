@@ -18,6 +18,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="event" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="field" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="range" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="athletes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Athlete" inverseName="sheets" inverseEntity="Athlete" syncable="YES"/>
@@ -26,6 +27,6 @@
     <elements>
         <element name="Athlete" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="Round" positionX="-72" positionY="252" width="128" height="90"/>
-        <element name="Sheet" positionX="-414" positionY="36" width="128" height="148"/>
+        <element name="Sheet" positionX="-414" positionY="36" width="128" height="165"/>
     </elements>
 </model>

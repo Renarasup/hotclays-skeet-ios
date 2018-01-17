@@ -51,27 +51,7 @@ class EditSheetTableViewController: UITableViewController {
         let date = self.datePicker.date
         let notes = self.notesTextView.text ?? ""
         
-        // If creating a new sheet, warn about conflicts.
-        if self.isCreatingNewSheet
-            && Sheet.get(date: date, event: event, range: range, field: field) != nil {
-            let alert = UIAlertController(title: "Sheet Already Exists",
-                                          message: "A sheet with this event, range, field, and date already exists. New rounds will be added to the existing sheet. Do you want to continue?",
-                                          preferredStyle: .alert)
-            alert.view.tintColor = AppColors.orange
-            let continueAction = UIAlertAction(title: "Continue", style: .default, handler: {
-                _ in self.commitEdits(date: date, event: event, range: range, field: field, notes: notes)
-            })
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            cancelAction.setValue(AppColors.black, forKey: "titleTextColor")
-            alert.addAction(continueAction)
-            alert.addAction(cancelAction)
-            
-            DispatchQueue.main.async {
-                self.present(alert, animated: true, completion: nil)
-            }
-        } else {
-            self.commitEdits(date: date, event: event, range: range, field: field, notes: notes)
-        }
+        self.commitEdits(date: date, event: event, range: range, field: field, notes: notes)
     }
 
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {

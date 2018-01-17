@@ -2,7 +2,7 @@
 //  Sheet+CoreDataProperties.swift
 //  HotClays Skeet
 //
-//  Created by Christopher Chute on 1/9/18.
+//  Created by Christopher Chute on 1/16/18.
 //  Copyright © 2018 Christopher Chute. All rights reserved.
 //
 //
@@ -20,8 +20,9 @@ extension Sheet {
     @NSManaged public var date: NSDate?
     @NSManaged public var event: String?
     @NSManaged public var field: Int16
-    @NSManaged public var range: String?
     @NSManaged public var notes: String?
+    @NSManaged public var range: String?
+    @NSManaged public var id: String?
     @NSManaged public var athletes: NSSet?
     @NSManaged public var rounds: NSSet?
 
