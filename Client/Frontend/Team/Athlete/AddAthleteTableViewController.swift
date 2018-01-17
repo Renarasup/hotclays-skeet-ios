@@ -12,6 +12,7 @@ class AddAthleteTableViewController: UITableViewController {
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var addToTeamIndicator: UIImageView!
     
     var delegate: AddAthleteDelegate!
     
@@ -20,8 +21,7 @@ class AddAthleteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Footer displays a warning that athlete will not be added to the team.
-        self.tableView.tableFooterView?.isHidden = self.shouldAddAthleteToTeam
+        self.setAddToTeamSelected(self.shouldAddAthleteToTeam)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,6 +68,16 @@ class AddAthleteTableViewController: UITableViewController {
         self.dismiss()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            self.shouldAddAthleteToTeam = !self.shouldAddAthleteToTeam
+            self.setAddToTeamSelected(self.shouldAddAthleteToTeam)
+            DispatchQueue.main.async {
+                self.tableView.deselectRow(at: indexPath, animated: false)
+            }
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30.0
     }
@@ -89,6 +99,16 @@ class AddAthleteTableViewController: UITableViewController {
         alert.addAction(okAction)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private func setAddToTeamSelected(_ selected: Bool) {
+        if selected {
+            self.addToTeamIndicator.image = #imageLiteral(resourceName: "CheckmarkSelected")
+            self.addToTeamIndicator.tintColor = AppColors.orange
+        } else {
+            self.addToTeamIndicator.image = #imageLiteral(resourceName: "Checkmark")
+            self.addToTeamIndicator.tintColor = AppColors.darkGray
         }
     }
 
