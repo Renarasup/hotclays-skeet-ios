@@ -40,19 +40,31 @@ class AddAthleteTableViewController: UITableViewController {
     }
     
     @IBAction func pressedDoneButton(_ sender: UIBarButtonItem) {
-        if let firstName = self.firstNameTextField.text?.capitalized,
-            let lastName = self.lastNameTextField.text?.capitalized,
-            firstName.count > 0 && lastName.count > 0 {
-            let athlete = Athlete.getOrInsert(firstName: firstName, lastName: lastName)
-            // Make sure athlete is on the team if `shouldAddAthleteToTeam` is true.
-            if self.shouldAddAthleteToTeam && athlete.isOnTeam == false {
-                athlete.managedObjectContext?.performAndWait {
-                    athlete.isOnTeam = true
-                    try? athlete.managedObjectContext?.save()
-                }
-            }
-            self.delegate.didAdd(athlete)
+        guard let firstName = self.firstNameTextField.text?.capitalized,
+            firstName.count > 0
+                && !firstName.contains(Character(","))
+                && !firstName.contains(Character(";")) else {
+                    self.presentAlert(title: "Invalid First Name", message: "Please enter a non-empty first name (cannot contain commas or semicolons).")
+                    return
         }
+        guard let lastName = self.lastNameTextField.text?.capitalized,
+            lastName.count > 0
+                && !lastName.contains(Character(","))
+                && !lastName.contains(Character(";")) else {
+                    self.presentAlert(title: "Invalid Last Name", message: "Please enter a non-empty last name (cannot contain commas or semicolons).")
+                    return
+        }
+        
+        let athlete = Athlete.getOrInsert(firstName: firstName, lastName: lastName)
+        // Make sure athlete is on the team if `shouldAddAthleteToTeam` is true.
+        if self.shouldAddAthleteToTeam && athlete.isOnTeam == false {
+            athlete.managedObjectContext?.performAndWait {
+                athlete.isOnTeam = true
+                try? athlete.managedObjectContext?.save()
+            }
+        }
+        self.delegate.didAdd(athlete)
+        
         self.dismiss()
     }
     
@@ -62,6 +74,22 @@ class AddAthleteTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0001
+    }
+    
+    /// Present an error `UIAlertController` with the given title and message.
+    /// Add 'OK' as the only action.
+    ///
+    /// - Parameters:
+    ///   - title: Title of the alert.
+    ///   - message: Message in the alert.
+    private func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.view.tintColor = AppColors.orange
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     /// Dismiss this view controller.
