@@ -34,13 +34,13 @@
         <!--Score-->
         <scene sceneID="6mv-ip-B29">
             <objects>
-                <tableViewController id="RNW-z5-wn7" customClass="SetupTableViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RNW-z5-wn7" customClass="SetupTableViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="jIv-Jg-Fyl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="sheetTableViewCellID" rowHeight="120" id="cjP-Il-69u" customClass="SheetTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="sheetTableViewCellID" rowHeight="120" id="cjP-Il-69u" customClass="SheetTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cjP-Il-69u" id="LYq-mz-9Hy">
@@ -115,7 +115,7 @@
                                     <outlet property="roundLabel" destination="IUe-7u-VL1" id="P6v-CT-OBI"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="setupTableViewCellID" editingAccessoryType="disclosureIndicator" rowHeight="70" id="uS2-Hj-sQN" customClass="SetupTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="setupTableViewCellID" editingAccessoryType="disclosureIndicator" rowHeight="70" id="uS2-Hj-sQN" customClass="SetupTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="175.5" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uS2-Hj-sQN" id="2LQ-6S-Qud">
@@ -141,7 +141,7 @@
                                     <outlet property="titleLabel" destination="SH7-2Z-Yev" id="fUo-90-BD2"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="athleteTableViewCellID" rowHeight="70" id="j67-yu-ohf" customClass="AthleteTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="athleteTableViewCellID" rowHeight="70" id="j67-yu-ohf" customClass="AthleteTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="245.5" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j67-yu-ohf" id="xc7-i7-1sU">
@@ -226,14 +226,14 @@
         <!--Edit Squad-->
         <scene sceneID="0jP-HB-hkr">
             <objects>
-                <tableViewController id="wik-5l-xVj" customClass="EditSquadTableViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="wik-5l-xVj" customClass="EditSquadTableViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="UW4-zz-7Qi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="tintColor" red="0.46274509800000002" green="0.4549019608" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="selectableTableViewCellID" rowHeight="55" id="19j-M9-8aH" customClass="SelectableTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="selectableTableViewCellID" rowHeight="55" id="19j-M9-8aH" customClass="SelectableTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="19j-M9-8aH" id="Jgm-GV-gX0">
@@ -268,7 +268,7 @@
                                     <outlet property="selectionIndicator" destination="FuG-sC-Qet" id="yNy-O1-r9D"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newAthleteTableViewCellID" rowHeight="55" id="2aE-1w-B2O" customClass="SelectableTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newAthleteTableViewCellID" rowHeight="55" id="2aE-1w-B2O" customClass="SelectableTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="110.5" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2aE-1w-B2O" id="wTy-Xu-TRJ">
@@ -330,13 +330,13 @@
         <!--Edit Athlete-->
         <scene sceneID="oAW-vG-NMC">
             <objects>
-                <tableViewController id="CEz-A6-TRl" customClass="EditAthleteTableViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="CEz-A6-TRl" customClass="EditAthleteTableViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="7Ei-jy-J48">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="athleteSelectableTableViewCellID" rowHeight="60" id="1Lh-ze-BkI" customClass="SelectableTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="athleteSelectableTableViewCellID" rowHeight="60" id="1Lh-ze-BkI" customClass="SelectableTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Lh-ze-BkI" id="0pc-WY-x25">
@@ -346,7 +346,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chris Chute" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgL-s6-LDo">
                                             <rect key="frame" x="16" y="11" width="305" height="38"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" red="1" green="0.54117647059999996" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="a65-5O-2OT">
@@ -371,7 +371,7 @@
                                     <outlet property="selectionIndicator" destination="a65-5O-2OT" id="jaK-Cd-iQD"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="selectableTableViewCellID" rowHeight="60" id="Woa-8J-41T" customClass="SelectableTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="selectableTableViewCellID" rowHeight="60" id="Woa-8J-41T" customClass="SelectableTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="115.5" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Woa-8J-41T" id="ql8-f5-laD">
@@ -449,13 +449,13 @@
         <!--Edit Round-->
         <scene sceneID="LW9-A3-WFr">
             <objects>
-                <tableViewController id="S2W-4L-Es9" customClass="EditRoundNumberTableViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="S2W-4L-Es9" customClass="EditRoundNumberTableViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="f1h-m4-Rqm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="selectableTableViewCellID" rowHeight="60" id="JGq-Je-Mhs" customClass="SelectableTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="selectableTableViewCellID" rowHeight="60" id="JGq-Je-Mhs" customClass="SelectableTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JGq-Je-Mhs" id="mHR-ju-CzQ">
@@ -529,7 +529,7 @@
         <!--Settings-->
         <scene sceneID="qO2-0F-eAg">
             <objects>
-                <tableViewController id="N1m-Gh-Nkt" customClass="SettingsTableViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="N1m-Gh-Nkt" customClass="SettingsTableViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="AhD-3m-eDK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -608,7 +608,7 @@
         <!--Edit Sheet-->
         <scene sceneID="03v-dC-itf">
             <objects>
-                <tableViewController id="mzT-UV-KLF" customClass="EditSheetTableViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="mzT-UV-KLF" customClass="EditSheetTableViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="2vO-wc-bBU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -763,7 +763,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ACg-dX-Bna" customClass="UITextViewFixed" customModule="HotClays_Trap" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ACg-dX-Bna" customClass="UITextViewFixed" customModule="HotClays_Skeet" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="16" width="359" height="158"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -814,13 +814,13 @@
         <!--Choose Sheet-->
         <scene sceneID="SK0-7l-GHF">
             <objects>
-                <tableViewController id="QBt-HD-NLF" customClass="ChooseSheetTableViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="QBt-HD-NLF" customClass="ChooseSheetTableViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W0r-YR-ofa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="sheetTableViewCellID" rowHeight="112" id="WCC-c1-Kzx" customClass="SheetTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="sheetTableViewCellID" rowHeight="112" id="WCC-c1-Kzx" customClass="SheetTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCC-c1-Kzx" id="ZHM-yg-gae">
@@ -982,7 +982,7 @@
         <!--Score-->
         <scene sceneID="JgC-de-XTy">
             <objects>
-                <viewController id="wTn-Dv-quj" customClass="ScoreViewController" customModule="HotClays_Trap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wTn-Dv-quj" customClass="ScoreViewController" customModule="HotClays_Skeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8V3-p1-X6T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1024,7 +1024,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6y6-BG-BfL">
                                                 <rect key="frame" x="43" y="25" width="50" height="71.5"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roq-r8-PM1" customClass="MissButtonView" customModule="HotClays_Trap" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roq-r8-PM1" customClass="MissButtonView" customModule="HotClays_Skeet" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -1053,7 +1053,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-VI-kOW">
                                                 <rect key="frame" x="42.5" y="25" width="50" height="71.5"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLq-kK-N0p" customClass="HitButtonView" customModule="HotClays_Trap" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLq-kK-N0p" customClass="HitButtonView" customModule="HotClays_Skeet" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -1105,7 +1105,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scoreTableViewCellID" rowHeight="81" id="UvM-d0-ZAz" customClass="ScoreTableViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scoreTableViewCellID" rowHeight="81" id="UvM-d0-ZAz" customClass="ScoreTableViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UvM-d0-ZAz" id="R2A-T3-6gL">
@@ -1115,12 +1115,12 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-Eo-v9E">
                                                     <rect key="frame" x="-97.5" y="11" width="570" height="59"/>
                                                     <subviews>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-1x-aJQ" customClass="ScoreCollectionView" customModule="HotClays_Trap" customModuleProvider="target">
+                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-1x-aJQ" customClass="ScoreCollectionView" customModule="HotClays_Skeet" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="501" height="59"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <collectionViewLayout key="collectionViewLayout" id="TeI-FN-boQ" customClass="ScoreCollectionViewFlowLayout" customModule="HotClays_Trap" customModuleProvider="target"/>
+                                                            <collectionViewLayout key="collectionViewLayout" id="TeI-FN-boQ" customClass="ScoreCollectionViewFlowLayout" customModule="HotClays_Skeet" customModuleProvider="target"/>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hitScoreCollectionViewCellID" id="sHd-jT-ehY" customClass="HitScoreCollectionViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hitScoreCollectionViewCellID" id="sHd-jT-ehY" customClass="HitScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1130,7 +1130,7 @@
                                                                     <color key="backgroundColor" red="1" green="0.54117647059999996" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <size key="customSize" width="49" height="49"/>
                                                                 </collectionViewCell>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="missScoreCollectionViewCellID" id="a1h-Rb-8Yd" customClass="MissScoreCollectionViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="missScoreCollectionViewCellID" id="a1h-Rb-8Yd" customClass="MissScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                                                     <rect key="frame" x="64.5" y="0.0" width="49" height="49"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1140,7 +1140,7 @@
                                                                     <color key="backgroundColor" red="0.46274509800000002" green="0.4549019608" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <size key="customSize" width="49" height="49"/>
                                                                 </collectionViewCell>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="notTakenScoreCollectionViewCellID" id="FoW-sc-oTs" customClass="NotTakenScoreCollectionViewCell" customModule="HotClays_Trap" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="notTakenScoreCollectionViewCellID" id="FoW-sc-oTs" customClass="NotTakenScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
                                                                     <rect key="frame" x="129" y="0.0" width="49" height="49"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">

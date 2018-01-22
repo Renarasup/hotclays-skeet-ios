@@ -12,7 +12,7 @@ class AthleteTableViewController: UITableViewController {
 
     @IBOutlet weak var athleteNameLabel: UILabel!
     @IBOutlet weak var teamNameLabel: UILabel!
-    
+
     var athlete: Athlete? { didSet { self.configureHeaderView() } }
 
     override func viewDidLoad() {
