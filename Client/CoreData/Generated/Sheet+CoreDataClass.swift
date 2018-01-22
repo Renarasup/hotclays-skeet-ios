@@ -31,6 +31,11 @@ public class Sheet: NSManagedObject {
         return self.rounds?.sortedArray(using: [sortByRoundNumber]) as? [Round]
     }
     
+    /// True if this sheet has any notes, false otherwise.
+    var hasNotes: Bool {
+        return (self.notes?.count ?? 0) > 0
+    }
+    
     @discardableResult
     static func insert(date: Date, event: String, range: String, field: Int, notes: String) -> Sheet {
         let sheet = NSEntityDescription.insertNewObject(forEntityName: "Sheet", into: CoreDataManager.shared.managedObjectContext) as! Sheet

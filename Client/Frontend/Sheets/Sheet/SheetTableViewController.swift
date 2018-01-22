@@ -279,6 +279,10 @@ extension SheetTableViewController: EditSheetDelegate {
     }
     
     func didAdd(date: Date, event: String, range: String, field: Int, notes: String) {
+        let willHaveNotes = notes.count > 0
+        let insertNotesSection = self.sheet?.hasNotes == false && willHaveNotes
+        let deleteNotesSection = self.sheet?.hasNotes == true && !willHaveNotes
+        
         // Update and save the sheet.
         if let sheet = self.sheet, let context = sheet.managedObjectContext {
             context.performAndWait {
@@ -290,11 +294,20 @@ extension SheetTableViewController: EditSheetDelegate {
                 try? context.save()
             }
         }
-        // Reload the sheet cell at the top of the table, and notes cell at the bottom.
-        let indexPathForSheetCell = IndexPath(row: 0, section: 0)
-        let indexPathForNotesCell = IndexPath(row: 0, section: 3)
+        // Reload the sheet cell at the top of the table. Make sure notes section
+        // is shown/hidden depending on whether this sheet has notes or not.
+        var indexPathsToReload = [IndexPath(row: 0, section: 0)]
+        if willHaveNotes {
+            indexPathsToReload.append(IndexPath(row: 0, section: 3))
+        }
         DispatchQueue.main.async {
-            self.tableView.reloadRows(at: [indexPathForSheetCell, indexPathForNotesCell], with: .fade)
+            if insertNotesSection {
+                self.tableView.insertSections([3], with: .fade)
+            }
+            if deleteNotesSection {
+                self.tableView.deleteSections([3], with: .fade)
+            }
+            self.tableView.reloadRows(at: indexPathsToReload, with: .fade)
         }
     }
 
