@@ -16,6 +16,8 @@ class SheetTableViewController: UITableViewController {
     var rounds: [Round]?
     /// Total scores for all athletes.
     private var athleteScores: [(CompetingAthlete, Int)]?
+    /// Observe changes on the `Sheet` being presented.
+    private var sheetObserver: CoreDataContextObserver!
 
     @IBAction func pressedShareButton(_ sender: UIBarButtonItem) {
         guard let sheet = self.sheet else {
@@ -79,6 +81,13 @@ class SheetTableViewController: UITableViewController {
         self.tableView.contentInset = CommonConstants.insetsToRemoveTopHeader
         
         self.reloadTableViewDataSource()
+        
+        if let sheet = self.sheet {
+            self.sheetObserver = CoreDataContextObserver(context: CoreDataManager.shared.managedObjectContext)
+            self.sheetObserver.observeObject(object: sheet, state: .updated, completionBlock: { (_, _) in
+                self.handleUpdatesToSheet()
+            })
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -231,6 +240,31 @@ class SheetTableViewController: UITableViewController {
                     }
                 }
             }
+        }
+    }
+    
+    /// Handle updates to a sheet. Does not handle changes to notes,
+    /// only added or deleted rounds. This is the only change we need to handle,
+    /// since users can add rounds from the 'Score' tab.
+    internal func handleUpdatesToSheet() {
+        guard let sheet = self.sheet else {
+            return
+        }
+        // Insert or delete rows to update the number of rounds.
+        let oldNumberOfRounds = self.rounds?.count ?? 0
+        let newNumberOfRounds = sheet.rounds?.count ?? 0
+        self.reloadTableViewDataSource()
+        DispatchQueue.main.async {
+            self.tableView.beginUpdates()
+            if oldNumberOfRounds < newNumberOfRounds {
+                let indexPathsToInsert = (oldNumberOfRounds..<newNumberOfRounds).map({ IndexPath(row: $0, section: 2) })
+                self.tableView.insertRows(at: indexPathsToInsert, with: .fade)
+            } else if oldNumberOfRounds > newNumberOfRounds {
+                let indexPathsToDelete = (newNumberOfRounds..<oldNumberOfRounds).map({ IndexPath(row: $0, section: 2) })
+                self.tableView.deleteRows(at: indexPathsToDelete, with: .fade)
+            }
+            self.tableView.reloadData()
+            self.tableView.endUpdates()
         }
     }
     

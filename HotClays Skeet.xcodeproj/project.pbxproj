@@ -19,6 +19,7 @@
 		202C376F2005B78500E3527D /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C376E2005B78500E3527D /* UITextViewExtensions.swift */; };
 		202F288D20040BED00D88FA2 /* EditRoundDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F288C20040BED00D88FA2 /* EditRoundDelegate.swift */; };
 		2034AA62200559CD006D37C2 /* AddAthleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034AA61200559CD006D37C2 /* AddAthleteDelegate.swift */; };
+		205A67EC2017B021009FF212 /* CoreDataContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A67EB2017B021009FF212 /* CoreDataContextObserver.swift */; };
 		206A4A7B20027F7300526B36 /* RoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A4A7A20027F7300526B36 /* RoundTableViewController.swift */; };
 		206A4A7D2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A4A7C2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift */; };
 		206F5B2F20068A6700A22329 /* ChooseSheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206F5B2E20068A6700A22329 /* ChooseSheetTableViewController.swift */; };
@@ -108,6 +109,7 @@
 		202C376E2005B78500E3527D /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
 		202F288C20040BED00D88FA2 /* EditRoundDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundDelegate.swift; sourceTree = "<group>"; };
 		2034AA61200559CD006D37C2 /* AddAthleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAthleteDelegate.swift; sourceTree = "<group>"; };
+		205A67EB2017B021009FF212 /* CoreDataContextObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContextObserver.swift; sourceTree = "<group>"; };
 		206A4A7A20027F7300526B36 /* RoundTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTableViewController.swift; sourceTree = "<group>"; };
 		206A4A7C2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoundTableViewController+UICollectionViewExtensions.swift"; sourceTree = "<group>"; };
 		206F5B2E20068A6700A22329 /* ChooseSheetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSheetTableViewController.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */,
+				205A67EB2017B021009FF212 /* CoreDataContextObserver.swift */,
 				20E916111FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld */,
 				209985FD1FFED9DF00B67372 /* Generated */,
 			);
@@ -640,6 +643,7 @@
 				209986051FFED9FA00B67372 /* Athlete+CoreDataProperties.swift in Sources */,
 				20B9A4C1200465BF002612D0 /* RoundExporter.swift in Sources */,
 				200C58E72002BE160063E40B /* UIViewExtensions.swift in Sources */,
+				205A67EC2017B021009FF212 /* CoreDataContextObserver.swift in Sources */,
 				209986601FFFFE4B00B67372 /* HitButtonView.swift in Sources */,
 				209986431FFF429D00B67372 /* ScoreCollectionView.swift in Sources */,
 				2099861E1FFEF5BD00B67372 /* SetupShiftedTableViewCell.swift in Sources */,
