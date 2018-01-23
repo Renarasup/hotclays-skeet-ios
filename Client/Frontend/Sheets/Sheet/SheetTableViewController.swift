@@ -359,21 +359,6 @@ extension SheetTableViewController: EditRoundDelegate {
         }
     }
     
-    func didDeleteRound() {
-        if let indexPathForDeletedRound = self.tableView.indexPathForSelectedRow {
-            self.reloadTableViewDataSource()
-            DispatchQueue.main.async {
-                self.tableView.beginUpdates()
-                self.tableView.deleteRows(at: [indexPathForDeletedRound], with: .fade)
-                self.tableView.reloadData()
-                self.tableView.endUpdates()
-            }
-        } else {
-            // Can't find selected round, so pop to root view controller to avoid displaying stale information.
-            (self.splitViewController as? HCSplitViewController)?.popToRootViewController(animated: true)
-        }
-    }
-    
 }
 
 extension SheetTableViewController: MFMailComposeViewControllerDelegate {

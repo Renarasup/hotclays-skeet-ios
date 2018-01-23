@@ -236,7 +236,6 @@ class RoundTableViewController: UITableViewController {
             // If we deleted the whole sheet, pop all the way to root.
             (self.splitViewController as? HCSplitViewController)?.popToRootViewController(animated: true)
         } else {
-            self.delegate.didDeleteRound()
             self.navigationController?.popViewController(animated: true)
         }
     }

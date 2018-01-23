@@ -17,7 +17,4 @@ protocol EditRoundDelegate {
     /// These will replace the old names, scores, gauges, etc. in the round.
     func didEditRound(withNew competingAthletes: [CompetingAthlete])
 
-    /// Notify the delegate that the round being edited was deleted.
-    func didDeleteRound()
-
 }
