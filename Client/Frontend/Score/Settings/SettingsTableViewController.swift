@@ -28,7 +28,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             let confirmationAlert = UIAlertController(title: "Are you sure?", message: "This will delete all athletes that are not on your team. Sheets for these athletes will not be deleted.", preferredStyle: .alert)
             confirmationAlert.view.tintColor = AppColors.orange
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
