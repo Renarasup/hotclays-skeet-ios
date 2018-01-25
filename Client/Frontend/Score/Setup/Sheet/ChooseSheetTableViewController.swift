@@ -52,7 +52,7 @@ class ChooseSheetTableViewController: UITableViewControllerWithNSFRC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sheet = self.fetchedResultsController.object(at: indexPath)
         if let date = sheet.date as Date?, let event = sheet.event, let range = sheet.range {
-            self.delegate.didAdd(date: date, event: event, range: range, field: Int(sheet.field), notes: sheet.notes ?? "")
+            self.delegate.didAdd(date: date, event: event, range: range, field: sheet.field, notes: sheet.notes ?? "")
         }
         self.dismiss()
     }

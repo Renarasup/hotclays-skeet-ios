@@ -28,9 +28,9 @@ class ScoreViewController: UIViewController {
     var date: Date!
     var event: String!
     var range: String!
-    var field: Int!
+    var field: String?
+    var notes: String?
     var round: Int!
-    var notes: String!
     
     /// Cursor indicating shooter and shot that will be recorded next.
     internal var cursor: Cursor!

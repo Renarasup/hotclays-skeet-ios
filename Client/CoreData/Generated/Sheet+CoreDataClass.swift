@@ -37,14 +37,14 @@ public class Sheet: NSManagedObject {
     }
     
     @discardableResult
-    static func insert(date: Date, event: String, range: String, field: Int, notes: String) -> Sheet {
+    static func insert(date: Date, event: String, range: String, field: String?, notes: String?) -> Sheet {
         let sheet = NSEntityDescription.insertNewObject(forEntityName: "Sheet", into: CoreDataManager.shared.managedObjectContext) as! Sheet
         
         sheet.id = String.random(ofLength: Sheet.idLength)
         sheet.date = date as NSDate
         sheet.event = event
         sheet.range = range
-        sheet.field = Int16(field)
+        sheet.field = field
         sheet.notes = notes
         
         CoreDataManager.shared.saveContext()

@@ -49,7 +49,7 @@ class SheetTableViewCell: UITableViewCell {
     
     /// Configure for the `SetupTableViewController` before a `Sheet` has been inserted.
     /// Hide the round label in the top-right corner.
-    func configure(withEvent event: String?, range: String?, field: Int16?, date: Date?, allowSelection: Bool) {
+    func configure(withEvent event: String?, range: String?, field: String?, date: Date?, allowSelection: Bool) {
         self.allowSelection = allowSelection && event != nil
         if let date = date {
             self.dateLabel.text = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)

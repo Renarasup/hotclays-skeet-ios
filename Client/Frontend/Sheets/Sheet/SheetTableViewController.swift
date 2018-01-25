@@ -304,16 +304,16 @@ extension SheetTableViewController: EditSheetDelegate {
         return self.sheet?.range
     }
     
-    var field: Int? {
-        return Int(self.sheet?.field ?? 1)
+    var field: String? {
+        return self.sheet?.field
     }
     
     var notes: String? {
         return self.sheet?.notes
     }
     
-    func didAdd(date: Date, event: String, range: String, field: Int, notes: String) {
-        let willHaveNotes = notes.count > 0
+    func didAdd(date: Date, event: String, range: String, field: String?, notes: String?) {
+        let willHaveNotes = (notes?.count ?? 0) > 0
         let insertNotesSection = self.sheet?.hasNotes == false && willHaveNotes
         let deleteNotesSection = self.sheet?.hasNotes == true && !willHaveNotes
         
@@ -323,7 +323,7 @@ extension SheetTableViewController: EditSheetDelegate {
                 sheet.date = date as NSDate
                 sheet.event = event
                 sheet.range = range
-                sheet.field = Int16(field)
+                sheet.field = field
                 sheet.notes = notes
                 try? context.save()
             }

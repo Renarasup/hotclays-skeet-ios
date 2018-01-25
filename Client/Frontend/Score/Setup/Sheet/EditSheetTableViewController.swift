@@ -36,20 +36,26 @@ class EditSheetTableViewController: UITableViewController {
             self.presentAlert(title: "Invalid Range", message: "Please specify a non-empty range.")
             return
         }
-        guard let fieldString = self.fieldTextField.text, fieldString.count > 0 else {
+        guard let fieldString = self.fieldTextField.text else {
+            // Should never hit this.
             self.presentAlert(title: "Invalid Field Number", message: "Please specify a non-empty field number.")
             return
         }
-        guard let field = Int(fieldString), field >= 0 && field < Sheet.maxFieldNumber else {
-            self.presentAlert(title: "Invalid Field Number", message: "Please specify a valid field number (must be a number 0-\(Sheet.maxFieldNumber - 1).")
-            return
-        }
-        guard self.notesTextView.text.count <= Sheet.maxLengthOfNotes else {
+        guard let notesString = self.notesTextView.text, notesString.count <= Sheet.maxLengthOfNotes else {
             self.presentAlert(title: "Too Many Notes", message: "Please limit your notes to 300 characters.")
             return
         }
+        if fieldString.count > 0 {
+            let fieldInt = Int(fieldString)
+            if fieldInt == nil || fieldInt! <= 0 || fieldInt! > Sheet.maxFieldNumber {
+                self.presentAlert(title: "Invalid Field Number", message: "Please specify a field number between 1 and \(Sheet.maxFieldNumber).")
+                return
+            }
+        }
+        
         let date = self.datePicker.date
-        let notes = self.notesTextView.text ?? ""
+        let field = fieldString.count > 0 ? fieldString : nil
+        let notes = notesString.count > 0 ? notesString : nil
         
         self.commitEdits(date: date, event: event, range: range, field: field, notes: notes)
     }
@@ -127,7 +133,7 @@ class EditSheetTableViewController: UITableViewController {
         self.hideKeyboard(includingNotesTextView: false)
     }
     
-    private func commitEdits(date: Date, event: String, range: String, field: Int, notes: String) {
+    private func commitEdits(date: Date, event: String, range: String, field: String?, notes: String?) {
         // Pass sheet info to delegate and dismiss view controller.
         self.delegate.didAdd(date: date, event: event, range: range, field: field, notes: notes)
         DispatchQueue.main.async {

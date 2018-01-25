@@ -73,7 +73,11 @@ class SheetExporter {
         var lines = ["Your HotClays Skeet score sheet with \(numberOfRounds) round\(sIfPlural) is attached.", ""]
         
         lines.append("Event: \(sheet.event ?? "")")
-        lines.append("Range: \(sheet.range ?? ""), Field \(sheet.field)")
+        if let field = sheet.field {
+            lines.append("Range: \(sheet.range ?? ""), Field \(field)")
+        } else {
+            lines.append("Range: \(sheet.range ?? "")")
+        }
         if let date = sheet.date as Date? {
             lines.append("Date: \(DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short))")
         }

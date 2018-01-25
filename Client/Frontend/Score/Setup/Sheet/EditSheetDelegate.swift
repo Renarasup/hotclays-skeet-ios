@@ -21,7 +21,7 @@ protocol EditSheetDelegate {
     var range: String? { get }
 
     /// Currently selected field, or nil if no field is selected yet.
-    var field: Int? { get }
+    var field: String? { get }
     
     /// Current notes, or nil if no notes have been added yet.
     var notes: String? { get }
@@ -33,6 +33,6 @@ protocol EditSheetDelegate {
     /// - Parameter range: Range that was added.
     /// - Parameter field: Field that was added.
     /// - Parameter notes: Notes that were added.
-    func didAdd(date: Date, event: String, range: String, field: Int, notes: String)
+    func didAdd(date: Date, event: String, range: String, field: String?, notes: String?)
     
 }

@@ -17,14 +17,15 @@ class SetupTableViewController: UITableViewController {
     let SQUAD_SECTION = 2
     let START_ROUND_SECTION = 3
 
-    internal var competingAthletes = [CompetingAthlete]()
     internal var sheetID: String?
     internal var date: Date?
     internal var event: String?
     internal var range: String?
-    internal var field: Int?
-    internal var round = 1
+    internal var field: String?
     internal var notes: String?
+    internal var competingAthletes = [CompetingAthlete]()
+    internal var round = 1
+
     
     @IBAction func pressedEditButton(_ sender: UIBarButtonItem) {
         // Create an action sheet, including information for iPad.
@@ -75,8 +76,7 @@ class SetupTableViewController: UITableViewController {
             if self.event != nil {
                 // Sheet cell
                 let sheetCell = tableView.dequeueReusableCell(withIdentifier: CommonConstants.sheetTableViewCellID) as! SheetTableViewCell
-                let field: Int16? = self.field == nil ? nil : Int16(self.field!)
-                sheetCell.configure(withEvent: self.event, range: self.range, field: field, date: self.date, allowSelection: true)
+                sheetCell.configure(withEvent: self.event, range: self.range, field: self.field, date: self.date, allowSelection: true)
                 return sheetCell
             } else {
                 // Add Sheet cell
@@ -327,7 +327,7 @@ extension SetupTableViewController {
 
 extension SetupTableViewController: EditSheetDelegate {
     
-    func didAdd(date: Date, event: String, range: String, field: Int, notes: String) {
+    func didAdd(date: Date, event: String, range: String, field: String?, notes: String?) {
         // Nullify all fields for the sheet details.
         self.sheetID = nil
         self.date = date
@@ -358,7 +358,7 @@ extension SetupTableViewController: ChooseSheetDelegate {
         self.date = sheet.date as Date?
         self.event = sheet.event
         self.range = sheet.range
-        self.field = Int(sheet.field)
+        self.field = sheet.field
         self.notes = sheet.notes
         
         // Update the round number.
