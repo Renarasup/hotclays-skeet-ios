@@ -29,6 +29,37 @@ class Score: CustomStringConvertible {
         return self.shots.countWhere({ $0 == .hit }) + (self.option.shot == .hit ? 1 : 0)
     }
     
+    /// Check whether the next unattempted shot is the option
+    var nextShotIsOption: Bool {
+        if self.option.shot == .notTaken {
+            if let indexOfFirstNotTaken = self.shots.index(of: .notTaken) {
+                if let indexOfFirstMiss = self.shots.index(of: .miss) {
+                    // Indices where we take the second shot in the double before taking the option
+                    let delayedOptionIndices = [2, 6, 16, 20]
+                    if delayedOptionIndices.contains(indexOfFirstMiss) {
+                        // Make sure we've taken the next shot first
+                        return indexOfFirstNotTaken == indexOfFirstMiss + 2
+                    } else {
+                        return true
+                    }
+                } else {
+                    // Have not missed yet (and have not attempted all shots yet either).
+                    return false
+                }
+            } else {
+                // All non-option shots have been taken
+                return true
+            }
+        } else {
+            // Already took option
+            return false
+        }
+    }
+
+    var indexOfNextShot: Int {
+        return self.shots.index(of: .notTaken) ?? Skeet.numberOfNonOptionShotsPerRound
+    }
+    
     init?(fromString string: String) {
         // Split into shots and option
         let indexOfFirstOptionChar = string.index(string.startIndex, offsetBy: Skeet.numberOfNonOptionShotsPerRound)
@@ -67,11 +98,20 @@ class Score: CustomStringConvertible {
     }
 
     func getShot(atIndex index: Int) -> Shot {
-        return self.shots[index]
+        return index < Skeet.numberOfNonOptionShotsPerRound ? self.shots[index] : self.option.shot
     }
 
-    func setOption(_ shot: Shot, at station: Station, house: House) {
-        self.option = Option(shot: shot, station: station, house: house)
+    func setOption(_ shot: Shot) {
+        // Compute the station and house given this score
+        if let indexOfFirstMiss = self.shots.index(of: .miss),
+            let station = Station(indexOfShot: indexOfFirstMiss),
+            let house = House(indexOfShot: indexOfFirstMiss) {
+            // Option is the same station and house as the first miss
+            self.option = Option(shot: shot, station: station, house: house)
+        } else {
+            // If no misses, option is taken on low eight
+            self.option = Option(shot: shot, station: .eight, house: .low)
+        }
     }
     
     func resetOption() {

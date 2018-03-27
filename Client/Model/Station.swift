@@ -49,6 +49,16 @@ enum Station: Int16, CustomStringConvertible {
         .eight
     ]
     
+    /// Check whether a given shot index is the last shot on a station.
+    static func isLastShotOnStation(_ indexOfShot: Int) -> Bool {
+        switch indexOfShot {
+        case 3, 7, 9, 11, 13, 17, 21, 23:
+            return true
+        default:
+            return false
+        }
+    }
+    
     /// Get the index of the station on which a particular shot is taken.
     ///
     /// - Parameter indexOfShot: Index of non-option shot (0 - 23).
@@ -118,6 +128,15 @@ enum Station: Int16, CustomStringConvertible {
             stationRawValue += 1
         }
         return shotsTakenOnPreviousStations + indexPath.item
+    }
+    
+    init?(indexOfShot: Int) {
+        let stationRawValue = Station.indexOfStation(for: indexOfShot) + 1
+        if let stationValue = Station(rawValue: Int16(stationRawValue)) {
+            self = stationValue
+        } else {
+            return nil
+        }
     }
 
     /// Get the next station after this one.

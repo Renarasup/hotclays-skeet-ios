@@ -130,12 +130,16 @@ class ScoreViewController: UIViewController {
     /// underlying `CompetingAthlete`'s score with the new shot value. Advance
     /// the cursor to the next shot if `advanceCursor` is true.
     ///
-    /// - Parameter shot: `Shot` to record. If nil, shot will be reset to not attempted.
+    /// - Parameter shot: `Shot` to record.
     /// - Parameter advanceCursor: If true, move the cursor to the next cell.
     private func recordShot(_ shot: Shot, advanceCursor: Bool) {
         // Record the shot.
         let selectedAthlete = self.competingAthletes[self.cursor.indexOfAthlete]
-        selectedAthlete.score.setShot(atIndex: self.cursor.indexOfShot, with: shot)
+        if self.cursor.indexOfShot < Skeet.numberOfNonOptionShotsPerRound {
+            selectedAthlete.score.setShot(atIndex: self.cursor.indexOfShot, with: shot)
+        } else {
+            selectedAthlete.score.setOption(shot)
+        }
         
         // Update cell with latest score.
         let cell = self.tableViewCells[self.cursor.indexOfAthlete]
@@ -145,12 +149,29 @@ class ScoreViewController: UIViewController {
         var indexOfNextShooter = self.cursor.indexOfAthlete
         var indexOfNextShot = self.cursor.indexOfShot
         if advanceCursor && !self.isLastShotOfRound() {
-            // Advance the shooter, wrap around to next shot.
-            indexOfNextShooter += 1
-            if indexOfNextShooter == self.competingAthletes.count {
-                indexOfNextShooter = 0
-                indexOfNextShot += 1
+            if self.competingAthletes[self.cursor.indexOfAthlete].nextShotIsOption {
+                // Athlete's next shot is option
+                indexOfNextShot = Skeet.numberOfNonOptionShotsPerRound
+            } else if Station.isLastShotOnStation(indexOfNextShot) {
+                // Athlete is done with station
+                indexOfNextShooter = (indexOfNextShooter + 1) % self.competingAthletes.count
+                indexOfNextShot = self.competingAthletes[indexOfNextShooter].indexOfNextShot
+            } else if indexOfNextShot == Skeet.numberOfNonOptionShotsPerRound {
+                // Athlete just took option
+                let indexAfterOption = self.competingAthletes[indexOfNextShooter].indexOfNextShot
+                if indexAfterOption == Skeet.numberOfNonOptionShotsPerRound
+                    || Station.indexOfShotWithinStation(for: indexAfterOption) == 0 {
+                    // Finished round or would start a new station, so move to next athlete
+                    indexOfNextShooter = (indexOfNextShooter + 1) % self.competingAthletes.count
+                    indexOfNextShot = self.competingAthletes[indexOfNextShooter].indexOfNextShot
+                } else {
+                    indexOfNextShot = indexAfterOption
+                }
+            } else {
+                // Athlete needs to take next shot on station
+                indexOfNextShot = self.competingAthletes[indexOfNextShooter].indexOfNextShot
             }
+            
         }
         self.moveCursor(toIndexOfShooter: indexOfNextShooter, indexOfShot: indexOfNextShot)
     }
@@ -163,9 +184,16 @@ class ScoreViewController: UIViewController {
     }
     
     internal func isLastShotOfRound() -> Bool {
-        let isLastShooter = self.cursor.indexOfAthlete == self.competingAthletes.count - 1
-        let isLastShot = self.cursor.indexOfShot == Skeet.numberOfNonOptionShotsPerRound - 1
-        return isLastShooter && isLastShot
+        if self.cursor.indexOfAthlete == self.competingAthletes.count - 1 {
+            // Last athlete, check if it's also their last shot
+            let hasTakenOption = self.competingAthletes[self.cursor.indexOfAthlete].hasTakenOption
+            let hasTakenAllNonOptionShots = self.competingAthletes[self.cursor.indexOfAthlete].hasTakenAllNonOptionShots
+            let isLastShot = ((self.cursor.indexOfShot == Skeet.numberOfNonOptionShotsPerRound - 1 && hasTakenOption)
+                                || (self.cursor.indexOfShot == Skeet.numberOfNonOptionShotsPerRound && hasTakenAllNonOptionShots))
+            return isLastShot
+        } else {
+            return false
+        }
     }
     
     @objc func stationIndicatorValueChanged(_ sender: UIPageControl) {
@@ -290,12 +318,14 @@ class ScoreViewController: UIViewController {
         let rectOfRowUnderCursor = tableView.rectForRow(at: indexPathOfRowUnderCursor)
         self.tableView.scrollRectToVisible(rectOfRowUnderCursor, animated: true)
         
-        // Scroll horizontally to make sure cursor is visible.
-        let indexOfStation = Station.indexOfStation(for: self.cursor.indexOfShot)
-        let indexPathOfFirstShotOnStation = IndexPath(item: 0, section: indexOfStation)
-        let collectionViewUnderCursor = self.tableViewCells[self.cursor.indexOfAthlete].collectionView!
-        collectionViewUnderCursor.scrollToItem(at: indexPathOfFirstShotOnStation, at: .left, animated: true)
-        self.updateStationLabels(with: indexOfStation)
+        // Scroll horizontally to make sure cursor is visible (skip this if next shot is option).
+        if self.cursor.indexOfShot < Skeet.numberOfNonOptionShotsPerRound {
+            let indexOfStation = Station.indexOfStation(for: self.cursor.indexOfShot)
+            let indexPathOfFirstShotOnStation = IndexPath(item: 0, section: indexOfStation)
+            let collectionViewUnderCursor = self.tableViewCells[self.cursor.indexOfAthlete].collectionView!
+            collectionViewUnderCursor.scrollToItem(at: indexPathOfFirstShotOnStation, at: .left, animated: true)
+            self.updateStationLabels(with: indexOfStation)
+        }
     }
     
     /// Update all station labels and the post indicator when scrolling horizontally.

@@ -30,4 +30,28 @@ enum House: Int16, CustomStringConvertible {
         .low
     ]
     
+    /// Get a `House` from an index of a non-option shot.
+    init?(indexOfShot: Int) {
+        let stationRawValue = Station.indexOfStation(for: indexOfShot) + 1
+        if let station = Station(rawValue: Int16(stationRawValue)) {
+            switch station {
+            case .one, .two, .three, .four, .eight:
+                // Stations at which you always shoot the high house first.
+                self = (indexOfShot % 2 == 0) ? .high : .low
+            case .five, .six, .seven:
+                // Stations at which you shoot low house first on doubles.
+                let indexOfShotWithinStation = Station.indexOfShotWithinStation(for: indexOfShot)
+                if indexOfShotWithinStation < 2 {
+                    // Singles shoot high house first
+                    self = (indexOfShot % 2 == 0) ? .high : .low
+                } else {
+                    // Doubles shoot low house first
+                    self = (indexOfShot % 2 == 0) ? .low : .high
+                }
+            }
+        } else {
+            return nil
+        }
+    }
+
 }

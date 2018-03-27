@@ -23,6 +23,25 @@ class CompetingAthlete: CustomStringConvertible, Equatable {
     var gauge: Gauge
     var score: Score
     
+    var hasTakenOption: Bool {
+        return score.option.shot != .notTaken
+    }
+    
+    var hasTakenAllNonOptionShots: Bool {
+        let numberOfAttempts = self.score.numberOfAttempts
+        let hasTakenAllButOption = numberOfAttempts == Skeet.numberOfNonOptionShotsPerRound && !self.hasTakenOption
+        let hasTakenAll = numberOfAttempts > Skeet.numberOfNonOptionShotsPerRound
+        return hasTakenAll || hasTakenAllButOption
+    }
+    
+    var nextShotIsOption: Bool {
+        return self.score.nextShotIsOption
+    }
+    
+    var indexOfNextShot: Int {
+        return self.score.indexOfNextShot
+    }
+    
     var fullName: String {
         return "\(self.firstName) \(self.lastName)"
     }
