@@ -68,7 +68,7 @@ class ScoreViewController: UIViewController {
     
     @objc func pressedHitOrMissButton(_ gestureRecognizer: UIGestureRecognizer) {
         // Store a snapshot of cursor state over the selected cell.
-        let shotOld = self.competingAthletes[self.cursor.indexOfShooter].score.getShot(atIndex: self.cursor.indexOfShot)
+        let shotOld = self.competingAthletes[self.cursor.indexOfAthlete].score.getShot(atIndex: self.cursor.indexOfShot)
         let cursorState = CursorState(cursor: self.cursor, shot: shotOld)
         self.undoStack.append(cursorState)
         
@@ -79,7 +79,7 @@ class ScoreViewController: UIViewController {
     
     @objc func pressedUndoButton(_ gestureRecognizer: UIGestureRecognizer) {
         if let previousCursorState = self.undoStack.popLast() {
-            self.moveCursor(toIndexOfShooter: previousCursorState.indexOfShooter, indexOfShot: previousCursorState.indexOfShot)
+            self.moveCursor(toIndexOfShooter: previousCursorState.indexOfAthlete, indexOfShot: previousCursorState.indexOfShot)
             self.recordShot(previousCursorState.shot, advanceCursor: false)
         }
     }
@@ -120,7 +120,7 @@ class ScoreViewController: UIViewController {
         }
         
         // Initialize the cursor to start at the first non-nil shooter.
-        self.cursor = Cursor(indexOfShooter: 0, indexOfShot: 0)
+        self.cursor = Cursor(indexOfAthlete: 0, indexOfShot: 0)
         
         // Listen for taps on the station indicator control.
         self.stationIndicator.addTarget(self, action: #selector(stationIndicatorValueChanged(_:)), for: .valueChanged)
@@ -134,15 +134,15 @@ class ScoreViewController: UIViewController {
     /// - Parameter advanceCursor: If true, move the cursor to the next cell.
     private func recordShot(_ shot: Shot, advanceCursor: Bool) {
         // Record the shot.
-        let selectedAthlete = self.competingAthletes[self.cursor.indexOfShooter]
+        let selectedAthlete = self.competingAthletes[self.cursor.indexOfAthlete]
         selectedAthlete.score.setShot(atIndex: self.cursor.indexOfShot, with: shot)
         
         // Update cell with latest score.
-        let cell = self.tableViewCells[self.cursor.indexOfShooter]
-        cell.update(with: self.competingAthletes[self.cursor.indexOfShooter].score)
+        let cell = self.tableViewCells[self.cursor.indexOfAthlete]
+        cell.update(with: self.competingAthletes[self.cursor.indexOfAthlete].score)
         
         // Compute next position for cursor.
-        var indexOfNextShooter = self.cursor.indexOfShooter
+        var indexOfNextShooter = self.cursor.indexOfAthlete
         var indexOfNextShot = self.cursor.indexOfShot
         if advanceCursor && !self.isLastShotOfRound() {
             // Advance the shooter, wrap around to next shot.
@@ -155,8 +155,15 @@ class ScoreViewController: UIViewController {
         self.moveCursor(toIndexOfShooter: indexOfNextShooter, indexOfShot: indexOfNextShot)
     }
     
+    /// Reload the option cell for a particular athlete.
+    ///
+    /// - Parameter indexOfAthlete: Index of athlete whose option cell should be reloaded.
+    private func reloadOptionCell(for indexOfAthlete: Int) {
+        print("Reloaded option cell")
+    }
+    
     internal func isLastShotOfRound() -> Bool {
-        let isLastShooter = self.cursor.indexOfShooter == self.competingAthletes.count - 1
+        let isLastShooter = self.cursor.indexOfAthlete == self.competingAthletes.count - 1
         let isLastShot = self.cursor.indexOfShot == Skeet.numberOfNonOptionShotsPerRound - 1
         return isLastShooter && isLastShot
     }
@@ -253,27 +260,40 @@ class ScoreViewController: UIViewController {
     /// Perform any necessary scrolling to ensure the cursor is visible.
     ///
     /// - Parameters:
-    ///   - indexOfShooter: Index of shooter to be selected.
-    ///   - indexOfShot: Index of shot to be selected.
-    internal func moveCursor(toIndexOfShooter indexOfShooter: Int, indexOfShot: Int) {
+    ///   - indexOfAthlete: Index of shooter to be selected.
+    ///   - indexOfShot: Index of shot to be selected. If option, indexOfShot == Skeet.numberOfNonOptionShotsPerRound.
+    internal func moveCursor(toIndexOfShooter indexOfAthlete: Int, indexOfShot: Int) {
         // Update cursor position, then reload cells at old and new cursor position.
+        let indexOfAthleteOld = self.cursor.indexOfAthlete
         let indexPathOld = self.cursor.indexPathOfShot
-        let collectionViewOld = self.tableViewCells[self.cursor.indexOfShooter].collectionView!
-        self.cursor.move(toIndexOfShooter: indexOfShooter, indexOfShot: indexOfShot)
+        let collectionViewOld = self.tableViewCells[self.cursor.indexOfAthlete].collectionView!
+        self.cursor.move(toIndexOfAthlete: indexOfAthlete, indexOfShot: indexOfShot)
+        let indexOfAthleteNew = self.cursor.indexOfAthlete
         let indexPathNew = self.cursor.indexPathOfShot
-        let collectionViewNew = self.tableViewCells[self.cursor.indexOfShooter].collectionView!
-        collectionViewOld.reloadItems(at: [indexPathOld])
-        collectionViewNew.reloadItems(at: [indexPathNew])
+        let collectionViewNew = self.tableViewCells[self.cursor.indexOfAthlete].collectionView!
+        
+        // Reload cell under old cursor position
+        if indexPathOld.section < Station.allValues.count {
+            collectionViewOld.reloadItems(at: [indexPathOld])
+        } else {
+            self.reloadOptionCell(for: indexOfAthleteOld)
+        }
+        // Reload cell under new cursor position
+        if indexPathNew.section < Station.allValues.count {
+            collectionViewNew.reloadItems(at: [indexPathNew])
+        } else {
+            self.reloadOptionCell(for: indexOfAthleteNew)
+        }
         
         // Scroll vertically to make sure cursor is visible.
-        let indexPathOfRowUnderCursor = IndexPath(row: 0, section: self.cursor.indexOfShooter)
+        let indexPathOfRowUnderCursor = IndexPath(row: 0, section: self.cursor.indexOfAthlete)
         let rectOfRowUnderCursor = tableView.rectForRow(at: indexPathOfRowUnderCursor)
         self.tableView.scrollRectToVisible(rectOfRowUnderCursor, animated: true)
         
         // Scroll horizontally to make sure cursor is visible.
         let indexOfPostUnderCursor = self.cursor.indexOfShot / Skeet.numberOfShotsPerStation
         let indexPathOfFirstShotInPost = IndexPath(item: 0, section: indexOfPostUnderCursor)
-        let collectionViewUnderCursor = self.tableViewCells[self.cursor.indexOfShooter].collectionView!
+        let collectionViewUnderCursor = self.tableViewCells[self.cursor.indexOfAthlete].collectionView!
         collectionViewUnderCursor.scrollToItem(at: indexPathOfFirstShotInPost, at: .left, animated: true)
         self.updateStationLabels(with: indexOfPostUnderCursor)
     }
@@ -295,12 +315,12 @@ class ScoreViewController: UIViewController {
 /// `CursorState`s are stored on the undo stack for supporting the undo operation.
 internal struct CursorState {
     
-    let indexOfShooter: Int
+    let indexOfAthlete: Int
     let indexOfShot: Int
     let shot: Shot
     
     init(cursor: Cursor, shot: Shot) {
-        self.indexOfShooter = cursor.indexOfShooter
+        self.indexOfAthlete = cursor.indexOfAthlete
         self.indexOfShot = cursor.indexOfShot
         self.shot = shot
     }
@@ -311,27 +331,31 @@ internal struct CursorState {
 /// under the cursor has a black outline.
 internal class Cursor {
     
-    private(set) var indexOfShooter: Int
-    private(set) var indexOfShot: Int
-    
-    init(indexOfShooter: Int, indexOfShot: Int) {
-        self.indexOfShooter = indexOfShooter
-        self.indexOfShot = indexOfShot
-    }
+    private(set) var indexOfAthlete: Int
+    private(set) var indexOfShot: Int   // If option, indexOfShot == Skeet.numberOfNonOptionShotsPerRound
     
     /// Get the `IndexPath` at which the selected shot is stored in a
     /// `UICollectionView`. Each section stores shots for a single post.
     public var indexPathOfShot: IndexPath {
         get {
-            let todo = "Make this work for skeet stations"
-            let item = Int.mod(self.indexOfShot, 5)
-            let section = self.indexOfShot / 5
-            return IndexPath(item: item, section: section)
+            if self.indexOfShot < Skeet.numberOfNonOptionShotsPerRound {
+                // Non-option shot
+                let section = Station.indexOfStation(for: self.indexOfShot)
+                let item = Station.indexOfShotWithinStation(for: self.indexOfShot)
+                return IndexPath(item: item, section: section)
+            } else {
+                return IndexPath(item: 0, section: Station.allValues.count)  // Section 8 => Option
+            }
         }
     }
     
-    func move(toIndexOfShooter indexOfShooter: Int, indexOfShot: Int) {
-        self.indexOfShooter = indexOfShooter
+    init(indexOfAthlete: Int, indexOfShot: Int) {
+        self.indexOfAthlete = indexOfAthlete
+        self.indexOfShot = indexOfShot
+    }
+    
+    func move(toIndexOfAthlete indexOfAthlete: Int, indexOfShot: Int) {
+        self.indexOfAthlete = indexOfAthlete
         self.indexOfShot = indexOfShot
     }
     

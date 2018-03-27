@@ -13,8 +13,8 @@ class Score: CustomStringConvertible {
     /// Array of all shots except for the option.
     private var shots: [Shot]
     
-    // The option in a skeet score.
-    private var option: Shot
+    /// The option in a skeet score. Nil if not taken.
+    private(set) var option: Option
 
     /// Serialized `Score`, where all shots come first and the option comes last.
     var description: String {
@@ -22,27 +22,44 @@ class Score: CustomStringConvertible {
     }
     
     var numberOfAttempts: Int {
-        return self.shots.countWhere({ $0 != .notTaken }) + (self.option == .notTaken ? 0 : 1)
+        return self.shots.countWhere({ $0 != .notTaken }) + (self.option.shot == .notTaken ? 0 : 1)
     }
     
     var numberOfHits: Int {
-        return self.shots.countWhere({ $0 == .hit }) + (self.option == .hit ? 1 : 0)
+        return self.shots.countWhere({ $0 == .hit }) + (self.option.shot == .hit ? 1 : 0)
+    }
+    
+    init?(fromString string: String) {
+        // Split into shots and option
+        let indexOfFirstOptionChar = string.index(string.startIndex, offsetBy: Skeet.numberOfNonOptionShotsPerRound)
+        let shotsString = string[..<indexOfFirstOptionChar]
+        let optionString = string[indexOfFirstOptionChar...]
+        
+        // Parse the shots
+        self.shots = []
+        for i in 0..<Skeet.numberOfNonOptionShotsPerRound {
+            let indexOfShotChar = string.index(string.startIndex, offsetBy: i)
+            if let shotRawValue = Int16(shotsString[indexOfShotChar..<string.index(indexOfShotChar, offsetBy: 1)]),
+                let shot = Shot(rawValue: shotRawValue) {
+                self.shots.append(shot)
+            } else {
+                print("Failed to parse shots \(shotsString)")
+                return nil
+            }
+        }
+        
+        // Parse the option
+        if let option = Option(fromString: String(optionString)) {
+            self.option = option
+        } else {
+            print("Failed to parse option \(optionString)")
+            return nil
+        }
     }
     
     init() {
         self.shots = Array(repeating: .notTaken, count: Skeet.numberOfNonOptionShotsPerRound)
-        self.option = .notTaken
-    }
-    
-    init?(fromString scoreString: String) {
-        if scoreString.count == Skeet.numberOfNonOptionShotsPerRound {
-            let indexOfLastChar = scoreString.index(before: scoreString.endIndex)
-            let shotString = scoreString[..<indexOfLastChar]
-            self.shots = shotString.map({ Shot.fromCharacter($0) })
-            self.option = Shot.fromCharacter(scoreString[indexOfLastChar])
-        } else {
-            return nil
-        }
+        self.option = Option()
     }
     
     func setShot(atIndex index: Int, with shot: Shot) {
@@ -52,13 +69,13 @@ class Score: CustomStringConvertible {
     func getShot(atIndex index: Int) -> Shot {
         return self.shots[index]
     }
-    
-    func setOption(_ shot: Shot) {
-        self.option = shot
+
+    func setOption(_ shot: Shot, at station: Station, house: House) {
+        self.option = Option(shot: shot, station: station, house: house)
     }
     
-    func getOption() -> Shot {
-        return self.option
+    func resetOption() {
+        self.option = Option()
     }
 
 }

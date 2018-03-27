@@ -78,6 +78,8 @@
 		2099866C2000102E00B67372 /* EditRoundNumberDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */; };
 		20A8EE051FFEC9730059DA28 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */; };
 		20A9B68D200F0791009E7487 /* ChooseSheetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9B68C200F0791009E7487 /* ChooseSheetDelegate.swift */; };
+		20B019F02069C1B900F3445D /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B019EF2069C1B900F3445D /* Option.swift */; };
+		20B019F22069C40900F3445D /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B019F12069C40900F3445D /* House.swift */; };
 		20B9A4C1200465BF002612D0 /* RoundExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9A4C0200465BF002612D0 /* RoundExporter.swift */; };
 		20C0217A200709BF001C86E6 /* AthleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C02179200709BF001C86E6 /* AthleteTableViewCell.swift */; };
 		20C6AA9E2005C59100087ABC /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */; };
@@ -168,6 +170,8 @@
 		2099866B2000102E00B67372 /* EditRoundNumberDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundNumberDelegate.swift; sourceTree = "<group>"; };
 		20A8EE041FFEC9730059DA28 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		20A9B68C200F0791009E7487 /* ChooseSheetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSheetDelegate.swift; sourceTree = "<group>"; };
+		20B019EF2069C1B900F3445D /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		20B019F12069C40900F3445D /* House.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
 		20B9A4C0200465BF002612D0 /* RoundExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundExporter.swift; sourceTree = "<group>"; };
 		20C02179200709BF001C86E6 /* AthleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteTableViewCell.swift; sourceTree = "<group>"; };
 		20C6AA9D2005C59100087ABC /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
@@ -471,10 +475,12 @@
 			children = (
 				2099862E1FFF372600B67372 /* CompetingAthlete.swift */,
 				209986301FFF381700B67372 /* Score.swift */,
+				20B019F12069C40900F3445D /* House.swift */,
 				2099860C1FFEDB1800B67372 /* Gauge.swift */,
 				209986161FFEF4CB00B67372 /* Station.swift */,
 				209986321FFF387400B67372 /* Skeet.swift */,
 				209986341FFF388700B67372 /* Shot.swift */,
+				20B019EF2069C1B900F3445D /* Option.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -612,6 +618,7 @@
 				200C58EA2002DBB70063E40B /* SettingsTableViewController.swift in Sources */,
 				2099865E1FFFFE4000B67372 /* MissButtonView.swift in Sources */,
 				200C58F12002F0A00063E40B /* UserDefaultsKeys.swift in Sources */,
+				20B019F22069C40900F3445D /* House.swift in Sources */,
 				209986241FFEF8BB00B67372 /* EditSquadTableViewController.swift in Sources */,
 				20A8EE051FFEC9730059DA28 /* CoreDataManager.swift in Sources */,
 				209986061FFED9FA00B67372 /* Sheet+CoreDataClass.swift in Sources */,
@@ -627,6 +634,7 @@
 				209986471FFF42E600B67372 /* CGSizeExtensions.swift in Sources */,
 				209986311FFF381700B67372 /* Score.swift in Sources */,
 				20CDE4AC200EC621008DEA26 /* StringExtensions.swift in Sources */,
+				20B019F02069C1B900F3445D /* Option.swift in Sources */,
 				209986642000020900B67372 /* SheetsTableViewController.swift in Sources */,
 				20E916131FFEC07C00DDE20D /* HotClays_Trap.xcdatamodeld in Sources */,
 				20C6AA9E2005C59100087ABC /* NotesTableViewCell.swift in Sources */,

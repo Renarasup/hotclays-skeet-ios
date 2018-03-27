@@ -36,7 +36,7 @@ extension ScoreViewController: UICollectionViewDataSource {
         }
         
         // Draw cursor on the cell if it represents the current athlete and shot.
-        let isCurrentShooter = indexOfAthlete == self.cursor.indexOfShooter
+        let isCurrentShooter = indexOfAthlete == self.cursor.indexOfAthlete
         let isCurrentShot = indexOfShot == self.cursor.indexOfShot
         cell.setSelected(isCurrentShooter && isCurrentShot)
         
