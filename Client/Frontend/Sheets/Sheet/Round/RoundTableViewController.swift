@@ -72,7 +72,7 @@ class RoundTableViewController: UITableViewController {
     
     @objc func stationIndicatorValueChanged(_ sender: UIPageControl) {
         // Scroll all collection views to the page control's current page.
-        if let collectionView = scoreTableViewCells.first?.collectionView as? ScoreCollectionView {
+        if let collectionView = scoreTableViewCells.first?.collectionView {
             let indexPath = IndexPath(item: 0, section: sender.currentPage)
             collectionView.scrollToStation(at: indexPath, animated: true)
             self.updateStationLabels(with: sender.currentPage)

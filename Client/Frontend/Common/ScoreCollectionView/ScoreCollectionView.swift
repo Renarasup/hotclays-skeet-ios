@@ -68,9 +68,9 @@ class ScoreCollectionView: UICollectionView {
     }
     
     func scrollToStation(at indexPath: IndexPath, animated: Bool) {
+        let indexPathForFirstItemInSection = IndexPath(item: 0, section: indexPath.section)
         let station = Station(rawValue: Int16(indexPath.section + 1))!
         if station.numberOfShots == 2 {
-            let indexPathForFirstItemInSection = IndexPath(item: 0, section: indexPath.section)
             if let itemOffset = self.layoutAttributesForItem(at: indexPathForFirstItemInSection)?.frame.origin {
                 let view = self.outermostSuperview!
                 let extraOffset = ScoreCollectionView.interItemSpacing(for: view) + ScoreCollectionView.cellSideLength(for: view)
@@ -82,7 +82,7 @@ class ScoreCollectionView: UICollectionView {
             }
         }
         // If some part fails, just scroll to left edge.
-        self.scrollToItem(at: indexPath, at: .left, animated: animated)
+        self.scrollToItem(at: indexPathForFirstItemInSection, at: .left, animated: animated)
     }
 
 }

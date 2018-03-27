@@ -201,10 +201,9 @@ class ScoreViewController: UIViewController {
     
     @objc func stationIndicatorValueChanged(_ sender: UIPageControl) {
         // Scroll all collection views to the page control's current page.
-        if let cell = self.tableViewCells.first,
-            let collectionView = cell.collectionView {
+        if let collectionView = self.tableViewCells.first?.collectionView {
             let indexPath = IndexPath(item: 0, section: sender.currentPage)
-            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            collectionView.scrollToStation(at: indexPath, animated: true)
             self.updateStationLabels(with: sender.currentPage)
         }
     }
@@ -323,11 +322,10 @@ class ScoreViewController: UIViewController {
         
         // Scroll horizontally to make sure cursor is visible (skip this if next shot is option).
         if self.cursor.indexOfShot < Skeet.numberOfNonOptionShotsPerRound {
-            let indexOfStation = Station.indexOfStation(for: self.cursor.indexOfShot)
-            let indexPathOfFirstShotOnStation = IndexPath(item: 0, section: indexOfStation)
+            let indexPathOfShot = self.cursor.indexPathOfShot
             let collectionViewUnderCursor = self.tableViewCells[self.cursor.indexOfAthlete].collectionView!
-            collectionViewUnderCursor.scrollToItem(at: indexPathOfFirstShotOnStation, at: .left, animated: true)
-            self.updateStationLabels(with: indexOfStation)
+            collectionViewUnderCursor.scrollToStation(at: indexPathOfShot, animated: true)
+            self.updateStationLabels(with: indexPathOfShot.section)
         }
     }
     
