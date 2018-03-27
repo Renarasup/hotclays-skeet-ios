@@ -80,7 +80,7 @@ extension ScoreViewController: UICollectionViewDelegate {
         let indexOfShot = Station.indexOfShot(from: indexPath)
         self.moveCursor(toIndexOfAthlete: indexOfAthlete, indexOfShot: indexOfShot)
     }
-    
+
 }
 
 extension ScoreViewController: UICollectionViewDelegateFlowLayout {
