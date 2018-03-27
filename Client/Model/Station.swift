@@ -50,9 +50,11 @@ enum Station: Int16, CustomStringConvertible {
     ]
     
     /// Check whether a given shot index is the last shot on a station.
+    /// Used to determine when we should switch shooters (in particular,
+    /// note that we switch after shot index 22, even though not technically end of a station).
     static func isLastShotOnStation(_ indexOfShot: Int) -> Bool {
         switch indexOfShot {
-        case 3, 7, 9, 11, 13, 17, 21, 23:
+        case 3, 7, 9, 11, 13, 17, 21, 22, 23:
             return true
         default:
             return false

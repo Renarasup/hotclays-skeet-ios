@@ -102,6 +102,11 @@ class Score: CustomStringConvertible {
     }
 
     func setOption(_ shot: Shot) {
+        guard shot != .notTaken else {
+            self.resetOption()
+            return
+        }
+        
         // Compute the station and house given this score
         if let indexOfFirstMiss = self.shots.index(of: .miss),
             let station = Station(indexOfShot: indexOfFirstMiss),
