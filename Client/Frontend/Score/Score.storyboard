@@ -1156,7 +1156,7 @@
                                                                 <outlet property="delegate" destination="wTn-Dv-quj" id="uzg-lA-xLr"/>
                                                             </connections>
                                                         </collectionView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJb-vq-Eg2">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJb-vq-Eg2" customClass="OptionView" customModule="HotClays_Skeet" customModuleProvider="target">
                                                             <rect key="frame" x="286" y="0.0" width="59" height="59"/>
                                                             <color key="backgroundColor" red="0.87845373149999995" green="0.87843716140000005" blue="0.87844836709999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>

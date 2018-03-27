@@ -23,7 +23,8 @@ extension ScoreViewController: UITableViewDataSource {
         let indexOfAthlete = indexPath.section
         let cell = self.tableViewCells[indexOfAthlete]
         let athlete = self.competingAthletes[indexOfAthlete]
-        cell.configure(with: athlete.score, at: indexOfAthlete)
+        let isTakingOption = self.cursor.indexOfAthlete == indexOfAthlete && self.cursor.indexOfShot == Skeet.numberOfNonOptionShotsPerRound
+        cell.configure(with: athlete.score, at: indexOfAthlete, isTakingOption: isTakingOption)
         return cell
     }
     

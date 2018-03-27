@@ -180,7 +180,10 @@ class ScoreViewController: UIViewController {
     ///
     /// - Parameter indexOfAthlete: Index of athlete whose option cell should be reloaded.
     private func reloadOptionCell(for indexOfAthlete: Int) {
-        print("Reloaded option cell")
+        let cell = self.tableViewCells[indexOfAthlete]
+        let score = self.competingAthletes[indexOfAthlete].score
+        let isTakingOption = self.cursor.indexOfAthlete == indexOfAthlete && self.cursor.indexOfShot == Skeet.numberOfNonOptionShotsPerRound
+        cell.configure(with: score, at: indexOfAthlete, isTakingOption: isTakingOption)
     }
     
     internal func isLastShotOfRound() -> Bool {

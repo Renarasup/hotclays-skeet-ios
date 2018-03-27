@@ -111,8 +111,7 @@ class RoundTableViewController: UITableViewController {
             let indexOfAthlete = indexPath.section - 1
             let cell = self.scoreTableViewCells[indexOfAthlete]
             let athlete = self.competingAthletes[indexOfAthlete]
-            cell.configure(with: athlete.score, at: indexOfAthlete)
-            
+            cell.configure(with: athlete.score, at: indexOfAthlete, isTakingOption: false)
             return cell
         }
     }

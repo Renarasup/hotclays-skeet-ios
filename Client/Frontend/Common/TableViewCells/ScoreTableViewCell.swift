@@ -11,7 +11,7 @@ import UIKit
 class ScoreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: ScoreCollectionView!
-    @IBOutlet weak var optionView: UIView!
+    @IBOutlet weak var optionView: OptionView!
     @IBOutlet weak var informationView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     
@@ -32,12 +32,12 @@ class ScoreTableViewCell: UITableViewCell {
         self.optionView.clipsToBounds = true
     }
 
-    func configure(with score: Score?, at indexOfAthlete: Int) {
+    func configure(with score: Score?, at indexOfAthlete: Int, isTakingOption: Bool) {
         if let score = score {
-            self.setOption(score.option, selected: false)
+            self.optionView.configure(with: score.option, selected: isTakingOption)
             self.scoreLabel.text = "\(score.numberOfHits)"
         } else {
-            self.setOption(Option(), selected: false)
+            self.optionView.configure(with: Option(), selected: isTakingOption)
             self.scoreLabel.text = ""
         }
 
@@ -46,30 +46,6 @@ class ScoreTableViewCell: UITableViewCell {
 
     func update(with score: Score) {
         self.scoreLabel.text = "\(score.numberOfHits)"
-    }
-    
-    func setOption(_ option: Option, selected: Bool) {
-        // Set background for given option
-        switch option.shot {
-        case .hit:
-            self.optionView.backgroundColor = AppColors.orange
-        case .miss:
-            self.optionView.backgroundColor = AppColors.darkGray
-        case .notTaken:
-            self.optionView.backgroundColor = AppColors.lightGray
-        }
-        
-        // TODO: Draw hit/miss indicator
-        
-        // TODO: Indicate where the option was taken
-        
-        // Set border for selected state
-        if selected {
-            self.optionView.layer.borderColor = AppColors.black.cgColor
-            self.optionView.layer.borderWidth = CommonConstants.scoreCellSelectedBorderWidth
-        } else {
-            self.optionView.layer.borderWidth = 0.0
-        }
     }
 
 }
