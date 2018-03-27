@@ -23,13 +23,7 @@ extension RoundTableViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Get the shot to display (i.e., hit, miss, or none if not yet attempted).
         let indexOfAthlete = (collectionView as! ScoreCollectionView).indexOfAthlete!
-        // Sum up number of shots on previous stations
-        var shotsTakenOnPreviousStations = 0
-        for stationRawValue in 1...indexPath.section {
-            let previousStation = Station(rawValue: Int16(stationRawValue))!
-            shotsTakenOnPreviousStations += previousStation.numberOfShots
-        }
-        let indexOfShot = shotsTakenOnPreviousStations + indexPath.item
+        let indexOfShot = Station.indexOfShot(from: indexPath)
         let shot = self.competingAthletes[indexOfAthlete].score.getShot(atIndex: indexOfShot)
         
         let cell: ScoreCollectionViewCell
