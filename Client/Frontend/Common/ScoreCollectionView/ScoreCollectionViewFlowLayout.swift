@@ -16,7 +16,7 @@ class ScoreCollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.scrollDirection = .horizontal
     }
     
-    /// Make horizontal scrolling of a `ScoreCollectionView` snap to groups of five.
+    /// Make horizontal scrolling of a `ScoreCollectionView` snap to stations.
     /// That is, snap cells to show one station at a time.
     ///
     /// - Parameter proposedContentOffset: Ending offset given scroll position and velocity.
@@ -31,7 +31,7 @@ class ScoreCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let targetRect = CGRect(x: proposedContentOffset.x, y: 0, width: collectionView.bounds.size.width, height: collectionView.bounds.size.height)
         let layoutAttributesArray = super.layoutAttributesForElements(in: targetRect)
         
-        // Find the group of five cells closest to the proposed content offset.
+        // Find the station closest to the proposed content offset.
         var offsetAdjustment = CGFloat.greatestFiniteMagnitude
         var indexPath: IndexPath?
         if let indexPathOfClosestCell = layoutAttributesArray?.min(by: { (a, b) in fabsf(Float(a.frame.origin.x - offsetAdjustment)) < fabsf(Float(b.frame.origin.x - offsetAdjustment))})?.indexPath {
@@ -62,7 +62,17 @@ class ScoreCollectionViewFlowLayout: UICollectionViewFlowLayout {
             
             // Set the new offset adjustment given our choice of `IndexPath`.
             if let indexPath = indexPath, let itemOffset = super.layoutAttributesForItem(at: indexPath)?.frame.origin.x {
-                offsetAdjustment = itemOffset - horizontalOffset
+                
+                let station = Station(rawValue: Int16(indexPath.section + 1))!
+                if station.numberOfShots == 4 {
+                    // Align to left edge for 4-shot stations
+                    offsetAdjustment = itemOffset - horizontalOffset
+                } else {
+                    // Align to left edge minus one cell of spacing for 4-shot stations
+                    let view = collectionView.outermostSuperview!
+                    let extraOffset = ScoreCollectionView.interItemSpacing(for: view) + ScoreCollectionView.cellSideLength(for: view)
+                    offsetAdjustment = itemOffset - horizontalOffset - extraOffset
+                }
             }
         }
         

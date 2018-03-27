@@ -10,6 +10,17 @@ import UIKit
 
 extension UIView {
     
+    /// Return the outermost superview, or nil if this view has no superview.
+    var outermostSuperview: UIView? {
+        if var superview = self.superview {
+            while superview.superview != nil {
+                superview = superview.superview!
+            }
+            return superview
+        }
+        return nil
+    }
+    
     /// Adds a border to the view.
     ///
     /// - Parameters:

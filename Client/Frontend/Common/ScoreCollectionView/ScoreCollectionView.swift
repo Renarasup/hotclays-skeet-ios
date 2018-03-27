@@ -15,17 +15,17 @@ class ScoreCollectionView: UICollectionView {
     var indexOfAthlete: Int!
     
     static func inset(for view: UIView, forSectionAt section: Int) -> UIEdgeInsets {
-        var extraSpacingOnRight = CGFloat(0)
+        var extraInset = CGFloat(0)
         let station = Station(rawValue: Int16(section + 1))!
         if station.numberOfShots == 2 {
             // Extra spacing to make the section same width as 4-shot station
-            extraSpacingOnRight = 2 * interItemSpacing(for: view) + 2 * cellSideLength(for: view)
+            extraInset = interItemSpacing(for: view) + cellSideLength(for: view)
         }
         // Spacing between sections, but no extra spacing on the outer edges.
         let spacingBetweenSections = interSectionSpacing(for: view)
         let leftInset = section == 0 ? CGFloat(0.0) : spacingBetweenSections
         let rightInset = section == Station.allValues.count - 1 ? CGFloat(0.0) : spacingBetweenSections
-        return UIEdgeInsetsMake(0.0, leftInset, 0.0, rightInset + extraSpacingOnRight)
+        return UIEdgeInsetsMake(0.0, leftInset + extraInset, 0.0, rightInset + extraInset)
     }
     
     static func interItemSpacing(for view: UIView) -> CGFloat {
@@ -37,7 +37,7 @@ class ScoreCollectionView: UICollectionView {
         return UIDevice.current.userInterfaceIdiom == .pad ? CGFloat(40.0) : CGFloat(20.0)
     }
     
-    // Get the side length for a `ScoreCollectionViewCell` given the available
+    /// Get the side length for a `ScoreCollectionViewCell` given the available
     /// width of the containing view. Limit to a maximum width.
     ///
     /// - Parameter viewWidth: Width of view containing the `ScoreCollectionView`
