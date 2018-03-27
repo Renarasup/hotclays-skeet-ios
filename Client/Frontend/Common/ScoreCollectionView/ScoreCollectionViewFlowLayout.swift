@@ -62,7 +62,6 @@ class ScoreCollectionViewFlowLayout: UICollectionViewFlowLayout {
             
             // Set the new offset adjustment given our choice of `IndexPath`.
             if let indexPath = indexPath, let itemOffset = super.layoutAttributesForItem(at: indexPath)?.frame.origin.x {
-                
                 let station = Station(rawValue: Int16(indexPath.section + 1))!
                 if station.numberOfShots == 4 {
                     // Align to left edge for 4-shot stations

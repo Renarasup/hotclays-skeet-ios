@@ -66,5 +66,23 @@ class ScoreCollectionView: UICollectionView {
     override func awakeFromNib() {
         self.decelerationRate = UIScrollViewDecelerationRateFast
     }
+    
+    func scrollToStation(at indexPath: IndexPath, animated: Bool) {
+        let station = Station(rawValue: Int16(indexPath.section + 1))!
+        if station.numberOfShots == 2 {
+            let indexPathForFirstItemInSection = IndexPath(item: 0, section: indexPath.section)
+            if let itemOffset = self.layoutAttributesForItem(at: indexPathForFirstItemInSection)?.frame.origin {
+                let view = self.outermostSuperview!
+                let extraOffset = ScoreCollectionView.interItemSpacing(for: view) + ScoreCollectionView.cellSideLength(for: view)
+                // Align to left edge minus one cell of spacing for 4-shot stations
+                let targetContentOffset = CGPoint(x: itemOffset.x - self.contentInset.left - extraOffset,
+                                                  y: itemOffset.y - self.contentInset.top)
+                self.setContentOffset(targetContentOffset, animated: animated)
+                return
+            }
+        }
+        // If some part fails, just scroll to left edge.
+        self.scrollToItem(at: indexPath, at: .left, animated: animated)
+    }
 
 }
