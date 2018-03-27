@@ -18,7 +18,7 @@ class RoundTableViewController: UITableViewController {
     var round: Round!
     var competingAthletes: [CompetingAthlete]!
 
-    internal var scoreTableViewCells = [ScoreTableViewCell]()
+    internal var tableViewCells = [ScoreTableViewCell]()
     internal var stationLabels = [UILabel]()
 
     @IBAction func pressedShareButton(_ sender: UIBarButtonItem) {
@@ -72,7 +72,7 @@ class RoundTableViewController: UITableViewController {
     
     @objc func stationIndicatorValueChanged(_ sender: UIPageControl) {
         // Scroll all collection views to the page control's current page.
-        if let collectionView = scoreTableViewCells.first?.collectionView {
+        if let collectionView = tableViewCells.first?.collectionView {
             let indexPath = IndexPath(item: 0, section: sender.currentPage)
             collectionView.scrollToStation(at: indexPath, animated: true)
             self.updateStationLabels(with: sender.currentPage)
@@ -109,7 +109,7 @@ class RoundTableViewController: UITableViewController {
             return cell
         } else {
             let indexOfAthlete = indexPath.section - 1
-            let cell = self.scoreTableViewCells[indexOfAthlete]
+            let cell = self.tableViewCells[indexOfAthlete]
             let athlete = self.competingAthletes[indexOfAthlete]
             cell.configure(with: athlete.score, at: indexOfAthlete, isTakingOption: false)
             return cell
@@ -204,7 +204,8 @@ class RoundTableViewController: UITableViewController {
         // Preload the table view cells.
         for _ in 0..<self.competingAthletes.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: CommonConstants.scoreTableViewCellID) as! ScoreTableViewCell
-            self.scoreTableViewCells.append(cell)
+            cell.delegate = self
+            self.tableViewCells.append(cell)
         }
     }
     
@@ -257,7 +258,7 @@ extension RoundTableViewController: EditRoundDelegate {
         
         // Reload all scores.
         DispatchQueue.main.async {
-            for scoreTableViewCell in self.scoreTableViewCells {
+            for scoreTableViewCell in self.tableViewCells {
                 scoreTableViewCell.collectionView.reloadData()
             }
         }
@@ -278,6 +279,14 @@ extension RoundTableViewController: MFMailComposeViewControllerDelegate {
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+}
+
+extension RoundTableViewController: ScoreTableViewCellDelegate {
+    
+    func didTapOptionCell(forIndexOfAthlete indexOfAthlete: Int) {
+        // Interacting with cells does nothing here.
     }
     
 }

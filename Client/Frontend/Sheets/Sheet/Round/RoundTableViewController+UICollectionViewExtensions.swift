@@ -49,7 +49,7 @@ extension RoundTableViewController: UICollectionViewDelegate {
             let contentOffset = collectionView.contentOffset
             for i in 0 ..< self.competingAthletes.count {
                 if i != indexOfScrollView {
-                    self.scoreTableViewCells[i].collectionView.contentOffset = contentOffset
+                    self.tableViewCells[i].collectionView.contentOffset = contentOffset
                 }
             }
         }

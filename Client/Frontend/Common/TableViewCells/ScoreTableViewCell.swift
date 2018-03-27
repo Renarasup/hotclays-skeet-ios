@@ -18,6 +18,8 @@ class ScoreTableViewCell: UITableViewCell {
     @IBOutlet weak var informationView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     
+    var delegate: ScoreTableViewCellDelegate!
+    
     /// Get the height for a `ScoreTableViewCell` for a given view width.
     ///
     /// - Parameter viewWidth: Width of view containing the `ScoreTableViewCell`.
@@ -33,6 +35,14 @@ class ScoreTableViewCell: UITableViewCell {
         
         self.optionView.layer.cornerRadius = CommonConstants.scoreCellCornerRadius
         self.optionView.clipsToBounds = true
+        
+        // Listen for taps on the option view.
+        let tapOption = UITapGestureRecognizer(target: self, action: #selector(pressedOptionView(_:)))
+        self.optionView.addGestureRecognizer(tapOption)
+    }
+
+    @objc func pressedOptionView(_ gestureRecognizer: UIGestureRecognizer) {
+        self.delegate.didTapOptionCell(forIndexOfAthlete: self.collectionView.indexOfAthlete)
     }
 
     func configure(with score: Score?, at indexOfAthlete: Int, isTakingOption: Bool) {
@@ -76,4 +86,10 @@ class ScoreTableViewCell: UITableViewCell {
         self.scoreLabel.text = "\(score.numberOfHits)"
     }
 
+}
+
+protocol ScoreTableViewCellDelegate {
+    
+    func didTapOptionCell(forIndexOfAthlete indexOfAthlete: Int)
+    
 }

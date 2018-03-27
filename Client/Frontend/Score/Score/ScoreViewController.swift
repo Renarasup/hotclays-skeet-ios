@@ -79,7 +79,7 @@ class ScoreViewController: UIViewController {
     
     @objc func pressedUndoButton(_ gestureRecognizer: UIGestureRecognizer) {
         if let previousCursorState = self.undoStack.popLast() {
-            self.moveCursor(toIndexOfShooter: previousCursorState.indexOfAthlete, indexOfShot: previousCursorState.indexOfShot)
+            self.moveCursor(toIndexOfAthlete: previousCursorState.indexOfAthlete, indexOfShot: previousCursorState.indexOfShot)
             self.recordShot(previousCursorState.shot, advanceCursor: false)
         }
     }
@@ -116,6 +116,7 @@ class ScoreViewController: UIViewController {
         // Preload the table view cells.
         for _ in 0..<self.competingAthletes.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: CommonConstants.scoreTableViewCellID) as! ScoreTableViewCell
+            cell.delegate = self
             self.tableViewCells.append(cell)
         }
         
@@ -173,7 +174,7 @@ class ScoreViewController: UIViewController {
             }
             
         }
-        self.moveCursor(toIndexOfShooter: indexOfNextShooter, indexOfShot: indexOfNextShot)
+        self.moveCursor(toIndexOfAthlete: indexOfNextShooter, indexOfShot: indexOfNextShot)
     }
     
     /// Reload the option cell for a particular athlete.
@@ -292,7 +293,7 @@ class ScoreViewController: UIViewController {
     /// - Parameters:
     ///   - indexOfAthlete: Index of shooter to be selected.
     ///   - indexOfShot: Index of shot to be selected. If option, indexOfShot == Skeet.numberOfNonOptionShotsPerRound.
-    internal func moveCursor(toIndexOfShooter indexOfAthlete: Int, indexOfShot: Int) {
+    internal func moveCursor(toIndexOfAthlete indexOfAthlete: Int, indexOfShot: Int) {
         // Update cursor position, then reload cells at old and new cursor position.
         let indexOfAthleteOld = self.cursor.indexOfAthlete
         let indexPathOld = self.cursor.indexPathOfShot
@@ -388,6 +389,14 @@ internal class Cursor {
     func move(toIndexOfAthlete indexOfAthlete: Int, indexOfShot: Int) {
         self.indexOfAthlete = indexOfAthlete
         self.indexOfShot = indexOfShot
+    }
+    
+}
+
+extension ScoreViewController: ScoreTableViewCellDelegate {
+    
+    func didTapOptionCell(forIndexOfAthlete indexOfAthlete: Int) {
+        self.moveCursor(toIndexOfAthlete: indexOfAthlete, indexOfShot: Skeet.numberOfNonOptionShotsPerRound)
     }
     
 }
