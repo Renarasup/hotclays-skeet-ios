@@ -18,7 +18,7 @@ class ScoreCollectionView: UICollectionView {
         var extraInset = CGFloat(0)
         let station = Station(rawValue: Int16(section + 1))!
         if station.numberOfShots == 2 {
-            // Extra spacing to make the section same width as 4-shot station
+            // Extra inset on both sides to make the section same width as 4-shot station
             extraInset = interItemSpacing(for: view) + cellSideLength(for: view)
         }
         // Spacing between sections, but no extra spacing on the outer edges.

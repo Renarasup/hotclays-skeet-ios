@@ -57,8 +57,15 @@ extension RoundTableViewController: UICollectionViewDelegate {
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if let collectionView = scrollView as? ScoreCollectionView,
-            let numberOfPostsCompleted = collectionView.indexPathForItem(at: targetContentOffset.pointee)?.section {
-            self.updateStationLabels(with: numberOfPostsCompleted)
+            let superview = collectionView.outermostSuperview {
+            // Compute offset for first center cell (cannot simply take the leftmost cell, because that doesn't work for a 2-shot station)
+            var centerCellOffset = targetContentOffset.pointee
+            centerCellOffset.x += ScoreCollectionView.interItemSpacing(for: superview) + ScoreCollectionView.cellSideLength(for: superview)
+            
+            // Compute section index based on center 
+            if let numberOfPostsCompleted = collectionView.indexPathForItem(at: centerCellOffset)?.section {
+                self.updateStationLabels(with: numberOfPostsCompleted)
+            }
         }
     }
     
