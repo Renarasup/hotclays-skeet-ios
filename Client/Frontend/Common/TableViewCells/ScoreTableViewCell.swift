@@ -11,7 +11,10 @@ import UIKit
 class ScoreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: ScoreCollectionView!
-    @IBOutlet weak var optionView: OptionView!
+    @IBOutlet weak var optionView: UIView!
+    @IBOutlet weak var optionHitIndicatorView: HitScoreCollectionViewCell!
+    @IBOutlet weak var optionMissIndicatorView: MissScoreCollectionViewCell!
+    @IBOutlet weak var optionNotTakenIndicatorView: NotTakenScoreCollectionViewCell!
     @IBOutlet weak var informationView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     
@@ -34,14 +37,39 @@ class ScoreTableViewCell: UITableViewCell {
 
     func configure(with score: Score?, at indexOfAthlete: Int, isTakingOption: Bool) {
         if let score = score {
-            self.optionView.configure(with: score.option, selected: isTakingOption)
+            self.updateOption(with: score.option, isTakingOption: isTakingOption)
             self.scoreLabel.text = "\(score.numberOfHits)"
         } else {
-            self.optionView.configure(with: Option(), selected: isTakingOption)
+            self.updateOption(with: Option(), isTakingOption: false)
             self.scoreLabel.text = ""
         }
 
         self.collectionView.indexOfAthlete = indexOfAthlete
+    }
+    
+    private func updateOption(with option: Option, isTakingOption: Bool) {
+        // Select which indicator to display
+        let indicatorViewToShow: ScoreCollectionViewCell!
+        switch option.shot {
+        case .hit:
+            indicatorViewToShow = self.optionHitIndicatorView
+        case .miss:
+            indicatorViewToShow = self.optionMissIndicatorView
+        case .notTaken:
+            indicatorViewToShow = self.optionNotTakenIndicatorView
+        }
+        // Show the correct indicator view and no others.
+        let indicatorViews: [ScoreCollectionViewCell] = [self.optionHitIndicatorView, self.optionMissIndicatorView, self.optionNotTakenIndicatorView]
+        for indicatorView in indicatorViews {
+            indicatorView.isHidden = (indicatorView != indicatorViewToShow)
+        }
+        // Draw a border if selected.
+        if isTakingOption {
+            indicatorViewToShow.layer.borderColor = AppColors.black.cgColor
+            indicatorViewToShow.layer.borderWidth = CommonConstants.scoreCellSelectedBorderWidth
+        } else {
+            indicatorViewToShow.layer.borderWidth = 0.0
+        }
     }
 
     func update(with score: Score) {

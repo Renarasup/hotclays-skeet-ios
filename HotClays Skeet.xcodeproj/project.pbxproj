@@ -19,7 +19,6 @@
 		202C376F2005B78500E3527D /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C376E2005B78500E3527D /* UITextViewExtensions.swift */; };
 		202F288D20040BED00D88FA2 /* EditRoundDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F288C20040BED00D88FA2 /* EditRoundDelegate.swift */; };
 		2034AA62200559CD006D37C2 /* AddAthleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2034AA61200559CD006D37C2 /* AddAthleteDelegate.swift */; };
-		2036A6A4206AB026006E907D /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036A6A3206AB026006E907D /* OptionView.swift */; };
 		205A67EC2017B021009FF212 /* CoreDataContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A67EB2017B021009FF212 /* CoreDataContextObserver.swift */; };
 		206A4A7B20027F7300526B36 /* RoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A4A7A20027F7300526B36 /* RoundTableViewController.swift */; };
 		206A4A7D2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A4A7C2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift */; };
@@ -112,7 +111,6 @@
 		202C376E2005B78500E3527D /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
 		202F288C20040BED00D88FA2 /* EditRoundDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoundDelegate.swift; sourceTree = "<group>"; };
 		2034AA61200559CD006D37C2 /* AddAthleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAthleteDelegate.swift; sourceTree = "<group>"; };
-		2036A6A3206AB026006E907D /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		205A67EB2017B021009FF212 /* CoreDataContextObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContextObserver.swift; sourceTree = "<group>"; };
 		206A4A7A20027F7300526B36 /* RoundTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTableViewController.swift; sourceTree = "<group>"; };
 		206A4A7C2002867000526B36 /* RoundTableViewController+UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoundTableViewController+UICollectionViewExtensions.swift"; sourceTree = "<group>"; };
@@ -535,7 +533,6 @@
 			isa = PBXGroup;
 			children = (
 				209986501FFF43C600B67372 /* CommonConstants.swift */,
-				2036A6A3206AB026006E907D /* OptionView.swift */,
 				209986411FFF427D00B67372 /* ScoreCollectionView */,
 				2099862C1FFF35CE00B67372 /* TableViewCells */,
 				2099862D1FFF35DD00B67372 /* ViewControllers */,
@@ -625,7 +622,6 @@
 				209986241FFEF8BB00B67372 /* EditSquadTableViewController.swift in Sources */,
 				20A8EE051FFEC9730059DA28 /* CoreDataManager.swift in Sources */,
 				209986061FFED9FA00B67372 /* Sheet+CoreDataClass.swift in Sources */,
-				2036A6A4206AB026006E907D /* OptionView.swift in Sources */,
 				206F5B2F20068A6700A22329 /* ChooseSheetTableViewController.swift in Sources */,
 				208717DA2006745D00E3AF68 /* EditSheetDelegate.swift in Sources */,
 				209985F81FFECF1300B67372 /* SheetsConstants.swift in Sources */,

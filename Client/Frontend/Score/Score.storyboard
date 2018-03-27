@@ -1156,11 +1156,37 @@
                                                                 <outlet property="delegate" destination="wTn-Dv-quj" id="uzg-lA-xLr"/>
                                                             </connections>
                                                         </collectionView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJb-vq-Eg2" customClass="OptionView" customModule="HotClays_Skeet" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJb-vq-Eg2">
                                                             <rect key="frame" x="286" y="0.0" width="59" height="59"/>
+                                                            <subviews>
+                                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAL-Fs-gB2" customClass="HitScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="59" height="59"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
+                                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwu-47-grp" customClass="MissScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
+                                                                    <rect key="frame" x="-0.5" y="-0.5" width="59" height="59"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cr0-ZB-wb0" customClass="NotTakenScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
+                                                                    <rect key="frame" x="-0.5" y="-0.5" width="59" height="59"/>
+                                                                    <color key="backgroundColor" red="0.87845373149999995" green="0.87843716140000005" blue="0.87844836709999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                </view>
+                                                            </subviews>
                                                             <color key="backgroundColor" red="0.87845373149999995" green="0.87843716140000005" blue="0.87844836709999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
+                                                                <constraint firstItem="MAL-Fs-gB2" firstAttribute="top" secondItem="pJb-vq-Eg2" secondAttribute="top" id="3vq-Ab-J8v"/>
+                                                                <constraint firstAttribute="trailing" secondItem="dwu-47-grp" secondAttribute="trailing" id="AVv-hG-cZP"/>
+                                                                <constraint firstItem="Cr0-ZB-wb0" firstAttribute="leading" secondItem="pJb-vq-Eg2" secondAttribute="leading" id="C2e-gY-57V"/>
+                                                                <constraint firstItem="MAL-Fs-gB2" firstAttribute="leading" secondItem="pJb-vq-Eg2" secondAttribute="leading" id="F7o-a1-aNW"/>
+                                                                <constraint firstItem="dwu-47-grp" firstAttribute="top" secondItem="pJb-vq-Eg2" secondAttribute="top" id="GYK-Ae-x3F"/>
+                                                                <constraint firstAttribute="bottom" secondItem="dwu-47-grp" secondAttribute="bottom" id="Hgt-fc-JB5"/>
+                                                                <constraint firstAttribute="bottom" secondItem="MAL-Fs-gB2" secondAttribute="bottom" id="I5o-Jt-bGu"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Cr0-ZB-wb0" secondAttribute="trailing" id="KB9-jE-AIl"/>
+                                                                <constraint firstAttribute="trailing" secondItem="MAL-Fs-gB2" secondAttribute="trailing" id="bVj-Xw-MNN"/>
+                                                                <constraint firstItem="dwu-47-grp" firstAttribute="leading" secondItem="pJb-vq-Eg2" secondAttribute="leading" id="i33-mQ-ooJ"/>
                                                                 <constraint firstAttribute="width" secondItem="pJb-vq-Eg2" secondAttribute="height" multiplier="1:1" id="rnn-HC-ax5"/>
+                                                                <constraint firstItem="Cr0-ZB-wb0" firstAttribute="top" secondItem="pJb-vq-Eg2" secondAttribute="top" id="tar-LL-Aa2"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Cr0-ZB-wb0" secondAttribute="bottom" id="woC-8d-5uC"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pru-dk-Pb5">
@@ -1200,6 +1226,9 @@
                                         <connections>
                                             <outlet property="collectionView" destination="wU2-1x-aJQ" id="63y-cm-hG9"/>
                                             <outlet property="informationView" destination="Pru-dk-Pb5" id="2zj-98-TG3"/>
+                                            <outlet property="optionHitIndicatorView" destination="MAL-Fs-gB2" id="xSD-zR-6FE"/>
+                                            <outlet property="optionMissIndicatorView" destination="dwu-47-grp" id="t3u-gL-w0F"/>
+                                            <outlet property="optionNotTakenIndicatorView" destination="Cr0-ZB-wb0" id="zfz-7P-F1z"/>
                                             <outlet property="optionView" destination="pJb-vq-Eg2" id="C0M-L1-Xta"/>
                                             <outlet property="scoreLabel" destination="uMl-jJ-5In" id="0fa-xN-Had"/>
                                         </connections>
