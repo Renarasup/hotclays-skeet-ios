@@ -11,6 +11,7 @@ import UIKit
 class ScoreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: ScoreCollectionView!
+    @IBOutlet weak var optionView: UIView!
     @IBOutlet weak var informationView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     

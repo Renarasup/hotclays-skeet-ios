@@ -10,17 +10,26 @@ import UIKit
 
 extension RoundTableViewController: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Skeet.numberOfShotsPerStation
-    }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return Station.allValues.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // Each section represents a station
+        let station = Station(rawValue: Int16(section + 1))!
+        return station.numberOfShots
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Get the shot to display (i.e., hit, miss, or none if not yet attempted).
         let indexOfAthlete = (collectionView as! ScoreCollectionView).indexOfAthlete!
-        let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
+        // Sum up number of shots on previous stations
+        var shotsTakenOnPreviousStations = 0
+        for stationRawValue in 1...indexPath.section {
+            let previousStation = Station(rawValue: Int16(stationRawValue))!
+            shotsTakenOnPreviousStations += previousStation.numberOfShots
+        }
+        let indexOfShot = shotsTakenOnPreviousStations + indexPath.item
         let shot = self.competingAthletes[indexOfAthlete].score.getShot(atIndex: indexOfShot)
         
         let cell: ScoreCollectionViewCell

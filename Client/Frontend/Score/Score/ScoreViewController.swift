@@ -291,11 +291,11 @@ class ScoreViewController: UIViewController {
         self.tableView.scrollRectToVisible(rectOfRowUnderCursor, animated: true)
         
         // Scroll horizontally to make sure cursor is visible.
-        let indexOfPostUnderCursor = self.cursor.indexOfShot / Skeet.numberOfShotsPerStation
-        let indexPathOfFirstShotInPost = IndexPath(item: 0, section: indexOfPostUnderCursor)
+        let indexOfStation = Station.indexOfStation(for: self.cursor.indexOfShot)
+        let indexPathOfFirstShotOnStation = IndexPath(item: 0, section: indexOfStation)
         let collectionViewUnderCursor = self.tableViewCells[self.cursor.indexOfAthlete].collectionView!
-        collectionViewUnderCursor.scrollToItem(at: indexPathOfFirstShotInPost, at: .left, animated: true)
-        self.updateStationLabels(with: indexOfPostUnderCursor)
+        collectionViewUnderCursor.scrollToItem(at: indexPathOfFirstShotOnStation, at: .left, animated: true)
+        self.updateStationLabels(with: indexOfStation)
     }
     
     /// Update all station labels and the post indicator when scrolling horizontally.

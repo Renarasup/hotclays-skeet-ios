@@ -61,8 +61,8 @@ class SetupTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == SHEET_SECTION {
-            // Sheet Section: If there's a sheet, display it. Otherwise, 'Existing Sheet' and 'New Sheet'.
-            return self.event != nil ? 1 : 2
+            // Sheet Section: 'Add Sheet' or the currently selected sheet.
+            return 1
         } else if section == SQUAD_SECTION {
             // Squad Section: Cell for each post, plus one for Add Athlete cell.
             return self.competingAthletes.count + 1
@@ -81,7 +81,7 @@ class SetupTableViewController: UITableViewController {
             } else {
                 // Add Sheet cell
                 let setupCell = tableView.dequeueReusableCell(withIdentifier: ScoreConstants.setupTableViewCellID) as! SetupTableViewCell
-                let cellTitle = indexPath.row == 0 ? "Existing Sheet" : "New Sheet"
+                let cellTitle = "Add Sheet"
                 setupCell.configure(with: cellTitle, textColor: AppColors.orange)
                 return setupCell
             }

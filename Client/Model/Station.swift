@@ -6,6 +6,8 @@
 //  Copyright © 2018 Christopher Chute. All rights reserved.
 //
 
+import UIKit
+
 /// Skeet station.
 enum Station: Int16, CustomStringConvertible {
 
@@ -99,6 +101,23 @@ enum Station: Int16, CustomStringConvertible {
         } else {
             return indexOfShot - 22
         }
+    }
+
+    /// Get an indexOfShot from an `IndexPath`, assuming the index path
+    /// is stored as in a `ScoreCollectionView`, where we store each station
+    /// in its own section.
+    ///
+    /// - Parameter indexPath: `IndexPath` of the shot.
+    /// - Returns: Index of shot, a number 0 - 24.
+    static func indexOfShot(from indexPath: IndexPath) -> Int {
+        var shotsTakenOnPreviousStations = 0
+        var stationRawValue = 1
+        while stationRawValue <= indexPath.section {
+            let previousStation = Station(rawValue: Int16(stationRawValue))!
+            shotsTakenOnPreviousStations += previousStation.numberOfShots
+            stationRawValue += 1
+        }
+        return shotsTakenOnPreviousStations + indexPath.item
     }
 
     /// Get the next station after this one.

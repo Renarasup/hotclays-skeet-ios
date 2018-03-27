@@ -1113,10 +1113,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SJG-Eo-v9E">
-                                                    <rect key="frame" x="-97.5" y="11" width="570" height="59"/>
+                                                    <rect key="frame" x="-19.5" y="11" width="414" height="59"/>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-1x-aJQ" customClass="ScoreCollectionView" customModule="HotClays_Skeet" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="501" height="59"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="276" height="59"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <collectionViewLayout key="collectionViewLayout" id="TeI-FN-boQ" customClass="ScoreCollectionViewFlowLayout" customModule="HotClays_Skeet" customModuleProvider="target"/>
                                                             <cells>
@@ -1131,7 +1131,7 @@
                                                                     <size key="customSize" width="49" height="49"/>
                                                                 </collectionViewCell>
                                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="missScoreCollectionViewCellID" id="a1h-Rb-8Yd" customClass="MissScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
-                                                                    <rect key="frame" x="64.5" y="0.0" width="49" height="49"/>
+                                                                    <rect key="frame" x="75.5" y="0.0" width="49" height="49"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
@@ -1141,7 +1141,7 @@
                                                                     <size key="customSize" width="49" height="49"/>
                                                                 </collectionViewCell>
                                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="notTakenScoreCollectionViewCellID" id="FoW-sc-oTs" customClass="NotTakenScoreCollectionViewCell" customModule="HotClays_Skeet" customModuleProvider="target">
-                                                                    <rect key="frame" x="129" y="0.0" width="49" height="49"/>
+                                                                    <rect key="frame" x="151.5" y="0.0" width="49" height="49"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
@@ -1156,8 +1156,15 @@
                                                                 <outlet property="delegate" destination="wTn-Dv-quj" id="uzg-lA-xLr"/>
                                                             </connections>
                                                         </collectionView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJb-vq-Eg2">
+                                                            <rect key="frame" x="286" y="0.0" width="59" height="59"/>
+                                                            <color key="backgroundColor" red="0.87845373149999995" green="0.87843716140000005" blue="0.87844836709999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="pJb-vq-Eg2" secondAttribute="height" multiplier="1:1" id="rnn-HC-ax5"/>
+                                                            </constraints>
+                                                        </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pru-dk-Pb5">
-                                                            <rect key="frame" x="511" y="0.0" width="59" height="59"/>
+                                                            <rect key="frame" x="355" y="0.0" width="59" height="59"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMl-jJ-5In">
                                                                     <rect key="frame" x="8" y="8" width="43" height="43"/>
@@ -1178,6 +1185,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="745" id="Yzi-UV-AXc"/>
+                                                        <constraint firstItem="pJb-vq-Eg2" firstAttribute="width" secondItem="pJb-vq-Eg2" secondAttribute="height" multiplier="1:1" id="ee5-0k-UF2"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -1192,6 +1200,7 @@
                                         <connections>
                                             <outlet property="collectionView" destination="wU2-1x-aJQ" id="63y-cm-hG9"/>
                                             <outlet property="informationView" destination="Pru-dk-Pb5" id="2zj-98-TG3"/>
+                                            <outlet property="optionView" destination="pJb-vq-Eg2" id="C0M-L1-Xta"/>
                                             <outlet property="scoreLabel" destination="uMl-jJ-5In" id="0fa-xN-Had"/>
                                         </connections>
                                     </tableViewCell>
@@ -1237,7 +1246,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jh8-oQ-Ziu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2386" y="2693"/>
+            <point key="canvasLocation" x="2384.8000000000002" y="2692.8035982008996"/>
         </scene>
     </scenes>
     <resources>

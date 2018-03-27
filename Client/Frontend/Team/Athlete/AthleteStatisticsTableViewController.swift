@@ -87,7 +87,8 @@ class AthleteStatisticsTableViewController: UITableViewController {
                             for indexOfStation in 0..<Station.allValues.count {
                                 // TODO: Statistics for skeet stations. Include option.
                                 hitsPerStation[indexOfStation] += 0
-                                shotsPerStation[indexOfStation] += Skeet.numberOfShotsPerStation
+                                let station = Station(rawValue: Int16(indexOfStation + 1))!
+                                shotsPerStation[indexOfStation] += station.numberOfShots
                             }
                         }
                     }

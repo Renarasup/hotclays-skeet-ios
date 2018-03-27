@@ -15,17 +15,5 @@ class Skeet {
     /// Maximum number of athletes allowed on a squad.
     static let maxNumberOfAthletesPerSquad = 6
     
-    /// Placeholder before computing each station differently.
-    static let numberOfShotsPerStation = 5
-    /// Number of shots taken at a given station, not including the option.
-//    static func numberOfShots(at station: Station) -> Int {
-//        switch station {
-//        case .one, .two, .six, .seven:
-//            return 4
-//        case .three, .four, .five, .eight:
-//            return 2
-//        }
-//    }
-
 }
 

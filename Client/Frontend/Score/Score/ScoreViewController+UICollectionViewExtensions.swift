@@ -12,18 +12,19 @@ import UIKit
 extension ScoreViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // TODO: Adapt number of sections for skeet.
-        return 5
+        return Station.allValues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 4 ? 4 : Skeet.numberOfShotsPerStation
+        // Each section represents a station
+        let station = Station(rawValue: Int16(section + 1))!
+        return station.numberOfShots
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Get the shot to display (i.e., hit, miss, or none if not yet attempted).
         let indexOfAthlete = (collectionView as! ScoreCollectionView).indexOfAthlete!
-        let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
+        let indexOfShot = Station.indexOfShot(from: indexPath)
         let shot = self.competingAthletes[indexOfAthlete].score.getShot(atIndex: indexOfShot)
         
         let cell: ScoreCollectionViewCell
@@ -69,7 +70,7 @@ extension ScoreViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let indexOfShooter = (collectionView as! ScoreCollectionView).indexOfAthlete!
-        let indexOfShot = indexPath.section * Skeet.numberOfShotsPerStation + indexPath.item
+        let indexOfShot = Station.indexOfShot(from: indexPath)
         self.moveCursor(toIndexOfShooter: indexOfShooter, indexOfShot: indexOfShot)
     }
     
