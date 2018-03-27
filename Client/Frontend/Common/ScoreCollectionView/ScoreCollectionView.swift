@@ -15,11 +15,17 @@ class ScoreCollectionView: UICollectionView {
     var indexOfAthlete: Int!
     
     static func inset(for view: UIView, forSectionAt section: Int) -> UIEdgeInsets {
+        var extraSpacingOnRight = CGFloat(0)
+        let station = Station(rawValue: Int16(section + 1))!
+        if station.numberOfShots == 2 {
+            // Extra spacing to make the section same width as 4-shot station
+            extraSpacingOnRight = 2 * interItemSpacing(for: view) + 2 * cellSideLength(for: view)
+        }
         // Spacing between sections, but no extra spacing on the outer edges.
         let spacingBetweenSections = interSectionSpacing(for: view)
         let leftInset = section == 0 ? CGFloat(0.0) : spacingBetweenSections
         let rightInset = section == Station.allValues.count - 1 ? CGFloat(0.0) : spacingBetweenSections
-        return UIEdgeInsetsMake(0.0, leftInset, 0.0, rightInset)
+        return UIEdgeInsetsMake(0.0, leftInset, 0.0, rightInset + extraSpacingOnRight)
     }
     
     static func interItemSpacing(for view: UIView) -> CGFloat {
