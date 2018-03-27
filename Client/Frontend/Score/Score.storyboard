@@ -1090,7 +1090,7 @@
                                     <rect key="frame" x="0.0" y="154.5" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="YOp-WL-nPU">
+                                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="8" translatesAutoresizingMaskIntoConstraints="NO" id="YOp-WL-nPU">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <color key="pageIndicatorTintColor" red="0.87845373149999995" green="0.87843716140000005" blue="0.87844836709999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <color key="currentPageIndicatorTintColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
