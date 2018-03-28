@@ -13,35 +13,33 @@ class RoundExporter {
     
     /// Title for each column in an exported round's spreadsheet.
     static let columnTitles = [
-        "First Station",
         "First Name",
         "Last Name",
         "Gauge",
-        "Yardage",
-        "Shot 1",
-        "Shot 2",
-        "Shot 3",
-        "Shot 4",
-        "Shot 5",
-        "Shot 6",
-        "Shot 7",
-        "Shot 8",
-        "Shot 9",
-        "Shot 10",
-        "Shot 11",
-        "Shot 12",
-        "Shot 13",
-        "Shot 14",
-        "Shot 15",
-        "Shot 16",
-        "Shot 17",
-        "Shot 18",
-        "Shot 19",
-        "Shot 20",
-        "Shot 21",
-        "Shot 22",
-        "Shot 23",
-        "Shot 24",
+        "High 1 (Single)",
+        "Low 1 (Single)",
+        "High 1 (Double)",
+        "Low 1 (Double)",
+        "High 2 (Single)",
+        "Low 2 (Single)",
+        "High 2 (Double)",
+        "Low 2 (Double)",
+        "High 3 (Single)",
+        "Low 3 (Single)",
+        "High 4 (Single)",
+        "Low 4 (Single)",
+        "High 5 (Single)",
+        "Low 5 (Single)",
+        "High 6 (Single)",
+        "Low 6 (Single)",
+        "Low 6 (Double)",
+        "High 6 (Double)",
+        "High 7 (Single)",
+        "Low 7 (Single)",
+        "Low 7 (Double)",
+        "High 7 (Double)",
+        "High 8 (Single)",
+        "Low 8 (Single)",
         "Option",
         "Total"
     ]
@@ -56,8 +54,8 @@ class RoundExporter {
         
         // Add a row for each competitor.
         let competingAthletes = round.toCompetingAthletes()
-        for indexOfAthlete in 0..<Station.allValues.count {
-            var rowValues = ["\(indexOfAthlete + 1)"]
+        for indexOfAthlete in 0..<competingAthletes.count {
+            var rowValues = [String]()
             let competingAthlete = competingAthletes[indexOfAthlete]
             // Add athlete info.
             rowValues.append(competingAthlete.firstName)
@@ -66,8 +64,9 @@ class RoundExporter {
             // Add value for each shot.
             for i in 0..<Skeet.numberOfNonOptionShotsPerRound {
                 let shot = competingAthlete.score.getShot(atIndex: i)
-                rowValues.append("\(shot == .hit ? "1" : "0")")
+                rowValues.append("\(shot == .hit ? 1 : 0)")
             }
+            rowValues.append("\(competingAthlete.score.option.shot == .hit ? 1 : 0)")
             rowValues.append("\(competingAthlete.score.numberOfHits)")
             rows.append(rowValues.joined(separator: ","))
         }

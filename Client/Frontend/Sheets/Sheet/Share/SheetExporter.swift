@@ -14,11 +14,9 @@ class SheetExporter {
     /// Get the column titles for a specified number of rounds.
     private static func columnTitles(for numberOfRounds: Int) -> [String] {
         var columnTitles = [
-            "First Station",
             "First Name",
             "Last Name",
-            "Gauge",
-            "Yardage"
+            "Gauge"
         ]
         columnTitles.append(contentsOf: (1...numberOfRounds).map({ "Round \($0)" }))
         columnTitles.append("Total")
@@ -42,8 +40,8 @@ class SheetExporter {
         
         // Add a row for each competitor.
         let firstSquad = rounds.first!.toCompetingAthletes()
-        for indexOfAthlete in 0..<Station.allValues.count {
-            var rowValues = ["\(indexOfAthlete + 1)"]
+        for indexOfAthlete in 0..<firstSquad.count {
+            var rowValues = [String]()
             let competingAthlete = firstSquad[indexOfAthlete]
             // Add athlete info.
             rowValues.append(competingAthlete.firstName)
@@ -87,7 +85,9 @@ class SheetExporter {
             let athleteNames = firstSquad.map({ $0.fullName })
             lines.append("Squad: \(athleteNames.joined(separator: ", "))")
         }
-        lines.append("Notes: \(sheet.notes ?? "None")")
+        if sheet.hasNotes, let notes = sheet.notes {
+            lines.append("Notes: \(notes)")
+        }
 
         lines.append("")
         lines.append("Download HotClays Skeet from the App Store today!")

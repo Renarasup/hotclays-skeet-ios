@@ -82,13 +82,19 @@ class AthleteStatisticsTableViewController: UITableViewController {
                             let score = competingAthletes[indexOfAthlete].score
                             // Get total hits contributed by this score.
                             totalNumberOfHits += score.numberOfHits
-                            totalNumberOfShots += Skeet.numberOfNonOptionShotsPerRound
+                            totalNumberOfShots += score.numberOfAttempts
                             // Get hits contributed by this score on each station.
                             for indexOfStation in 0..<Station.allValues.count {
-                                // TODO: Statistics for skeet stations. Include option.
-                                hitsPerStation[indexOfStation] += 0
+                                // Non-option shots
                                 let station = Station(rawValue: Int16(indexOfStation + 1))!
+                                hitsPerStation[indexOfStation] += score.numberOfHits(on: station)
                                 shotsPerStation[indexOfStation] += station.numberOfShots
+                            }
+                            // Option shot
+                            if let optionStation = score.option.station {
+                                let indexOfStation = Int(optionStation.rawValue - 1)
+                                hitsPerStation[indexOfStation] += (score.option.shot == .hit) ? 1 : 0
+                                shotsPerStation[indexOfStation] += 1
                             }
                         }
                     }

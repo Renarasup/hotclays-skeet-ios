@@ -93,6 +93,29 @@ class Score: CustomStringConvertible {
         self.option = Option()
     }
     
+    /// Get the number of hits on a specific station, not including the option.
+    ///
+    /// - Parameter station: Station on which to count hits.
+    /// - Returns: Number of hits on this station, not including any option.
+    func numberOfHits(on station: Station) -> Int {
+        // Get index of the first shot on this station
+        var indexOfFirstShotOnStation = 0
+        for precedingStation in Station.allValues {
+            if precedingStation == station {
+                break
+            }
+            indexOfFirstShotOnStation += precedingStation.numberOfShots
+        }
+        // Sum up shots taken on this station
+        var numberOfHits = 0
+        for i in 0..<station.numberOfShots {
+            if self.shots[indexOfFirstShotOnStation + i] == .hit {
+                numberOfHits += 1
+            }
+        }
+        return numberOfHits
+    }
+    
     func setShot(atIndex index: Int, with shot: Shot) {
         self.shots[index] = shot
     }

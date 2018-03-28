@@ -91,8 +91,12 @@ class SheetTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Sections: Header, Summary, Rounds, Notes.
-        return 4
+        // Sections: Header, Summary, Rounds, Notes if any.
+        if let sheet = self.sheet, sheet.hasNotes {
+            return 4
+        } else {
+            return 3
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
