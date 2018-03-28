@@ -513,6 +513,15 @@
                                                             <rect key="frame" x="-0.5" y="-0.5" width="59" height="59"/>
                                                             <color key="backgroundColor" red="0.87845373149999995" green="0.87843716140000005" blue="0.87844836709999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4d-hR-5ft">
+                                                            <rect key="frame" x="3" y="2.5" width="10.5" height="10"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=regular">
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            </variation>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeJ-Hp-b2m">
                                                             <rect key="frame" x="44" y="46.5" width="12" height="10"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
@@ -540,6 +549,8 @@
                                                         <constraint firstAttribute="width" secondItem="1mX-r8-Vib" secondAttribute="height" multiplier="1:1" id="daP-oH-xwB"/>
                                                         <constraint firstAttribute="bottom" secondItem="gyn-ay-2Of" secondAttribute="bottom" id="km1-UF-dEm"/>
                                                         <constraint firstItem="Xck-FB-tnx" firstAttribute="top" secondItem="1mX-r8-Vib" secondAttribute="top" id="tfB-yL-2YB"/>
+                                                        <constraint firstItem="m4d-hR-5ft" firstAttribute="top" secondItem="1mX-r8-Vib" secondAttribute="top" constant="2.5" id="whu-cJ-7Qx"/>
+                                                        <constraint firstItem="m4d-hR-5ft" firstAttribute="leading" secondItem="1mX-r8-Vib" secondAttribute="leading" constant="3.5" id="zYm-8e-6EV"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9t-4u-GVp">
@@ -581,6 +592,7 @@
                                     <outlet property="optionHitIndicatorView" destination="Fbg-yE-LHg" id="u8N-F5-1Nb"/>
                                     <outlet property="optionMissIndicatorView" destination="Xck-FB-tnx" id="XeQ-s8-93C"/>
                                     <outlet property="optionNotTakenIndicatorView" destination="gyn-ay-2Of" id="EJT-Yl-9On"/>
+                                    <outlet property="optionStationLabel" destination="m4d-hR-5ft" id="n1i-fK-kDa"/>
                                     <outlet property="optionView" destination="1mX-r8-Vib" id="uQQ-qR-gAy"/>
                                     <outlet property="scoreLabel" destination="bhB-Lj-khh" id="6gy-1v-d11"/>
                                 </connections>

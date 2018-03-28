@@ -12,6 +12,7 @@ class ScoreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: ScoreCollectionView!
     @IBOutlet weak var optionView: UIView!
+    @IBOutlet weak var optionStationLabel: UILabel!
     @IBOutlet weak var optionHitIndicatorView: HitScoreCollectionViewCell!
     @IBOutlet weak var optionMissIndicatorView: MissScoreCollectionViewCell!
     @IBOutlet weak var optionNotTakenIndicatorView: NotTakenScoreCollectionViewCell!
@@ -68,6 +69,16 @@ class ScoreTableViewCell: UITableViewCell {
         case .notTaken:
             indicatorViewToShow = self.optionNotTakenIndicatorView
         }
+        
+        // Set the option house/station label.
+        if option.shot != .notTaken,
+            let house = option.house,
+            let station = option.station {
+            self.optionStationLabel.text = "\(house == .high ? "H" : "L")\(station.rawValue)"
+        } else {
+            self.optionStationLabel.text = nil
+        }
+        
         // Show the correct indicator view and no others.
         let indicatorViews: [ScoreCollectionViewCell] = [self.optionHitIndicatorView, self.optionMissIndicatorView, self.optionNotTakenIndicatorView]
         for indicatorView in indicatorViews {
