@@ -73,13 +73,18 @@ class ScoreTableViewCell: UITableViewCell {
         for indicatorView in indicatorViews {
             indicatorView.isHidden = (indicatorView != indicatorViewToShow)
         }
-        // Draw a border if selected.
-        if isTakingOption {
-            indicatorViewToShow.layer.borderColor = AppColors.black.cgColor
-            indicatorViewToShow.layer.borderWidth = CommonConstants.scoreCellSelectedBorderWidth
-        } else {
-            indicatorViewToShow.layer.borderWidth = 0.0
-        }
+        // Draw a border if selected. Animate border changes to match `UICollectionViewCell` border changes.
+        indicatorViewToShow.layer.borderWidth = CommonConstants.scoreCellSelectedBorderWidth
+        
+        let originalBorderColor = isTakingOption ? UIColor.clear.cgColor : AppColors.black.cgColor
+        indicatorViewToShow.layer.borderColor = originalBorderColor
+        let finalBorderColor = isTakingOption ? AppColors.black.cgColor : UIColor.clear.cgColor
+        let borderColorAnimation: CABasicAnimation = CABasicAnimation(keyPath: "borderColor")
+        borderColorAnimation.fromValue = originalBorderColor
+        borderColorAnimation.toValue = finalBorderColor
+        borderColorAnimation.duration = 0.2
+        indicatorViewToShow.layer.add(borderColorAnimation, forKey: "color")
+        indicatorViewToShow.layer.borderColor = finalBorderColor
     }
 
     func update(with score: Score) {
