@@ -163,7 +163,7 @@ class ScoreViewController: UIViewController {
             } else if indexOfNextShot == Skeet.numberOfNonOptionShotsPerRound {
                 // Athlete just took option
                 let indexAfterOption = self.competingAthletes[indexOfNextShooter].indexOfNextShot
-                if indexAfterOption == Skeet.numberOfNonOptionShotsPerRound
+                if indexAfterOption >= Skeet.numberOfNonOptionShotsPerRound - 1
                     || Station.indexOfShotWithinStation(for: indexAfterOption) == 0 {
                     // Finished round or would start a new station, so move to next athlete
                     indexOfNextShooter = (indexOfNextShooter + 1) % self.competingAthletes.count
