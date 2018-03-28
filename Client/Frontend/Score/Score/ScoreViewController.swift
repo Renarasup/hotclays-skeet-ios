@@ -149,7 +149,10 @@ class ScoreViewController: UIViewController {
         // Compute next position for cursor.
         var indexOfNextShooter = self.cursor.indexOfAthlete
         var indexOfNextShot = self.cursor.indexOfShot
-        if advanceCursor && !self.isLastShotOfRound() {
+        
+        if self.isLastShotOfRound() {
+            self.presentRoundApprovalAlert()
+        } else if advanceCursor {
             if self.competingAthletes[self.cursor.indexOfAthlete].nextShotIsOption {
                 // Athlete's next shot is option
                 indexOfNextShot = Skeet.numberOfNonOptionShotsPerRound
@@ -172,7 +175,6 @@ class ScoreViewController: UIViewController {
                 // Athlete needs to take next shot on station
                 indexOfNextShot = self.competingAthletes[indexOfNextShooter].indexOfNextShot
             }
-            
         }
         self.moveCursor(toIndexOfAthlete: indexOfNextShooter, indexOfShot: indexOfNextShot)
     }
