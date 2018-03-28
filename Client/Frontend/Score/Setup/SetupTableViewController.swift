@@ -266,22 +266,21 @@ class SetupTableViewController: UITableViewController {
     
     /// Reset all fields in the `SetupTableViewController`.
     internal func reset() {
-        let isClearingSheet = self.event != nil
-        self.competingAthletes = [CompetingAthlete]()
+        self.sheetID = nil
         self.date = nil
         self.event = nil
         self.range = nil
         self.field = nil
         self.notes = nil
         self.round = 1
+        let numberOfAthletes = self.competingAthletes.count
+        self.competingAthletes = [CompetingAthlete]()
         
         // Reload the table view.
-        let indexPathForNewSheet = IndexPath(row: 1, section: SHEET_SECTION)
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
-            if isClearingSheet {
-                self.tableView.insertRows(at: [indexPathForNewSheet], with: .fade)
-            }
+            let indexPathsToDelete = (0..<numberOfAthletes).map({ IndexPath(item: $0, section: self.SQUAD_SECTION) })
+            self.tableView.deleteRows(at: indexPathsToDelete, with: .fade)
             self.tableView.reloadData()
             self.tableView.endUpdates()
         }
@@ -362,15 +361,25 @@ extension SetupTableViewController: ChooseSheetDelegate {
         self.notes = sheet.notes
         
         // Update the round number.
+        let previousNumberOfAthletes = self.competingAthletes.count
         if let rounds = sheet.sortedRounds,
             let competingAthletes = rounds.first?.toCompetingAthletes() {
             self.competingAthletes = competingAthletes
         }
         self.round = min((sheet.rounds?.count ?? 0) + 1, Sheet.maxNumberOfRounds)
+        let numberOfAthletes = self.competingAthletes.count
         
         // Reload the table view.
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
+            // Add or remove rows for athletes
+            if previousNumberOfAthletes < numberOfAthletes {
+                let indexPathsToInsert = (previousNumberOfAthletes..<numberOfAthletes).map({ IndexPath(item: $0, section: self.SQUAD_SECTION) })
+                self.tableView.insertRows(at: indexPathsToInsert, with: .fade)
+            } else if numberOfAthletes < previousNumberOfAthletes {
+                let indexPathsToDelete = (numberOfAthletes..<previousNumberOfAthletes).map({ IndexPath(item: $0, section: self.SQUAD_SECTION) })
+                self.tableView.deleteRows(at: indexPathsToDelete, with: .fade)
+            }
             self.tableView.reloadData()
             self.tableView.endUpdates()
         }

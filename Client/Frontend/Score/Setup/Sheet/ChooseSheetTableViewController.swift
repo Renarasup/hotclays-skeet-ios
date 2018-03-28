@@ -12,7 +12,7 @@ import UIKit
 /// View controller for selecting an existing sheet in `SetupTableViewController`.
 class ChooseSheetTableViewController: UITableViewControllerWithNSFRC {
 
-    var delegate: EditSheetDelegate!
+    var delegate: ChooseSheetDelegate!
     lazy var fetchedResultsController: NSFetchedResultsController<Sheet> = {
         // Build up request for all sheets, sorted by date (most recent first).
         let request: NSFetchRequest<Sheet> = Sheet.fetchRequest()
@@ -51,9 +51,7 @@ class ChooseSheetTableViewController: UITableViewControllerWithNSFRC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sheet = self.fetchedResultsController.object(at: indexPath)
-        if let date = sheet.date as Date?, let event = sheet.event, let range = sheet.range {
-            self.delegate.didAdd(date: date, event: event, range: range, field: sheet.field, notes: sheet.notes ?? "")
-        }
+        self.delegate.didChoose(sheet)
         self.dismiss()
     }
     
