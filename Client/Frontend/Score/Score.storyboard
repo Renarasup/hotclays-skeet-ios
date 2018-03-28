@@ -88,7 +88,6 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="tob-gX-p4P" secondAttribute="trailing" constant="12" id="38F-o2-fSV"/>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="745" id="E3n-Pv-xJs"/>
                                                 <constraint firstAttribute="bottom" secondItem="tob-gX-p4P" secondAttribute="bottom" constant="12" id="G74-FB-0JM"/>
                                                 <constraint firstItem="tob-gX-p4P" firstAttribute="top" secondItem="PCE-iF-lYj" secondAttribute="top" constant="12" id="PXP-AQ-mx5"/>
                                                 <constraint firstItem="tob-gX-p4P" firstAttribute="leading" secondItem="PCE-iF-lYj" secondAttribute="leading" constant="12" id="ppp-Ds-lzH"/>
